@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Entity
 public class Employee implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID", length = 36)
     private String employeeId;
 

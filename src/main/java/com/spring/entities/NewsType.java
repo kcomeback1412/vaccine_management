@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 public class NewsType implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NEWS_TYPE_ID", length = 36)
     private String newsTypeId;
 
@@ -20,4 +20,8 @@ public class NewsType implements Serializable {
 
     @Column(name = "NEWS_TYPE_NAME", length = 50)
     private String newsTypeName;
+
+    @OneToMany(mappedBy = "newsType")
+    private List<News> newsList;
+
 }

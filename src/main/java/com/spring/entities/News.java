@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Entity
 public class News implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NEWS_ID", length = 36)
     private String newsId;
 
@@ -23,6 +22,10 @@ public class News implements Serializable {
 
     @Column(name = "TITLE", length = 300)
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "NEWS_TYPE_ID")
+    private NewsType newsType;
 
 
 }

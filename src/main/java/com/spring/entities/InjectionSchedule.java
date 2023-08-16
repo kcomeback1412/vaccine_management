@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Entity
 public class InjectionSchedule implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "INJECTION_SCHEDULE_ID", length = 36)
     private String injectionScheduleId;
 
@@ -28,5 +27,7 @@ public class InjectionSchedule implements Serializable {
     @Column(name = "START_DATE")
     private LocalDate startDate;
 
-
+    @ManyToOne
+    @JoinColumn(name = "VACCINE_ID")
+    private Vaccine vaccine1;
 }
