@@ -19,5 +19,5 @@ public class VaccineType implements Serializable {
     private String description;
 
     @Column(name = "VACCINE_TYPE_Name", length = 200)
-    private String indication;
+    private String vaccineTypeName;
 }
