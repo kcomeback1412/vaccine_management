@@ -10,10 +10,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-public class Employee implements Serializable {
+public class UserDetail implements Serializable {
     @Id
-    @Column(name = "EMPLOYEE_ID", length = 36)
-    private String employeeId;
+    @Column(name = "ID", length = 12, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "ADDRESS", length = 255)
     private String address;
@@ -24,27 +25,31 @@ public class Employee implements Serializable {
     @Column(name = "EMAIL", length = 100)
     private String email;
 
-    @Column(name = "EMPLOYEE_NAME", length = 100)
-    private String employeeName;
+    @Column(name = "FULL_NAME", length = 100)
+    private String fullName;
 
     @Column(name = "GENDER")
     private Integer gender;
 
-    @Column(name = "IMAGE", length = 255)
-    private String image;
-
-    @Column(name = "PASSWORD", length = 255)
-    private String password;
-
     @Column(name = "PHONE", length = 20)
     private String phone;
+
+    // id of customer
+    @Column(name = "IDENTITY_CARD", length = 12)
+    private String identityCard;
+
+    // employee
+    @Column(name = "IMAGE", length = 255)
+    private String image;
 
     @Column(name = "POSITION", length = 100)
     private String position;
 
-    @Column(name = "USERNAME", length = 255)
-    private String username;
-
     @Column(name = "WORKING_PLACE", length = 255)
     private String workingPlace;
+
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private Users users2;
+
 }
