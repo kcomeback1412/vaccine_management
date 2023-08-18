@@ -1,9 +1,9 @@
 package com.spring.repositories;
 
-import com.spring.entities.InjectionSchedule;
+import com.spring.entities.UserDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InjectionScheduleRepository extends JpaRepository<InjectionSchedule,String> {
+public interface UserDetailRepository extends JpaRepository<UserDetail, Integer> {
 }
