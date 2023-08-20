@@ -16,7 +16,7 @@ public class UserRoles implements Serializable {
 
     @ManyToOne
     @MapsId("userId")
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "users_id")
     private Users users1;
 
     @ManyToOne
