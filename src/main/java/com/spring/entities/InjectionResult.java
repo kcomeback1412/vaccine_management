@@ -35,6 +35,6 @@ public class InjectionResult implements Serializable {
     private Vaccine vaccine2;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USERS_ID")
     private Users users3;
 }

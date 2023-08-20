@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 public class Users implements Serializable {
     @Id
-    @Column(name="USER_ID")
-    private String userId;
+    @Column(name="USERS_ID")
+    private String usersId;
 
     @Column(name = "USERNAME", length = 255)
     private String userName;
