@@ -49,7 +49,7 @@ public class UserDetail implements Serializable {
     private String workingPlace;
 
     @OneToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "USERS_ID")
     private Users users2;
 
 }
