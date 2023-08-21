@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/employee-list.css">
 </head>
 <body>
 
@@ -39,7 +40,7 @@
                 <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Emplyee management</a>
                 <ul class="collapse list-unstyled" id="employeeSubmenu">
                     <li>
-                        <a class="a_transform" href="#">Employee List</a>
+                        <a class="a_transform" th:href="@{/employee-list}">Employee List</a>
                     </li>
                     <li>
                         <a  class="a_transform" href="#">Create Employee</a>
