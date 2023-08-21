@@ -9,4 +9,10 @@ public class DashboardController {
     public String dashboardPage() {
         return "dashboard"; // Đây là tên của file HTML template của trang dashboard, ví dụ: dashboard.html
     }
+    
+    @GetMapping("/employeeList")
+    public String employeeList() {
+    	return "employee/employeeList";
+    }
+    
 }
