@@ -12,7 +12,7 @@ public class DashboardController {
     
     @GetMapping("/employee-list")
     public String employeeList() {
-    	return "employee/employeeList";
+    	return "employee/employee-list";
     }
     
 }
