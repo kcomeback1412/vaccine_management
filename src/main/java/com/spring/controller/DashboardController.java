@@ -10,9 +10,9 @@ public class DashboardController {
         return "dashboard";
     }
     
-    @GetMapping("/employee-list")
+    @GetMapping("/employee_list")
     public String employeeList() {
-    	return "employee/employeeList";
+    	return "employee/employee_list";
     }
     
 }
