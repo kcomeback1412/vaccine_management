@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class EmployeeController {
 
-    @GetMapping("/add-employee")
+    @GetMapping("/create-employee")
     String addEmployeeUI() {
-        return "employee/add-employee.html";
+        return "employee/create-employee";
+    }
+
+    @GetMapping("/update-employee")
+    String updateEmployeeUI() {
+        return "employee/update-employee";
     }
 }

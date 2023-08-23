@@ -3,24 +3,24 @@
 	  th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
-  <title>Add Vaccine Type</title>
-  
-  <link rel="stylesheet" href="css/addVaccineType.css">
+	<title>Update Employee</title>
+
+	<link rel="stylesheet" />
 </head>
 
 <body>
-	<h2 class="my-0 ml-auto mr-auto" id="content_title">ADD EMPLOYEE</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE EMPLOYEE</h2>
 
 	<main>
 		<form
-				action="add-employee-success.html"
-				class="bg-white shadow px-3 py-4"
-				onsubmit="return validateEmployee()"
+			action="add-employee-success.html"
+			class="bg-white shadow px-3 py-4"
+			onsubmit="return validateEmployee()"
 		>
 			<small
-					id="employeeInvalid"
-					class="form-text text-danger font-weight-bold mb-2 h5"
-					style="opacity: 0"
+				id="employeeInvalid"
+				class="form-text text-danger font-weight-bold mb-2 h5"
+				style="opacity: 0"
 			>
 				You must input all required fields in correct format
 			</small>
@@ -34,19 +34,19 @@
                   <span class="mt-1 mr-2">
                     <i class="fa-solid fa-id-badge"></i>
                   </span>
-						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Employee id"
-								id="idInput"
-								onchange="checkId(this.value)"
-								required
-						/>
+					<input
+						type="text"
+						class="form-control mr-3 rounded"
+						placeholder="Employee id"
+						id="idInput"
+						readonly
+						required
+					/>
 					</div>
 					<small
-							id="idInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="idInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						ID min-length is 5 and max-length is 12.
 					</small>
@@ -62,18 +62,18 @@
                     <i class="fa-solid fa-id-badge"></i>
                   </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								id="nameInput"
-								placeholder="Employee name"
-								onchange="checkName(this.value)"
-								required
+							type="text"
+							class="form-control mr-3 rounded"
+							id="nameInput"
+							placeholder="Employee name"
+							onchange="checkName(this.value)"
+							required
 						/>
 					</div>
 					<small
-							id="nameInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="nameInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						Name min-length is 5 and max-length is 100.
 					</small>
@@ -87,20 +87,20 @@
                   </span>
 						<div class="form-check mr-3">
 							<input
-									class="form-check-input"
-									type="radio"
-									name="gender"
-									id="gender1"
-									checked
+								class="form-check-input"
+								type="radio"
+								name="gender"
+								id="gender1"
+								checked
 							/>
 							<label class="form-check-label" for="gender1"> Male </label>
 						</div>
 						<div class="form-check">
 							<input
-									class="form-check-input"
-									type="radio"
-									name="gender"
-									id="gender2"
+								class="form-check-input"
+								type="radio"
+								name="gender"
+								id="gender2"
 							/>
 							<label class="form-check-label" for="gender2">
 								Female
@@ -119,10 +119,10 @@
                     <i class="fa-solid fa-calendar-days"></i>
                   </span>
 						<input
-								type="date"
-								class="form-control mr-3 rounded"
-								id="dateInput"
-								required
+							type="date"
+							class="form-control mr-3 rounded"
+							id="dateInput"
+							required
 						/>
 					</div>
 				</div>
@@ -137,18 +137,18 @@
                     <i class="fa-solid fa-phone"></i>
                   </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Phone number"
-								id="phoneInput"
-								onchange="checkPhoneNumber(this.value)"
-								required
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Phone number"
+							id="phoneInput"
+							onchange="checkPhoneNumber(this.value)"
+							required
 						/>
 					</div>
 					<small
-							id="phoneInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="phoneInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						You must start phone number with “0” and number only.
 					</small>
@@ -164,12 +164,12 @@
                     <i class="fa-solid fa-location-dot"></i>
                   </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Address"
-								id="addressInput"
-								onchange="checkAddress(this.value)"
-								required
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Address"
+							id="addressInput"
+							onchange="checkAddress(this.value)"
+							required
 						/>
 					</div>
 					<small
@@ -191,12 +191,12 @@
                     <i class="fa-solid fa-envelope"></i>
                   </span>
 						<input
-								type="email"
-								class="form-control mr-3 rounded"
-								placeholder="Email"
-								id="emailInput"
-								onchange="checkEmail(this.value)"
-								required
+							type="email"
+							class="form-control mr-3 rounded"
+							placeholder="Email"
+							id="emailInput"
+							onchange="checkEmail(this.value)"
+							required
 						/>
 					</div>
 					<small
@@ -217,17 +217,17 @@
                     <i class="fa-solid fa-hotel"></i>
                   </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Working Place"
-								id="workPlaceInput"
-								onchange="checkWorkingPlace(this.value)"
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Working Place"
+							id="workPlaceInput"
+							onchange="checkWorkingPlace(this.value)"
 						/>
 					</div>
 					<small
-							id="workingPlaceInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="workingPlaceInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						Working Place max-length is 100.
 					</small>
@@ -242,11 +242,11 @@
                     <i class="fa-solid fa-briefcase"></i>
                   </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Position"
-								id="positionInput"
-								onchange="checkPosition(this.value)"
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Position"
+							id="positionInput"
+							onchange="checkPosition(this.value)"
 						/>
 					</div>
 					<small
@@ -265,68 +265,13 @@
                     <i class="fa-solid fa-image"></i>
                   </span>
 						<input
-								type="file"
-								class="form-control-file mr-3 border rounded"
-								id="imageInput"
-								accept="image/*"
+							type="file"
+							class="form-control-file mr-3 border rounded"
+							id="imageInput"
+							accept="image/*"
 						/>
 					</div>
 				</div>
-
-				<div class="col-12 col-md-6 col-lg-4 mb-2">
-					<label for="usernameInput" class="font-weight-bold">
-						Username
-						<span class="text-danger">(*)</span>
-					</label>
-					<div class="d-flex">
-                  <span class="mt-1 mr-2">
-                    <i class="fa-solid fa-id-badge"></i>
-                  </span>
-						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Username"
-								id="usernameInput"
-								onchange="checkUsername(this.value)"
-								required
-						/>
-					</div>
-					<small
-							id="usernameInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
-					>
-						Username min-length is 5 and max-length is 30.
-					</small>
-				</div>
-
-				<div class="col-12 col-md-6 col-lg-4 mb-2">
-					<label for="passwordInput" class="font-weight-bold">
-						Password
-						<span class="text-danger">(*)</span>
-					</label>
-					<div class="d-flex">
-                  <span class="mt-1 mr-2">
-                    <i class="fa-solid fa-id-badge"></i>
-                  </span>
-						<input
-								type="password"
-								class="form-control mr-3 rounded"
-								placeholder="Password"
-								id="passwordInput"
-								onchange="checkPassword(this.value)"
-								required
-						/>
-					</div>
-					<small
-							id="passwordInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
-					>
-						Password min-length is 10 and max-length is 30.
-					</small>
-				</div>
-
 			</div>
 
 			<div class="">
@@ -336,6 +281,6 @@
 			</div>
 		</form>
 	</main>
-	<script th:src="@{/js/employee-JS/validate-employee.js}"></script>
+	<script src="#"></script>
 </body>
 </html>
