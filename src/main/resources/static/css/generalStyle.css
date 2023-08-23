@@ -1,0 +1,153 @@
+html {
+	font-size: 62.5%;
+}
+
+body {
+	background: #e9e9e9;
+    font-family: "Roboto", sans-serif !important;
+    font-size: 1.5rem;
+}
+
+.header {
+	height: 60px;
+    background: #009688;
+    box-shadow: 0px 3px 5px #888888;
+}
+
+.search_wrap>input,
+.search_wrap>button {
+	font-size: 1.5rem;
+}
+
+.wrapper {
+	height: calc(100vh - 60px);
+}
+
+.sidebar {
+	background: #fff;
+	font-size: 1.5rem;
+	box-shadow: 5px 0px 5px #888888;
+}
+
+.user-info {
+	height: 80px;
+	background-image: url(/img/backgroundUser.png);
+	background-size: cover;
+	font-size: 1.2rem;
+}
+
+.user_logo {
+	border-radius: 50%;
+}
+
+#user_role {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+/* Css Collapse Group */
+.navigation {
+	height: calc(100% - 80px);
+	overflow-y: auto; 
+}
+
+.accordion .card {
+	border-radius: 0;
+	border-width: 1px 0 1px 0;
+}
+.accordion .card:first-child {
+	border-top: none;
+}
+.accordion .card .card-header {
+	background: #fff;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-radius: 0;
+	margin-bottom: -2px;
+}
+.accordion .card-header:hover {
+	background: #f8f8f8;
+}
+.accordion .card-header h2 span {
+	float: left;
+	margin-top: 10px;
+}
+.accordion .card-header .btn {
+	font-weight: 500;
+	width: 100%;
+	text-align: left;
+	text-decoration: none;
+	font-size: 1.45rem;
+	font-weight: bold;
+	color: #2e3855;
+	position: relative;
+	top: -2px;
+}
+.accordion .card-header .btn:focus {
+	box-shadow: none;
+}
+.accordion .card-header i {
+	float: right;
+	font-size: 1.8rem;
+	font-weight: bold;
+	top: 5px;
+}
+.accordion .card-header button:hover {
+	color: #23384e;
+}
+.accordion .card-body {
+	background: #eaeaea;
+	color: #595959;
+}
+.accordion .highlight {
+	color: #fff !important;
+	background: #202d3c !important;
+}
+.accordion .highlight .btn {
+	color: #fff;
+}
+.accordion .collapse a {
+	color: #333;
+	text-decoration: none;
+}
+.accordion .collapse a:hover {
+	color: #007bff;
+}
+
+.sidebar_btn_wrap {
+	box-shadow: 2px 2px 5px #888888;
+}
+
+.sidebar_btn_wrap .btn,
+.form_content button{
+	font-size: 1.5rem;
+}
+
+#content_title {
+	font-weight: bold;
+	color: #2e3855;
+	float: left;
+}
+
+.content_wrap {
+	overflow-y: auto; 
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #8b8888;
+}
+
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #f7f4f4;
+}
+
+@media (max-width: 992px) {
+    html {
+    	font-size: 58%;
+    }
+}

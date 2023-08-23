@@ -1,0 +1,95 @@
+html {
+    font-size: 60%;
+    box-sizing: border-box !important;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url(/img/backgroundLogin.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'poppins', sans-serif;
+}
+
+img {
+  	pointer-events: none;
+  	position: absolute;
+  	width: 100%;
+  	height: 100%;
+  	z-index: -1;
+}
+
+i {
+    font-size: 7rem;
+}
+
+h1 {
+    font-size: 2.8rem !important;
+}
+
+.log-in__form {
+    width: 90%;
+    max-width: 40rem;
+    height: 50rem;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 0 5rem;
+    backdrop-filter: blur(10px);
+    font-size: 2rem;
+    justify-content: space-evenly;
+}
+
+.form-group {
+    width: 100%;
+    position: relative;
+}
+
+.form-group input {
+    padding-right: 40px;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+input::placeholder {
+    color: #fff;
+}
+
+.form-group i {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+}
+
+button {
+    border-radius: 8px !important;
+    cursor: pointer;
+}
+
+a {
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 992px) {
+    html {
+        font-size: 58%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    html {
+        font-size: 48%;
+    }
+
+    .log-in__form {
+        padding: 0 8%;
+    }
+}

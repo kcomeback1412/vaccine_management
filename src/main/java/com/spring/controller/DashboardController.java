@@ -15,4 +15,14 @@ public class DashboardController {
     	return "employee/employee_list";
     }
     
+    @GetMapping("/login")
+    public String loginUI() {
+    	return "login";
+    }
+    
+    @GetMapping("/addVaccineType")
+    public String addVaccineTypeUI() {
+    	return "addVaccineType";
+    }
+    
 }

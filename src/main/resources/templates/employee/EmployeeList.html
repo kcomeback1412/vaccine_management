@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="./fontawesome/font-awesome-pro.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="css/employeeList.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!--
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+  -->
+
+</head>
+<body>
+<nav class="navbar sticky-top bg-body-tertiary navbar-header ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="./img/logoFPT.png" alt="Logo" class="d-inline-block align-text-top logoFPT">
+    </a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-success seacrch-header" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="">
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <div class="admin-infor">
+          <a href="#">
+            <img src="./img/UserImg.png" alt="" class="header-navbar-user-img">
+          </a>
+          <p>Admin</p>
+          <p>admin@fsort.com</p>
+        </div>
+      </div>
+      <ul class="list-unstyled overflow-sidebar">
+        <p>Home</p>
+        <li class="active">
+          <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Emplyee management</a>
+          <ul class="collapse list-unstyled" id="employeeSubmenu">
+            <li>
+              <a class="a_transform" href="#">Employee List</a>
+            </li>
+            <li>
+              <a  class="a_transform" href="#">Create Employee</a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li>
+          <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Customer management</a>
+          <ul class="collapse list-unstyled" id="customerSubmenu">
+            <li>
+              <a  class="a_transform" href="#">Customer List</a>
+            </li>
+            <li>
+              <a  class="a_transform" href="#">Create Customer</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#vaccineTypeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Vaccine Type management</a>
+          <ul class="collapse list-unstyled" id="vaccineTypeSubmenu">
+            <li>
+              <a  class="a_transform" href="#">Vaccine Type List</a>
+            </li>
+            <li>
+              <a  class="a_transform" href="#">Create Vaccine Type</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#vaccineSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Vaccine management</a>
+          <ul class="collapse list-unstyled" id="vaccineSubmenu">
+            <li>
+              <a  class="a_transform" href="#">Vaccine List</a>
+            </li>
+            <li>
+              <a  class="a_transform" href="#">Create Vaccine</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#injectionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Injection Shedule</a>
+          <ul class="collapse list-unstyled" id="injectionSubmenu">
+            <li>
+              <a  class="a_transform" href="#">Injection Shedule List</a>
+            </li>
+            <li>
+              <a class="a_transform" href="#">Create Injection Shedule</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">News</a>
+          <ul class="collapse list-unstyled" id="newsSubmenu">
+            <li>
+              <a class="a_transform" href="#">News List</a>
+            </li>
+            <li>
+              <a class="a_transform" href="#">Create News</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Report</a>
+          <ul class="collapse list-unstyled" id="reportSubmenu">
+            <li>
+              <a class="a_transform" href="#">Report Injection Result</a>
+            </li>
+            <li>
+              <a class="a_transform" href="#">Report Customer</a>
+            </li>
+            <li>
+              <a class="a_transform" href="#">Report Vaccine</a>
+            </li>
+            <li>
+              <a class="a_transform" href="#">Report</a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+
+    </nav>
+    
+
+    <!-- Page Content  -->
+    <div id="content">
+      <!-- Content -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- sidebarCollapse -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                  <i class="fa-solid fa-list"></i>
+                  <span>Toggle Sidebar</span>
+                </button>
+              </div>
+            </nav>
+            <!-- Add Table Content in here -->
+            <p style="font-weight: 650; margin-left: auto;margin-right: auto;width: 160px;">EMPLOYEE LIST</p>
+          <div>
+			  <div class="container" style="background-color: white; margin-top: 20px;">
+        <div class="body_header">
+			
+            <div class="header_navbar">
+                <div class="header_navbar-item">
+                    <span class="text">Show</span>
+                    <input class="dropdown-list" style="border-bottom: 1px solid rgb(61, 133, 168);"
+                        list="datalistOptions" id="exampleDataList">
+                    <datalist id="datalistOptions">
+                        <option value="10">
+                        <option value="25">
+                        <option value="50">
+                        <option value="100">
+                    </datalist>
+                    
+                    <span class="text">entries</span>
+                </div>
+                <div class="header_navbar-item">
+                    <span class="text">Search:</span>
+                    <input class="dropdown-list" style="border-bottom: 1px solid rgb(173, 177, 179);" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="body2" style="margin-top: 2%;">
+            <table class="table table-striped table-bordered" style="    width: 92%;
+            margin: auto;">
+                <thead class="thead-light" style="background-color: #d9b688;">
+                    <tr class="table-primary">
+                        <th scope="col">
+                            <input type="checkbox">
+                        </th>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">2</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">3</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footerr">
+            <div class="button_bussiness">
+                <span class="text" style="padding-left: 3px;">Showing 1 to 5 of ... entries</span>
+                <div class="buttons">
+                    <button class="btn-create">New Employee</button>
+                    <button class="btn-update">Update Employee</button>
+                    <button class="btn-delete">Delete Employee</button>
+                </div>
+            </div>
+            <div class="paging">
+                <div class="paging_buton">
+                    <button class="button">
+                        <</button>
+                            <button class="button">1</button>
+                            <button class="button">2</button>
+                            <button class="button">3</button>
+                            <button class="button">4</button>
+                            <button class="button">5</button>
+                            <button class="button">></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+		  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script src="js/javascrip.js"></script>
+</body>
+</html>
