@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main})}">
+
+<head>
+  <title>Add Vaccine Type</title>
+  
+  <link rel="stylesheet" href="css/addVaccineType.css">
+</head>
+
+<body>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE TYPE</h2>
+
+	<main>
+		<div class="w-100 p-0 d-flex">    
+            <form class="form_content w-100 bg-white px-5 py-2">
+            	<div class="row my-5">
+            		<div class="col">
+            			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
+            			
+            			<div class="mt-2">
+            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            				
+            				<input type="text">
+            			</div>
+            		</div>
+            		
+            		<div class="col">
+            			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
+            			
+            			<div class="mt-2">
+            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            				
+            				<input type="text">
+            			</div>
+            		</div>
+            		
+            		<div class="col">
+            			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
+            			
+            			<div class="mt-2">
+            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            				
+            				<input type="checkbox"  style="font-size: 2rem !important">
+            			</div>
+            		</div>
+            	</div>
+            	
+            	<div class="row my-5">
+            		<div class="col">
+            			<span>Description:</span>
+            			
+            			<div class="d-flex align-items-center mt-2">
+            				<i class="fa-solid fa-file-lines  mr-3"></i>
+            				
+            				<textarea rows="4" cols="100"></textarea>
+            			</div>
+            		</div>
+            	</div>
+            	
+            	<div class="row my-5">
+            		<div class="col">
+            			<span>Image:</span>
+            			
+            			<div class="d-flex align-items-center mt-2">
+            				<i class="fa-solid fa-image  mr-2"></i>
+            				
+            				<input type="file">
+            			</div>
+            		</div>
+            	</div>
+            	
+            	<div class="row my-5">
+            		<div class="col">
+            			<button class="btn btn-success mr-2" type="submit">Save</button>
+            			<button class="btn btn-info mr-2" type="reset">Reset</button>
+            			<button class="btn btn-warning" type="button">Cancel</button>
+            		</div>
+            	</div>
+            </form>     
+          </div>
+	</main>
+</body>
+</html>
