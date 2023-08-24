@@ -35,4 +35,19 @@ public class DashboardController {
     	return "login";
     }
     
+    @GetMapping("/addVaccineType")
+    public String addVaccineTypeUI() {
+    	return "addVaccineType";
+    }
+
+    @GetMapping("/create_news")
+    public String createNewsUI() {
+        return "news/create_news";
+    }
+
+    @GetMapping("/news_list")
+    public String newListUI() {
+        return "news/news_list";
+    }
+    
 }
