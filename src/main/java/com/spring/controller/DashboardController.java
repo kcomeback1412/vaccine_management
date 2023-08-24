@@ -25,6 +25,11 @@ public class DashboardController {
     	return "vaccine/vaccine_type_list";
     }
     
+    @GetMapping("/add_vaccine")
+    public String addVaccine() {
+    	return "vaccine/add_vaccine";
+    }
+    
     @GetMapping("/create_customer")
     public String createCustomer() {
     	return "customer/create_customer";
