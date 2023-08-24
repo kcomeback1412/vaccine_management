@@ -5,10 +5,22 @@ p{
     padding-left: 20px;
 }
 
+.row1{
+    margin-bottom: 30px;
+}
+
 .container-fluid {
 	padding-bottom: 20px;
 }
 
+.input_text{
+    width: 100%;
+}
+
+.input_text-normal{
+    width: 100%;
+    resize: none;
+}
 
 .label_sign{
 	font-weight: 600;
@@ -70,8 +82,4 @@ p{
     display: flex;
     justify-content: space-around;
     width: 105%;
-}
-
-.body2{
-	margin-top: 20px;
 }
