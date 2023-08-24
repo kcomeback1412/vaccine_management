@@ -10,7 +10,7 @@ public class HomeController {
 
     @RequestMapping(value = {"","/","/index","/home","dashboard"})
     public String homePageUI(Model model){
-        return "index";
+        return "dashboard";
     }
 
 }
