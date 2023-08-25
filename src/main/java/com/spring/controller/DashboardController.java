@@ -49,4 +49,14 @@ public class DashboardController {
     public String ImportVaccine() {
         return "Vaccine/import_vaccine";
     }
+
+    @GetMapping("/customer_list")
+    public String CustomerList() {
+        return "customer/customer_list";
+    }
+
+    @GetMapping("/vaccine_result_list")
+    public String VaccineResultList() {
+        return "Vaccine/vaccine_result_list";
+    }
 }
