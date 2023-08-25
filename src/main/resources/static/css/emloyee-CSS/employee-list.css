@@ -57,6 +57,15 @@ p {
 	outline: none;
 	margin: 0 10px;
 	position: relative;
+	border-bottom: 1px solid rgb(61, 133, 168);
+}
+
+.dropdown-list-search{
+	border: none;
+	outline: none;
+	margin: 0 10px;
+	position: relative;
+	border-bottom: 1px solid rgb(173, 177, 179);
 }
 
 .footerr {
@@ -95,4 +104,8 @@ p {
 	display: flex;
 	justify-content: space-around;
 	width: 105%;
+}
+
+.text_details{
+	padding-left: 3px;
 }
