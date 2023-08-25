@@ -4,7 +4,7 @@
 <head>
   <title>Create Vaccine Type</title>
   
-  <link rel="stylesheet" href="css/addVaccineType.css">
+  <link rel="stylesheet" href="css/vaccine-type-CSS/addVaccineType.css">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2" th:action="@{/addVaccineType}" method="post" th:object="${vaccineType}">
+            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/addVaccineType}" method="post" th:object="${vaccineType}">
             	<div class="row my-5">
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
@@ -20,10 +20,12 @@
             			<div class="my-2">
             				<i class="fa-solid fa-pen-to-square mr-2"></i>
             				
-            				<input class="p-1" type="text" name="vaccineTypeId">
+            				<input class="p-2" type="text" name="vaccineTypeId" placeholder="-Vaccine Type Code-">
             			</div>
             			
 						<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeId')}" th:errorclass="error" th:errors="*{vaccineTypeId}"></span>
+						
+						<span class="text-danger font-weight-bold" th:text="${vaccineTypeIdMsg}"></span>
             		</div>
             		
             		<div class="col">
@@ -32,7 +34,7 @@
             			<div class="my-2">
             				<i class="fa-solid fa-pen-to-square mr-2"></i>
             				
-            				<input class="p-1" type="text" name="vaccineTypeName">
+            				<input class="p-2" type="text" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
             			</div>
             			
             			<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeName')}" th:errorclass="error" th:errors="*{vaccineTypeName}"></span>
@@ -44,7 +46,7 @@
             			<div class="mt-3">
             				<i class="fa-solid fa-check-to-slot mr-3"></i>
             				
-            				<input class="w-auto" type="checkbox">
+            				<input class="w-auto" type="checkbox" name="activeCheckBox" checked disabled>
             			</div>
             		</div>
             	</div>
@@ -56,7 +58,7 @@
             			<div class="d-flex align-items-center mt-2">
             				<i class="fa-solid fa-file-lines mr-3"></i>
             				
-            				<textarea class="p-1" rows="4" cols="100" name="description"></textarea>
+            				<textarea class="px-2 py-1" rows="4" cols="100" name="description"></textarea>
             			</div>
             		</div>
             	</div>
@@ -68,7 +70,7 @@
             			<div class="d-flex align-items-center mt-2">
             				<i class="fa-solid fa-image mr-2"></i>
             				
-            				<input type="file">
+            				<input class="w-auto rounded border p-1" type="file">
             			</div>
             		</div>
             	</div>
