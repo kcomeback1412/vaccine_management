@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
 
 <head>
 	<title>VaccineTypeList</title>
@@ -7,124 +8,125 @@
 </head>
 
 <body>
-	<h2 class="my-0 ml-auto mr-auto" id="content_title">VACCINE TYPE LIST</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE</h2>
 	<main>
-		
-		 <div class="body1">
-    <div class="container-fluid  bg-white">
-      <p>Personal Information</p>
-      <div class="container-fluid">
-          <div class="row row-cols-2">
-            <div class="col-sm-8 col_reponsive">
-              <span class="label">
-                Full name
-                <span class="label" style="color: red;font-weight: 650;">(*):</span>
-              </span>
-              <div class="label_header">
-                <input type="text" class="input_text">
-              </div>
-            </div>
-            <div class="col-sm-4 col_reponsive">
-              <span class="label">Gender
-              </span>
-              <div class="label_header" style="display: flex;">
-                <div class="radio">
-                  <div class="radio1" style="margin-left: 15px;margin-right: 80px;">
-                    <input type="radio" name="radio_btn" style="margin-right: 4px;">
-                    <span>Male</span>
-                  </div>
-                  <div class="radio1">
-                    <input type="radio" name="radio_btn" style="margin-right: 4px;">
-                    <span>Female</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="body2">
-            <div class="row row-cols-3 row1">
-              <div class="col-sm">
-                <span class="label">Identity Card
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-            </div>
-            <div class="row row-cols-3 row1">
-              <div class="col-sm">
-                <span class="label">Identity Card
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <textarea class="input_text-normal" type="text" name="" id="" cols="20" rows="5"></textarea>
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <textarea class="input_text-normal" type="text" name="" id="" cols="20" rows="5"></textarea>
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <textarea class="input_text-normal" type="text" name="" id="" cols="20" rows="5"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row row-cols-3">
-              <div class="col-sm">
-                <span class="label">Identity Card
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-              <div class="col-sm">
-                <span class="label">Address
-                  <span class="label" style="color: red;font-weight: 650;">(*):</span>
-                </span>
-                <div class="label_header">
-                  <input class="input_text-normal" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
 
-      </div>
-    </div>
-  </div>
+		<div class="body1">
+			<div class="container-fluid  bg-white">
+				<div class="container-fluid">
+					<div class="row row-cols-2">
+						<div class="col-sm-8 col_reponsive">
+							<span class="label">
+								Vaccine id:
+								<span class="label_sign">(*):</span>
+							</span>
+							<div class="label_header">
+								<input class="form-control" type="text">
+							</div>
+						</div>
+						<div class="col-sm-4 col_reponsive">
+							<span class="label">Active:
+								<span class="label_sign">(*):</span>
+							</span>
+							<div class="label_header" style="display: flex;">
+								<i class="fa-solid fa-microscope"></i>
+								<div class="active">
+									<input class="checkbox" type="checkbox">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="body2">
+						<div class="row row-cols-3 row1">
+							<div class="col-sm">
+								<span class="label">Vaccine name:
+									<span class="label_sign">(*):</span>
+								</span>
+								<div class="label_header">
+									<input class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Vaccine Type
+									<span class="label_sign">(*):</span>
+								</span>
+								<div class="label_header">
+									<select class="form-select" aria-label="Default select example">
+										<option selected>-Select Vaccine Type</option>
+										<option value="1">One</option>
+										<option value="2">Two</option>
+										<option value="3">Three</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Number of inject:
+								</span>
+								<div class="label_header">
+									<input class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row row-cols-3 row1">
+							<div class="col-sm">
+								<span class="label">Usage:
+								</span>
+								<div class="label_header">
+									<textarea class="form-control input_text-normal" type="text" name="" id="" cols="20"
+										rows="5"></textarea>
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Indication:
+								</span>
+								<div class="label_header">
+									<textarea class="form-control input_text-normal" type="text" name="" id="" cols="20"
+										rows="5"></textarea>
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Contraindication
+								</span>
+								<div class="label_header">
+									<textarea class="form-control input_text-normal" type="text" name="" id="" cols="20"
+										rows="5"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row row-cols-3">
+							<div class="col-sm">
+								<span class="label">Time of beginning next injection:
+								</span>
+								<div class="label_header">
+									<input class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Time of ending next injection:
+								</span>
+								<div class="label_header">
+									<input class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm">
+								<span class="label">Origin:
+								</span>
+								<div class="label_header">
+									<input class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="button_bussiness">
+						<div class="buttons">
+							<button class="btn-create">Save</button>
+							<button class="btn-update">Reset</button>
+							<button class="btn-delete">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
 	<script src="#"></script>
 </body>
