@@ -11,7 +11,10 @@ import java.time.LocalDate;
 @Setter
 @Entity
 public class InjectionResult implements Serializable {
-    @Id
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "INJECTION_RESULT_ID", length = 36)
     private String injectionResultId;
 
