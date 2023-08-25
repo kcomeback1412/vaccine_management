@@ -18,6 +18,11 @@ public class VaccineTypeController {
 	
 	@Autowired
 	private VaccineTypeRepository vaccineTypeRepository;
+	
+	@GetMapping("/vaccine-type-list")
+    public String vaccineTypeList() {
+    	return "vaccine/vaccine-type-list";
+    }
 
 	@GetMapping("/addVaccineType")
     public String addVaccineTypeUI(Model model) {
