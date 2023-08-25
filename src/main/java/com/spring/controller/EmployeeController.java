@@ -15,4 +15,9 @@ public class EmployeeController {
     String updateEmployeeUI() {
         return "employee/update-employee";
     }
+    
+    @GetMapping("/employee-list")
+    public String employeeList() {
+    	return "employee/employee-list";
+    }
 }
