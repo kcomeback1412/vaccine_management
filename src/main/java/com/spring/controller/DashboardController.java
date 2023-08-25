@@ -10,39 +10,19 @@ public class DashboardController {
         return "dashboard";
     }
     
-    @GetMapping("/employee_list")
-    public String employeeList() {
-    	return "employee/employee_list";
-    }
-    
-    @GetMapping("/schedule_list")
-    public String scheduleList() {
-    	return "schedule/schedule_list";
-    }
-    
-    @GetMapping("/vaccine_type_list")
-    public String vaccineTypeList() {
-    	return "vaccine/vaccine_type_list";
-    }
-    
-    @GetMapping("/add_vaccine")
-    public String addVaccine() {
-    	return "vaccine/add_vaccine";
-    }
-    
-    @GetMapping("/create_customer")
-    public String createCustomer() {
-    	return "customer/create_customer";
-    }
-    
     @GetMapping("/login")
     public String loginUI() {
     	return "login";
     }
     
-    @GetMapping("/addVaccineType")
-    public String addVaccineTypeUI() {
-    	return "addVaccineType";
+    @GetMapping("/create_news")
+    public String createNewsUI() {
+        return "news/create_news";
+    }
+
+    @GetMapping("/news_list")
+    public String newListUI() {
+        return "news/news_list";
     }
     
 }

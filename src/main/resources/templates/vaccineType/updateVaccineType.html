@@ -2,45 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main})}">
 
 <head>
-  <title>Add Vaccine Type</title>
+  <title>Update Vaccine Type</title>
   
   <link rel="stylesheet" href="css/addVaccineType.css">
 </head>
 
 <body>
-	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE TYPE</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE VACCINE TYPE</h2>
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content w-100 bg-white px-5 py-2">
+            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2" th:action="@{/addVaccineType}" method="post" th:object="${vaccineType}">
             	<div class="row my-5">
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="mt-2">
+            			<div class="my-2">
             				<i class="fa-solid fa-pen-to-square mr-2"></i>
             				
-            				<input type="text">
+            				<input class="p-1" type="text" name="vaccineTypeId" readonly>
             			</div>
+            			
+						<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeId')}" th:errorclass="error" th:errors="*{vaccineTypeId}"></span>
             		</div>
             		
             		<div class="col">
-            			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
+            			<span>Vaccine Type Name<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="mt-2">
+            			<div class="my-2">
             				<i class="fa-solid fa-pen-to-square mr-2"></i>
             				
-            				<input type="text">
+            				<input class="p-1" type="text" name="vaccineTypeName">
             			</div>
+            			
+            			<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeName')}" th:errorclass="error" th:errors="*{vaccineTypeName}"></span>
             		</div>
             		
             		<div class="col">
-            			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
+            			<span>Active<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="mt-2">
-            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            			<div class="mt-3">
+            				<i class="fa-solid fa-check-to-slot mr-3"></i>
             				
-            				<input type="checkbox"  style="font-size: 2rem !important">
+            				<input class="w-auto" type="checkbox">
             			</div>
             		</div>
             	</div>
@@ -50,9 +54,9 @@
             			<span>Description:</span>
             			
             			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-file-lines  mr-3"></i>
+            				<i class="fa-solid fa-file-lines mr-3"></i>
             				
-            				<textarea rows="4" cols="100"></textarea>
+            				<textarea class="p-1" rows="4" cols="100" name="description"></textarea>
             			</div>
             		</div>
             	</div>
@@ -62,7 +66,7 @@
             			<span>Image:</span>
             			
             			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-image  mr-2"></i>
+            				<i class="fa-solid fa-image mr-2"></i>
             				
             				<input type="file">
             			</div>
@@ -71,9 +75,9 @@
             	
             	<div class="row my-5">
             		<div class="col">
-            			<button class="btn btn-success mr-2" type="submit">Save</button>
-            			<button class="btn btn-info mr-2" type="reset">Reset</button>
-            			<button class="btn btn-warning" type="button">Cancel</button>
+            			<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
+            			<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
+            			<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
             		</div>
             	</div>
             </form>     
