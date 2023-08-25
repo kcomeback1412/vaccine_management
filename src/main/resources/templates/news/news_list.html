@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main})}">
+
+<head>
+  <title>NewList</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../static/css/searchnew/list.css">
+  <link rel="stylesheet" th:href="@{/css/searchnew/list.css}"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h4 class="my-0 ml-auto mr-auto" id="content_title">NEWS LIST</h4>
+
+<main>
+  <div class="container">
+    <table class="table table-striped ">
+      <div class="row">
+        <div class="col-sm-6 left">
+          <label for="Show">Show</label>
+          <select name="Show" id="Show" class="full-size">
+            <option value="1"></option>
+            <option value="2"> 1 </option>
+            <option value="3"> 5 </option>
+            <option value="4"> 12 </option>
+          </select>
+          <label>entries</label>
+        </div>
+        <div class="col-sm-6 right">
+          <label for="certName" >Search:</label>
+          <input type="text" id="certName" name="certName">
+        </div>
+      </div>
+      <thead>
+      <tr>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th scope="col" >Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Post date</th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch H5N1</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>13/4/2011</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch ZIKA</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>15/7/2020</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch Tả</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>12/1/2016</td>
+      </tr>
+    </table>
+    <label>showing 1 to 5 of 12 entries</label>
+    <div class="bold">
+      <button class="create" type="button">Create news</button>
+      <button class="update" type="button">Update news</button>
+      <button class="delete" type="button">Delete news</button>
+    </div>
+  </div>
+  </form>
+</main>
+</body>
+</html>

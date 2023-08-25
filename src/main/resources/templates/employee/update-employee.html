@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+
+<head>
+  <title>UPDATE Employee</title>
+
+	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-employee.css}"/>
+</head>
+
+<body>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE EMPLOYEE</h2>
+
+	<main>
+		<form
+			action="add-employee-success.html"
+			class="bg-white rounded shadow px-3 py-4"
+			onsubmit="return validateEmployee()"
+		>
+			<small
+				id="employeeInvalid"
+				class="form-text text-danger font-weight-bold mb-2 h5"
+				style="opacity: 0"
+			>
+				You must input all required fields in correct format
+			</small>
+			<div class="form-group row mb-3 d-flex flex-wrap">
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="idInput" class="font-weight-bold">
+						Employee ID
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-id-badge"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Employee id"
+							id="idInput"
+							readonly
+							required
+						/>
+					</div>
+					<small
+						id="idInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						ID min-length is 5 and max-length is 12.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="nameInput" class="font-weight-bold">
+						Employee name
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-id-badge"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							id="nameInput"
+							placeholder="Employee name"
+							onchange="checkName(this.value)"
+							required
+						/>
+					</div>
+					<small
+						id="nameInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						Name min-length is 5 and max-length is 100.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label class="font-weight-bold"> Gender </label>
+					<div class="d-flex">
+                  <span class="mt-1 mr-2">
+                    <i class="fa-solid fa-venus-mars"></i>
+                  </span>
+						<div class="form-check mr-3">
+							<input
+								class="form-check-input"
+								type="radio"
+								name="gender"
+								id="gender1"
+								checked
+							/>
+							<label class="form-check-label ml-2" for="gender1"> Male </label>
+						</div>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="radio"
+								name="gender"
+								id="gender2"
+							/>
+							<label class="form-check-label ml-2" for="gender2">
+								Female
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="dateInput" class="font-weight-bold">
+						Date of birth
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </span>
+						<input
+							type="date"
+							class="form-control mr-3 rounded"
+							id="dateInput"
+							required
+						/>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="phoneInput" class="font-weight-bold">
+						Phone number
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-phone"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Phone number"
+							id="phoneInput"
+							onchange="checkPhoneNumber(this.value)"
+							required
+						/>
+					</div>
+					<small
+						id="phoneInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						You must start phone number with “0” and number only.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="addressInput" class="font-weight-bold">
+						Address
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Address"
+							id="addressInput"
+							onchange="checkAddress(this.value)"
+							required
+						/>
+					</div>
+					<small
+						id="addressInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						Address min-length is 5 max-length is 100.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="emailInput" class="font-weight-bold">
+						Email
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-envelope"></i>
+                  </span>
+						<input
+							type="email"
+							class="form-control mr-3 rounded"
+							placeholder="Email"
+							id="emailInput"
+							onchange="checkEmail(this.value)"
+							required
+						/>
+					</div>
+					<small
+						id="emailInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						Email max-length is 100.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="workPlaceInput" class="font-weight-bold">
+						Working place
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-hotel"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Working Place"
+							id="workPlaceInput"
+							onchange="checkWorkingPlace(this.value)"
+						/>
+					</div>
+					<small
+						id="workingPlaceInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						Working Place max-length is 100.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="positionInput" class="font-weight-bold">
+						Position
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-briefcase"></i>
+                  </span>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Position"
+							id="positionInput"
+							onchange="checkPosition(this.value)"
+						/>
+					</div>
+					<small
+						id="positionInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
+					>
+						Position max-length is 100.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-3">
+					<label for="imageInput" class="font-weight-bold"> Image </label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                    <i class="fa-solid fa-image"></i>
+                  </span>
+						<input
+							type="file"
+							class="form-control-file mr-3 border rounded"
+							id="imageInput"
+							accept="image/*"
+						/>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="usernameInput" class="font-weight-bold">
+						Username
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+					  <span class="mt-2 mr-2">
+						<i class="fa-solid fa-id-badge"></i>
+					  </span>
+						<input
+								type="text"
+								class="form-control mr-3 rounded"
+								placeholder="Username"
+								id="usernameInput"
+								readonly
+								required
+						/>
+					</div>
+					<small
+							id="usernameInvalid"
+							class="form-text text-danger"
+							style="opacity: 0"
+					>
+						Username min-length is 5 and max-length is 30.
+					</small>
+				</div>
+			</div>
+
+			<div class="">
+				<input type="submit" class="btn btn-success mr-2" value="Save" />
+				<button type="reset" class="btn btn-info mr-2">Reset</button>
+				<button type="button" class="btn btn-warning">Cancel</button>
+			</div>
+		</form>
+	</main>
+	<script th:src="@{/js/employee-JS/validate-employee.js}"></script>
+</body>
+</html>

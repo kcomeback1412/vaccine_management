@@ -1,0 +1,13 @@
+.form_content {
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #888888;
+}
+
+.form_content select {
+	width: 80%;
+	font-size: 1.4rem !important;
+}
+
+.form_content input {
+	width: 80%;
+}
