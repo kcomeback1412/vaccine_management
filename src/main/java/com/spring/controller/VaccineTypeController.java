@@ -26,12 +26,12 @@ public class VaccineTypeController {
     	return "vaccineType/vaccine-type-list";
     }
 
-	@GetMapping("/addVaccineType")
-    public String addVaccineTypeUI(Model model) {
-		model.addAttribute("vaccineType", new VaccineType());
-		
-    	return "vaccineType/addVaccineType";
-    }
+//	@GetMapping("/addVaccineType")
+//    public String addVaccineTypeUI(Model model) {
+//		model.addAttribute("vaccineType", new VaccineType());
+//
+//    	return "vaccineType/addVaccineType";
+//    }
 	
 	@PostMapping("/addVaccineType")
     public String addVaccineType(
