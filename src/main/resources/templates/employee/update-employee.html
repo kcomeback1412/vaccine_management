@@ -3,9 +3,9 @@
 	  th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
-	<title>Update Employee</title>
+  <title>UPDATE Employee</title>
 
-	<link rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-employee.css}"/>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 	<main>
 		<form
 			action="add-employee-success.html"
-			class="bg-white shadow px-3 py-4"
+			class="bg-white rounded shadow px-3 py-4"
 			onsubmit="return validateEmployee()"
 		>
 			<small
@@ -31,17 +31,17 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-id-badge"></i>
                   </span>
-					<input
-						type="text"
-						class="form-control mr-3 rounded"
-						placeholder="Employee id"
-						id="idInput"
-						readonly
-						required
-					/>
+						<input
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Employee id"
+							id="idInput"
+							readonly
+							required
+						/>
 					</div>
 					<small
 						id="idInvalid"
@@ -58,7 +58,7 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-id-badge"></i>
                   </span>
 						<input
@@ -93,7 +93,7 @@
 								id="gender1"
 								checked
 							/>
-							<label class="form-check-label" for="gender1"> Male </label>
+							<label class="form-check-label ml-2" for="gender1"> Male </label>
 						</div>
 						<div class="form-check">
 							<input
@@ -102,7 +102,7 @@
 								name="gender"
 								id="gender2"
 							/>
-							<label class="form-check-label" for="gender2">
+							<label class="form-check-label ml-2" for="gender2">
 								Female
 							</label>
 						</div>
@@ -115,7 +115,7 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-calendar-days"></i>
                   </span>
 						<input
@@ -133,7 +133,7 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-phone"></i>
                   </span>
 						<input
@@ -160,7 +160,7 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-location-dot"></i>
                   </span>
 						<input
@@ -173,9 +173,9 @@
 						/>
 					</div>
 					<small
-							id="addressInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="addressInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						Address min-length is 5 max-length is 100.
 					</small>
@@ -187,7 +187,7 @@
 						<span class="text-danger">(*)</span>
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-envelope"></i>
                   </span>
 						<input
@@ -200,9 +200,9 @@
 						/>
 					</div>
 					<small
-							id="emailInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="emailInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						Email max-length is 100.
 					</small>
@@ -213,7 +213,7 @@
 						Working place
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-hotel"></i>
                   </span>
 						<input
@@ -238,7 +238,7 @@
 						Position
 					</label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-briefcase"></i>
                   </span>
 						<input
@@ -250,9 +250,9 @@
 						/>
 					</div>
 					<small
-							id="positionInvalid"
-							class="form-text text-danger"
-							style="opacity: 0"
+						id="positionInvalid"
+						class="form-text text-danger"
+						style="opacity: 0"
 					>
 						Position max-length is 100.
 					</small>
@@ -261,7 +261,7 @@
 				<div class="col-12 col-md-6 col-lg-4 mb-3">
 					<label for="imageInput" class="font-weight-bold"> Image </label>
 					<div class="d-flex">
-                  <span class="mt-1 mr-2">
+                  <span class="mt-2 mr-2">
                     <i class="fa-solid fa-image"></i>
                   </span>
 						<input
@@ -272,6 +272,33 @@
 						/>
 					</div>
 				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="usernameInput" class="font-weight-bold">
+						Username
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+					  <span class="mt-2 mr-2">
+						<i class="fa-solid fa-id-badge"></i>
+					  </span>
+						<input
+								type="text"
+								class="form-control mr-3 rounded"
+								placeholder="Username"
+								id="usernameInput"
+								readonly
+								required
+						/>
+					</div>
+					<small
+							id="usernameInvalid"
+							class="form-text text-danger"
+							style="opacity: 0"
+					>
+						Username min-length is 5 and max-length is 30.
+					</small>
+				</div>
 			</div>
 
 			<div class="">
@@ -281,6 +308,6 @@
 			</div>
 		</form>
 	</main>
-	<script src="#"></script>
+	<script th:src="@{/js/employee-JS/validate-employee.js}"></script>
 </body>
 </html>
