@@ -21,7 +21,7 @@ public class VaccineTypeController {
 	
 	@GetMapping("/vaccine-type-list")
     public String vaccineTypeList() {
-    	return "vaccine/vaccine-type-list";
+    	return "vaccineType/vaccine-type-list";
     }
 
 	@GetMapping("/addVaccineType")
