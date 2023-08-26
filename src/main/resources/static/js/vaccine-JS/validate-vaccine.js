@@ -1,8 +1,8 @@
 
 function checkVaccineId(value) {
   let vaccineId = document.querySelector("#vaccineIdInvalid");
-
-  if (value.length < 5 || value.length > 100) {
+  let z1 = /^[0-9]*$/;
+  if (!value.match(z1) || value.length < 5) {
     vaccineId.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -14,7 +14,7 @@ function checkVaccineId(value) {
 function checkVaccineName(value) {
   let vaccineName = document.querySelector("#vaccineNameInvalid");
 
-  if (value.length < 5 || value.length > 20) {
+  if (value.length < 0) {
     vaccineName.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -25,8 +25,8 @@ function checkVaccineName(value) {
 
 function checkNumberOfInject(value) {
   let numberOfInject = document.querySelector("#numberOfInjectInvalid");
-
-  if ((value.length > 30) || (value.length < 5)) {
+	let z1 = /^[0-9]*$/;
+  if (!value.match(z1)) {
     numberOfInject.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -38,7 +38,7 @@ function checkNumberOfInject(value) {
 function checkUsage(value) {
   let usage = document.querySelector("#usageInvalid");
 
-  if ((value.length > 30) || (value.length < 10)) {
+  if (value.length > 200) {
     usage.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -50,7 +50,7 @@ function checkUsage(value) {
 function checkIndication(value) {
   let indication = document.querySelector("#indicationInputInvalid");
   
- if ((value.length > 30) || (value.length < 10)) {
+ if (value.length > 200) {
     indication.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -61,7 +61,7 @@ function checkIndication(value) {
 
 function checkContraindication(value) {
   let contraindication = document.querySelector("#contraindicationInvalid");
-  if ((value.length > 30) || (value.length < 10)) {
+  if (value.length > 200) {
     contraindication.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -72,8 +72,8 @@ function checkContraindication(value) {
 
 function checkTimeBeginnig(value) {
   let timeBegin = document.querySelector("#timeBeginningInvalid");
-
-  if ((value.length > 30) || (value.length < 10)) {
+  let z1 = /\d{1,2}\/\d{1,2}\/\d{2,4}/;
+  if (!value.match(z1)) {
     timeBegin.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -84,8 +84,8 @@ function checkTimeBeginnig(value) {
 
 function checkTimeEnd(value) {
   let timeEnd = document.querySelector("#timeEndInvalid");
-
-  if ((value.length > 30) || (value.length < 10)) {
+  let z1 = /\d{1,2}\/\d{1,2}\/\d{2,4}/;
+  if (!value.match(z1)) {
     timeEnd.style.setProperty("opacity", 1);
     return false;
   } else {
@@ -96,8 +96,8 @@ function checkTimeEnd(value) {
 
 function checkOrigin(value) {
   let origin = document.querySelector("#originInvalid");
-
-  if ((value.length > 30) || (value.length < 10)) {
+	
+  if ( value.length > 200) {
     origin.style.setProperty("opacity", 1);
     return false;
   } else {
