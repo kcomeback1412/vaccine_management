@@ -5,6 +5,22 @@ p{
     padding-left: 20px;
 }
 
+.checkbox{
+	height: 19px;
+    width: 48px;
+    margin-left: 30px;
+}
+
+.form-select{
+	width: 100%;
+	height: 27px;
+	color: gray;
+}
+
+.form-control{
+	height: 30px;
+}
+
 .row1{
     margin-bottom: 30px;
 }
@@ -13,12 +29,7 @@ p{
 	padding-bottom: 20px;
 }
 
-.input_text{
-    width: 100%;
-}
-
 .input_text-normal{
-    width: 100%;
     resize: none;
 }
 
@@ -45,41 +56,60 @@ p{
 }
 
 .col_reponsive{
-    margin-bottom: 50px;
-}
-
-.footerr{
-    display: flex;
-    width: 89%;
-    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-top: 20px;
 }
 
 .btn-create{
     border-style: none;
-    background-color: rgb(86, 224, 86);
+    background-color: #28A745;
     color: white;
     border-radius: 3px;
     height: 35px;
+    width: 10%;
 }
 
 .btn-update{
     border-style: none;
-    background-color: rgb(248, 129, 81);
+    background-color:#17A2B8;
     color: white;
     border-radius: 3px;
     height: 35px;
+    margin-left: 10px;
+    width: 10%;
 }
 
 .btn-delete{
     border-style: none;
-    background-color: rgb(243, 83, 83);
+    background-color: #FFC107;
     color: white;
     border-radius: 3px;
     height: 35px;
+    margin-left: 10px;
+    width: 10%;
 }
 
 .buttons{
     display: flex;
-    justify-content: space-around;
-    width: 105%;
+    margin-top: 50px;
+}
+
+
+.btn-create, .btn-update, .btn-delete {
+  transition-duration: 0.4s;
+}
+
+.btn-create:hover{
+  background-color: rgb(49, 204, 84);
+  color: white;
+}
+
+.btn-update:hover{
+  background-color: rgb(47, 207, 230);
+  color: white;
+}
+
+.btn-delete:hover{
+  background-color: rgb(213, 159, 0);
+  color: white;
 }
