@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main})}">
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
   <title>NewList</title>
@@ -30,18 +30,20 @@
           <label>entries</label>
         </div>
         <div class="col-sm-6 right">
+<!--          <button id="searchButton">Search</button>-->
           <label for="certName" >Search:</label>
           <input type="text" id="certName" name="certName">
         </div>
+        <div id="results"></div>
       </div>
       <thead>
       <tr>
         <th>
-          <input type="checkbox">
+          <input style="text-align: center;" type="checkbox">
         </th>
-        <th scope="col" >Title</th>
-        <th scope="col">Content</th>
-        <th scope="col">Post date</th>
+        <th scope="col" style="text-align: center;">Title</th>
+        <th scope="col" style="text-align: center;">Content</th>
+        <th scope="col" style="text-align: center;">Post date</th>
       </tr>
 
       </thead>
@@ -71,7 +73,18 @@
         <td>12/1/2016</td>
       </tr>
     </table>
-    <label>showing 1 to 5 of 12 entries</label>
+      <div class="paging">
+        <span class="text" style="padding-left: 3px;">Showing 1 to 5 of ... entries</span>
+        <div>
+        <button class="button">
+          <</button>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button">></button>
+      </div>
+    </div>
+
     <div class="bold">
       <button class="create" type="button">Create news</button>
       <button class="update" type="button">Update news</button>
@@ -80,5 +93,6 @@
   </div>
   </form>
 </main>
+<script src="#"></script>
 </body>
 </html>
