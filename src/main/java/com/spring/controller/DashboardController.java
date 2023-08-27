@@ -14,16 +14,6 @@ public class DashboardController {
     public String loginUI() {
     	return "login";
     }
-    
-    @GetMapping("/create_news")
-    public String createNewsUI() {
-        return "news/create_news";
-    }
-
-    @GetMapping("/news_list")
-    public String newListUI() {
-        return "news/news_list";
-    }
 
     @GetMapping("/vaccine_list")
     public String VaccineList() {
