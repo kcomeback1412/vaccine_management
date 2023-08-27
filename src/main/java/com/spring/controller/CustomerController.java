@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CustomerController {
 
+    @GetMapping("/customer_list")
+    public String CustomerList() {
+        return "customer/customer_list";
+    }
+
     @GetMapping("/update-customer")
     public String updateCustomerUI() {
         return "customer/update-customer";
