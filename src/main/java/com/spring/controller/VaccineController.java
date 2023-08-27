@@ -25,9 +25,5 @@ public class VaccineController {
         return "Vaccine/import_vaccine";
     }
 	
-	@GetMapping("/update-vaccine")
-    public String updateVaccine() {
-    	return "vaccine/update-vaccine";
-    }
 
 }
