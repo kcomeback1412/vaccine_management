@@ -3,12 +3,12 @@
 	th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
 
 <head>
-	<title>AddVaccine</title>
+	<title>UpdateVaccine</title>
 	<link rel="stylesheet" href="css/vaccine-CSS/add-update-vaccine.css">
 </head>
 
 <body>
-	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE VACCINE</h2>
 	<main>
 		<form action="#" class="px-3 py-4" onsubmit="return validateVaccine()">
 			<div class="body1">
@@ -21,14 +21,8 @@
 									<span class="label_sign">(*):</span>
 								</span>
 								<div class="label_header">
-
-									<input id="vaccineIdInput" onchange="checkVaccineId(this.value)" required
-										class="form-control" type="text">
-
-									<small id="vaccineIdInvalid" class="form-text text-danger" style="opacity: 0">
-										You can enter number only!. At least 5 numbers
-									</small>
-
+									<input 
+										class="form-control" readonly type="text">
 								</div>
 							</div>
 							<div class="col-sm-4 col_reponsive">
@@ -38,7 +32,7 @@
 								<div class="label_header" style="display: flex;">
 									<i class="fa-solid fa-microscope"></i>
 									<div class="active">
-										<input class="checkbox" type="checkbox" disabled="disabled" checked="checked">
+										<input class="checkbox" type="checkbox">
 									</div>
 								</div>
 							</div>

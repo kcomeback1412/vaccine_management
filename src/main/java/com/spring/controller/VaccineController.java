@@ -10,5 +10,10 @@ public class VaccineController {
     public String addVaccine() {
     	return "vaccine/add-vaccine";
     }
+	
+	@GetMapping("/update-vaccine")
+    public String updateVaccine() {
+    	return "vaccine/update-vaccine";
+    }
 
 }
