@@ -1,116 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
 
 <head>
-    <title>VaccineList</title>
-    <link rel="stylesheet" href="css/vaccine_list.css">
+    <title>Vaccine List</title>
+    <link rel="stylesheet" href="css/emloyee-CSS/employee-list.css">
 </head>
 
 <body>
 <h2 class="my-0 ml-auto mr-auto" id="content_title">VACCINE LIST</h2>
 <main>
 
-    <div class="container-fluid bg-white">
-        <div class="body_header">
-            <div class="header_navbar">
-                <div class="header_navbar-item">
-                    <span class="text">Show</span>
-                    <input class="dropdown-list" style="border-bottom: 1px solid rgb(61, 133, 168);"
-                           list="datalistOptions" id="exampleDataList">
-                    <datalist id="datalistOptions">
-                        <option value="10">
-                        <option value="25">
-                        <option value="50">
-                        <option value="100">
-                    </datalist>
-                    <span class="text">entries</span>
-                </div>
-                <div class="header_navbar-item">
-                    <span class="text">Search:</span>
-                    <input class="dropdown-list" style="border-bottom: 1px solid rgb(173, 177, 179);" type="text">
-                </div>
-            </div>
-        </div>
-        <div class="body2">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-light" style="background-color: #d9b688;">
-                <tr class="table-primary">
-                    <th scope="col">
-                        <input type="checkbox">
-                    </th>
-                    <th scope="col">Vaccine id</th>
-                    <th scope="col">Vaccine Name</th>
-                    <th scope="col">Vaccine Type</th>
-                    <th scope="col">Number of injection</th>
-                    <th scope="col">Origin</th>
-                    <th scope="col">Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td scope="col">
-                        <input type="checkbox">
-                    </td>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <td scope="col">
-                        <input type="checkbox">
-                    </td>
-                    <th scope="row">2</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <td scope="col">
-                        <input type="checkbox">
-                    </td>
-                    <th scope="row">3</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="footerr">
-            <div class="button_bussiness">
-                <span class="text" style="padding-left: 3px;">Showing 1 to 5 of ... entries</span>
-                <div class="buttons">
-                    <button class="btn-create">New Vaccine</button>
-                    <button class="btn-update">Update Vaccine</button>
-                    <button class="btn-delete">Make In-Active</button>
-                    <button class="btn-create"><a href="/import_vaccine">Import</a></button>
+    <div>
+        <div class="container-fluid bg-white">
+            <div class="body_header">
+                <div class="header_navbar">
+                    <div class="header_navbar-item">
+                        <span class="text">Show</span>
+                        <input class="dropdown-list" list="datalistOptions" id="exampleDataList">
+                        <datalist id="datalistOptions">
+                            <option value="10">
+                            <option value="25">
+                            <option value="50">
+                            <option value="100">
+                        </datalist>
 
-<!--                    <a href="/import_vaccine">Import</a>-->
+                        <span class="text">entries</span>
+                    </div>
+                    <div class="header_navbar-item">
+                        <span class="text">Search:</span>
+                        <input class="dropdown-list-search" type="text">
+                    </div>
                 </div>
             </div>
-            <div class="paging">
-                <div class="paging_buton">
-                    <button class="button">
-                        <</button>
-                    <button class="button">1</button>
-                    <button class="button">2</button>
-                    <button class="button">3</button>
-                    <button class="button">4</button>
-                    <button class="button">5</button>
-                    <button class="button">></button>
+            <div class="body2">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead">
+                    <tr class="table">
+                        <th scope="col">
+                            <input type="checkbox">
+                        </th>
+                        <th scope="col" class="text-center text-white">Vaccine ID</th>
+                        <th scope="col" class="text-center text-white">Vaccine Name</th>
+                        <th scope="col" class="text-center text-white">Vaccine type</th>
+                        <th scope="col" class="text-center text-white">Number of injection</th>
+                        <th scope="col" class="text-center text-white">Origin</th>
+                        <th scope="col" class="text-center text-white">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">2</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">
+                            <input type="checkbox">
+                        </td>
+                        <th scope="row">3</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer_buttons">
+                <div class="button_bussiness">
+                    <span class="text_details">Showing 1 to 5 of ... entries</span>
+                    <div class="buttons">
+                        <button class="btn-create">New Vaccine</button>
+                        <button class="btn-update"><a class="btn-update">Update Vaccine</a></button>
+                        <button class="btn-delete">Make In-Active</button>
+                        <button class="btn-primary"><a class="btn-primary" th:href="@{/import_vaccine}">Import Vaccine</a></button>
+                    </div>
+                </div>
+                <div class="paging">
+                    <div class="paging_buton">
+                        <button class="button">
+                            <</button>
+                        <button class="button">1</button>
+                        <button class="button">2</button>
+                        <button class="button">></button>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </main>
+<script src="#"></script>
 </body>
 
 </html>
