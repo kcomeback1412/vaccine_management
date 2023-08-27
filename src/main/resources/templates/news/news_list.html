@@ -5,8 +5,8 @@
 <head>
   <title>NewList</title>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../../static/css/searchnew/list.css">
-  <link rel="stylesheet" th:href="@{/css/searchnew/list.css}"/>
+  <link rel="stylesheet" href="../../static/css/news-CSS/list.css">
+  <link rel="stylesheet" th:href="@{/css/news-CSS/list.css}"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -86,8 +86,8 @@
     </div>
 
     <div class="bold">
-      <button class="create" type="button">Create news</button>
-      <button class="update" type="button">Update news</button>
+      <button class="create" type="button"> <a class="create" th:href="@{/create_news}">Create news </a></button>
+        <button class="update" type="button"> <a class="update" th:href="@{/update_news}">Update news </a></button>
       <button class="delete" type="button">Delete news</button>
     </div>
   </div>
