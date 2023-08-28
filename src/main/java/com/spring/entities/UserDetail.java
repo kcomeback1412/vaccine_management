@@ -3,6 +3,7 @@ package com.spring.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@ToString
 public class UserDetail implements Serializable {
     @Id
     @Column(name = "ID", length = 12, nullable = false)

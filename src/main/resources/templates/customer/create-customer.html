@@ -1,348 +1,240 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+	th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
-    <title>Add Customer</title>
+	<title>Add Customer</title>
 
-    <link rel="stylesheet" th:href="@{/css/customer-CSS/create-update-customer.css}"/>
+	<link rel="stylesheet" th:href="@{/css/customer-CSS/create-update-customer.css}" />
 </head>
 
 <body>
-<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE CUSTOMER</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE CUSTOMER</h2>
 
-<main>
-    <form
-            action="#"
-            class="px-3 py-4"
-            onsubmit="return validateCustomer()"
-    >
-        <div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap ">
-            <h4 class="col-12 py-4 font-weight-bold">Personal Information</h4>
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="nameInput" class="font-weight-bold">
-                    Full name
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                  <span class="mt-2 mr-2">
-                    <i class="fa-solid fa-id-badge"></i>
-                  </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            id="nameInput"
-                            placeholder="Employee name"
-                            onchange="checkName(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="nameInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Name min-length is 5 and max-length is 100.
-                </small>
-            </div>
+	<main>
+		<form th:action="@{/create-customer}" class="px-3 py-4" 
+		onsubmit="return validateCustomer()"
+		th:object="${customerInfo}"
+		method="post"
+		>
+		<div th:object="${userInfo}">
+			<div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap ">
+				<h4 class="col-12 py-4 font-weight-bold">Personal Information</h4>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="nameInput" class="font-weight-bold">
+						Full name
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-id-badge"></i>
+						</span>
+						<input type="text" name="fullName" class="form-control mr-3 rounded" id="nameInput" placeholder="Employee name"
+							onchange="checkName(this.value)" required />
+					</div>
+					<small id="nameInvalid" class="form-text text-danger" style="opacity: 0">
+						Name min-length is 5 and max-length is 100.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label class="font-weight-bold"> Gender </label>
-                <div class="d-flex">
-                      <span class="mt-1 mr-2">
-                        <i class="fa-solid fa-venus-mars"></i>
-                      </span>
-                    <div class="form-check mr-3">
-                        <input
-                                class="form-check-input"
-                                type="radio"
-                                name="gender"
-                                id="gender1"
-                                checked
-                        />
-                        <label class="form-check-label ml-2" for="gender1"> Male </label>
-                    </div>
-                    <div class="form-check">
-                        <input
-                                class="form-check-input"
-                                type="radio"
-                                name="gender"
-                                id="gender2"
-                        />
-                        <label class="form-check-label ml-2" for="gender2">
-                            Female
-                        </label>
-                    </div>
-                </div>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label class="font-weight-bold"> Gender </label>
+					<div class="d-flex">
+						<span class="mt-1 mr-2">
+							<i class="fa-solid fa-venus-mars"></i>
+						</span>
+						<div class="form-check mr-3">
+							<input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked />
+							<label class="form-check-label ml-2" for="gender1"> Male </label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gender" value="2" id="gender2" />
+							<label class="form-check-label ml-2" for="gender2">
+								Female
+							</label>
+						</div>
+					</div>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="dateInput" class="font-weight-bold">
-                    Date of birth
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-calendar-days"></i>
-                      </span>
-                    <input
-                            type="date"
-                            class="form-control mr-3 rounded"
-                            id="dateInput"
-                            required
-                    />
-                </div>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="dateInput" class="font-weight-bold">
+						Date of birth
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-calendar-days"></i>
+						</span>
+						<input type="date" name="dateOfBirth" class="form-control mr-3 rounded" id="dateInput" required />
+					</div>
+				</div>
 
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="idCardInput" class="font-weight-bold">
-                    Identity Card
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                <span class="mt-2 mr-2">
-                  <i class="fa-solid fa-address-card"></i>
-                </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            placeholder="Identity card"
-                            id="idCardInput"
-                            onchange="checkIdCard(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="idCardInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Identity card min-length is 5 max-length is 20.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="idCardInput" class="font-weight-bold">
+						Identity Card
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-address-card"></i>
+						</span>
+						<input type="text" name="identityCard" class="form-control mr-3 rounded" placeholder="Identity card"
+							id="idCardInput" onchange="checkIdCard(this.value)" required />
+					</div>
+					<small id="idCardInvalid" class="form-text text-danger" style="opacity: 0">
+						Identity card min-length is 5 max-length is 20.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="addressInput" class="font-weight-bold">
-                    Address
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-location-dot"></i>
-                      </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            placeholder="Address"
-                            id="addressInput"
-                            onchange="checkAddress(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="addressInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Address min-length is 5 max-length is 100.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="addressInput" class="font-weight-bold">
+						Address
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-location-dot"></i>
+						</span>
+						<input type="text" name="address" class="form-control mr-3 rounded" placeholder="Address" id="addressInput"
+							onchange="checkAddress(this.value)" required />
+					</div>
+					<small id="addressInvalid" class="form-text text-danger" style="opacity: 0">
+						Address min-length is 5 max-length is 100.
+					</small>
+				</div>
 
 
-        </div>
+			</div>
 
 
-        <div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap mt-4">
-            <h4 class="col-12 py-4 font-weight-bold">Account Information</h4>
+			<div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap mt-4">
+				<h4 class="col-12 py-4 font-weight-bold">Account Information</h4>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="usernameInput" class="font-weight-bold">
-                    Username
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-id-badge"></i>
-                      </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            placeholder="Username"
-                            id="usernameInput"
-                            onchange="checkUsername(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="usernameInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Username min-length is 5 and max-length is 30.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="usernameInput" class="font-weight-bold">
+						Username
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-id-badge"></i>
+						</span>
+						<input type="text" name="userName" class="form-control mr-3 rounded" placeholder="Username" id="usernameInput"
+							onchange="checkUsername(this.value)" required />
+					</div>
+					<small id="usernameInvalid" class="form-text text-danger" style="opacity: 0">
+						Username min-length is 5 and max-length is 30.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="passwordInput" class="font-weight-bold">
-                    Password
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-lock"></i>
-                      </span>
-                    <input
-                            type="password"
-                            class="form-control mr-3 rounded"
-                            placeholder="Password"
-                            id="passwordInput"
-                            onchange="checkPassword(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="passwordInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Password min-length is 10 and max-length is 30.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="passwordInput" class="font-weight-bold">
+						Password
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-lock"></i>
+						</span>
+						<input type="password" name="password" class="form-control mr-3 rounded" placeholder="Password"
+							id="passwordInput" onchange="checkPassword(this.value)" required />
+					</div>
+					<small id="passwordInvalid" class="form-text text-danger" style="opacity: 0">
+						Password min-length is 10 and max-length is 30.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="rePasswordInput" class="font-weight-bold">
-                    Re-password
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                    <span class="mt-2 mr-2">
-                      <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <input
-                            type="password"
-                            class="form-control mr-3 rounded"
-                            placeholder="Re-password"
-                            id="rePasswordInput"
-                            onchange="checkRePassword(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="rePasswordInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Re-password not match the entered password.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="rePasswordInput" class="font-weight-bold">
+						Re-password
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-lock"></i>
+						</span>
+						<input type="password" class="form-control mr-3 rounded" placeholder="Re-password"
+							id="rePasswordInput" onchange="checkRePassword(this.value)" required />
+					</div>
+					<small id="rePasswordInvalid" class="form-text text-danger" style="opacity: 0">
+						Re-password not match the entered password.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="phoneInput" class="font-weight-bold">
-                    Phone number
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-phone"></i>
-                      </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            placeholder="Phone number"
-                            id="phoneInput"
-                            onchange="checkPhoneNumber(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="phoneInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    You must start phone number with “0” and number only.
-                </small>
-            </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="phoneInput" class="font-weight-bold">
+						Phone number
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-phone"></i>
+						</span>
+						<input type="text" name="phone" class="form-control mr-3 rounded" placeholder="Phone number" id="phoneInput"
+							onchange="checkPhoneNumber(this.value)" required />
+					</div>
+					<small id="phoneInvalid" class="form-text text-danger" style="opacity: 0">
+						You must start phone number with “0” and number only.
+					</small>
+				</div>
 
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="emailInput" class="font-weight-bold">
-                    Email
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                      <span class="mt-2 mr-2">
-                        <i class="fa-solid fa-envelope"></i>
-                      </span>
-                    <input
-                            type="email"
-                            class="form-control mr-3 rounded"
-                            placeholder="Email"
-                            id="emailInput"
-                            onchange="checkEmail(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="emailInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Email max-length is 100.
-                </small>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-2"></div>
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="captchaInput" class="font-weight-bold">
-                    Captcha
-                    <span class="text-danger">(*)</span>
-                </label>
-                <div class="d-flex">
-                  <span class="mt-2 mr-2">
-                    <i class="fa-solid fa-check"></i>
-                  </span>
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded"
-                            placeholder="Captcha"
-                            id="captchaInput"
-                            onchange="checkCaptcha(this.value)"
-                            required
-                    />
-                </div>
-                <small
-                        id="captchaInvalid"
-                        class="form-text text-danger"
-                        style="opacity: 0"
-                >
-                    Captcha not match the code.
-                </small>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <label for="codeCaptcha" class="font-weight-bold">
-                    Code
-                </label>
-                <div class="d-flex">
-                    <input
-                            type="text"
-                            class="form-control mr-3 rounded w-25"
-                            id="codeCaptcha"
-                            readonly
-                    />
-                    <span id="re-load-captcha" class="p-2 bg-light rounded" onclick="reloadCaptcha()">
-                        <i class="fa-solid fa-rotate-right"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-12 mb-5">
-                <input type="submit" class="btn btn-success mr-2" value="Save"/>
-                <button type="reset" class="btn btn-info mr-2">Reset</button>
-                <button type="button" class="btn btn-warning">Cancel</button>
-            </div>
-        </div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="emailInput" class="font-weight-bold">
+						Email
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-envelope"></i>
+						</span>
+						<input type="email" name="email" class="form-control mr-3 rounded" placeholder="Email" id="emailInput"
+							onchange="checkEmail(this.value)" required />
+					</div>
+					<small id="emailInvalid" class="form-text text-danger" style="opacity: 0">
+						Email max-length is 100.
+					</small>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2"></div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="captchaInput" class="font-weight-bold">
+						Captcha
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+						<span class="mt-2 mr-2">
+							<i class="fa-solid fa-check"></i>
+						</span>
+						<input type="text" class="form-control mr-3 rounded" placeholder="Captcha" id="captchaInput"
+							onchange="checkCaptcha(this.value)" required />
+					</div>
+					<small id="captchaInvalid" class="form-text text-danger" style="opacity: 0">
+						Captcha not match the code.
+					</small>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="codeCaptcha" class="font-weight-bold">
+						Code
+					</label>
+					<div class="d-flex">
+						<input type="text" class="form-control mr-3 rounded w-25" id="codeCaptcha" readonly />
+						<span id="re-load-captcha" class="p-2 bg-light rounded" onclick="reloadCaptcha()">
+							<i class="fa-solid fa-rotate-right"></i>
+						</span>
+					</div>
+				</div>
+				<div class="col-12 mb-5">
+					<input type="submit" class="btn btn-success mr-2" value="Save" />
+					<button type="reset" class="btn btn-info mr-2">Reset</button>
+					<button type="button" class="btn btn-warning">Cancel</button>
+				</div>
+			</div>
+			</div>
+</form>
 
-
-    </form>
-</main>
-<script th:src="@{/js/customer-JS/validate-customer.js}"></script>
+		
+	</main>
+	<script th:src="@{/js/customer-JS/validate-customer.js}"></script>
 </body>
+
 </html>
