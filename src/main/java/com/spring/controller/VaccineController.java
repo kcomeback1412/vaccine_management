@@ -24,5 +24,6 @@ public class VaccineController {
     public String ImportVaccine() {
         return "Vaccine/import_vaccine";
     }
+	
 
 }
