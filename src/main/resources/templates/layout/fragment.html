@@ -3,134 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/employee-list.css">
 </head>
 <body>
-
-
-
-<div th:fragment="header">
-
-    <nav class="navbar sticky-top bg-body-tertiary navbar-header ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./img/logoFPT.png" alt="Logo" class="d-inline-block align-text-top logoFPT">
+	<div th:fragment="header" class="header d-flex justify-content-between align-items-center px-4 py-3">
+		<div class="h-100">
+			<a class="h-100" href="/dashboard">
+                <img src="./img/logoFPT.png" alt="Logo" class="h-100">
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success seacrch-header" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
-</div>
+		</div>
+		
+		<div class="search_wrap d-flex align-items-center">
+			<input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search">
+           	<button class="btn btn-warning seacrch-header"><i class="fa-solid fa-magnifying-glass"></i></button>
+		</div>
+	</div>
 
-    <nav th:fragment="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="admin-infor">
-                <a href="#">
-                    <img src="./img/UserImg.png" alt="" class="header-navbar-user-img">
+    <div th:fragment="sidebar" class="sidebar col-md-3 p-0">
+        <div class="user-info p-4">
+            <div class="h-100 d-flex">
+                <a href="/dashboard" class="h-100 mr-4">
+                    <img src="./img/UserImg.png" alt="" class="user_logo h-100">
                 </a>
-                <p>Admin</p>
-                <p>admin@fsort.com</p>
+                
+                <div class="d-flex flex-column justify-content-around">
+                	<span id="user_role">#Role</span>
+                	<span id="user_email">#Email</span>
+            	</div>
             </div>
         </div>
-        <ul class="list-unstyled overflow-sidebar">
-            <p>Home</p>
-            <li class="active">
-                <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Emplyee management</a>
-                <ul class="collapse list-unstyled" id="employeeSubmenu">
-                    <li>
-                        <a class="a_transform" th:href="@{/employee-list}">Employee List</a>
-                    </li>
-                    <li>
-                        <a  class="a_transform" href="#">Create Employee</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li>
-                <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Customer management</a>
-                <ul class="collapse list-unstyled" id="customerSubmenu">
-                    <li>
-                        <a  class="a_transform" href="#">Customer List</a>
-                    </li>
-                    <li>
-                        <a  class="a_transform" href="#">Create Customer</a>
-                    </li>
-
-                </ul>
-            </li>
-            <li>
-                <a href="#vaccineTypeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Vaccine Type management</a>
-                <ul class="collapse list-unstyled" id="vaccineTypeSubmenu">
-                    <li>
-                        <a  class="a_transform" href="#">Vaccine Type List</a>
-                    </li>
-                    <li>
-                        <a  class="a_transform" href="#">Create Vaccine Type</a>
-                    </li>
-
-                </ul>
-            </li>
-            <li>
-                <a href="#vaccineSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Vaccine management</a>
-                <ul class="collapse list-unstyled" id="vaccineSubmenu">
-                    <li>
-                        <a  class="a_transform" href="#">Vaccine List</a>
-                    </li>
-                    <li>
-                        <a  class="a_transform" href="#">Create Vaccine</a>
-                    </li>
-
-                </ul>
-            </li>
-            <li>
-                <a href="#injectionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Injection Shedule</a>
-                <ul class="collapse list-unstyled" id="injectionSubmenu">
-                    <li>
-                        <a  class="a_transform" href="#">Injection Shedule List</a>
-                    </li>
-                    <li>
-                        <a class="a_transform" href="#">Create Injection Shedule</a>
-                    </li>
-
-                </ul>
-            </li>
-            <li>
-                <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">News</a>
-                <ul class="collapse list-unstyled" id="newsSubmenu">
-                    <li>
-                        <a class="a_transform" href="#">News List</a>
-                    </li>
-                    <li>
-                        <a class="a_transform" href="#">Create News</a>
-                    </li>
-
-                </ul>
-            </li>
-            <li>
-                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle a_transform">Report</a>
-                <ul class="collapse list-unstyled" id="reportSubmenu">
-                    <li>
-                        <a class="a_transform" href="#">Report Injection Result</a>
-                    </li>
-                    <li>
-                        <a class="a_transform" href="#">Report Customer</a>
-                    </li>
-                    <li>
-                        <a class="a_transform" href="#">Report Vaccine</a>
-                    </li>
-                    <li>
-                        <a class="a_transform" href="#">Report</a>
-                    </li>
-
-                </ul>
-            </li>
-
-        </ul>
-
-    </nav>
-
+        
+        <div class="navigation">
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header p-3">
+						<h2 class="clearfix mb-0">
+							<a href="/dashboard" class="btn btn-link">Home</a>									
+						</h2>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingOne">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Emplyee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<ul class="m-3">
+							<li>
+                        		<a class="" href="/employee-list">Employee List</a>
+                    		</li>
+                    	
+                    		<li>
+                        		<a  class="" th:href="@{/create-employee}">Create Employee</a>
+                    		</li>
+                    	</ul>
+					</div>
+				</div>
+				
+				<div class="card"> 
+					<div class="card-header p-3" id="headingTwo">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Customer management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<ul class="m-3">
+                    		<li>
+                        		<a  class="" href="/customer_list">Customer List</a>
+                    		</li>
+                    		
+                    		<li>
+                        		<a  class="" href="/create-customer">Create Customer</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingThree">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Vaccine Type management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						<ul class="m-3">
+                    		<li>
+                        		<a  class="" href="/vaccine-type-list">Vaccine Type List</a>
+                    		</li>
+                    		
+                    		<li>
+                        		<a  class="" href="/addVaccineType">Create Vaccine Type</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingFour">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Vaccine management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+						 <ul class="m-3">
+                    		<li>
+                        		<a  class="" href="/vaccine_list">Vaccine List</a>
+                   			</li>
+                   			
+                    		<li>
+                        		<a  class="" href="/add-vaccine">Create Vaccine</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingFive">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Injection Shedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+						 <ul class="m-3">
+                    		<li>
+                        		<a  class="" href="/schedule-list">Injection Schedule List</a>
+                    		</li>
+                    		
+                    		<li>
+								<a class="" href="/create_injectionSchedule">Create Injection Schedule</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingSeven">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+						 <ul class="m-3">
+                    		<li>
+                        		<a class="" href="/vaccine_result_list">Injection Result List</a>
+                    		</li>
+                    		
+                    		<li>
+                        		<a class="" href="/addInjectionResult">Create Injection Result</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingEight">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">News <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+						 <ul class="m-3">
+                    		<li>
+                        		<a class="" href="/news_list">News List</a>
+                    		</li>
+                    		
+                    		<li>
+                        		<a class="" href="/create_news">Create News</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3" id="headingNine">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">Report <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+						</h2>
+					</div>
+							
+					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+						 <ul class="m-3">
+                    		<li>
+                        		<a class="" href="#">Report Vaccine</a>
+                    		</li>
+                    		
+                    		<li>
+                        		<a class="" href="#">Report</a>
+                    		</li>
+                		</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
 </body>
 </html>

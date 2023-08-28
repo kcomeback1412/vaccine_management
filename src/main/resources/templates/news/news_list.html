@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+
+<head>
+  <title>NewList</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../static/css/news-CSS/list.css">
+  <link rel="stylesheet" th:href="@{/css/news-CSS/list.css}"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h4 class="my-0 ml-auto mr-auto" id="content_title">NEWS LIST</h4>
+
+<main>
+  <div class="container">
+    <table class="table table-striped ">
+      <div class="row">
+        <div class="col-sm-6 left">
+          <label for="Show">Show</label>
+          <select name="Show" id="Show" class="full-size">
+            <option value="1"></option>
+            <option value="2"> 1 </option>
+            <option value="3"> 5 </option>
+            <option value="4"> 12 </option>
+          </select>
+          <label>entries</label>
+        </div>
+        <div class="col-sm-6 right">
+<!--          <button id="searchButton">Search</button>-->
+          <label for="certName" >Search:</label>
+          <input type="text" id="certName" name="certName">
+        </div>
+        <div id="results"></div>
+      </div>
+      <thead>
+      <tr>
+        <th>
+          <input style="text-align: center;" type="checkbox">
+        </th>
+        <th scope="col" style="text-align: center;">Title</th>
+        <th scope="col" style="text-align: center;">Content</th>
+        <th scope="col" style="text-align: center;">Post date</th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch H5N1</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>13/4/2011</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch ZIKA</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>15/7/2020</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>Dịch Tả</td>
+        <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+        <td>12/1/2016</td>
+      </tr>
+    </table>
+      <div class="paging">
+        <span class="text" style="padding-left: 3px;">Showing 1 to 5 of ... entries</span>
+        <div>
+        <button class="button">
+          <</button>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button">></button>
+      </div>
+    </div>
+
+    <div class="bold">
+      <button class="create" type="button"> <a class="create" th:href="@{/create_news}">Create news </a></button>
+        <button class="update" type="button"> <a class="update" th:href="@{/update_news}">Update news </a></button>
+      <button class="delete" type="button">Delete news</button>
+    </div>
+  </div>
+  </form>
+</main>
+<script src="#"></script>
+</body>
+</html>

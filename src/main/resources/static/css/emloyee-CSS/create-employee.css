@@ -1,0 +1,19 @@
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=password]{
+    font-size: 1.2rem;
+    height: 32px;
+}
+
+input[type=file],
+input[type=date] {
+    cursor: pointer;
+}
+
+input[type=submit],
+button {
+    font-size: 1.2rem;
+    height: 32px;
+    min-width: 60px;
+}

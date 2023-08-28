@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
+
+<head>
+	<title>Update Vaccine</title>
+	<link rel="stylesheet" href="css/vaccine-CSS/add-update-vaccine.css">
+</head>
+
+<body>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE VACCINE</h2>
+	<main>
+		<form action="#" class="px-3 py-4" onsubmit="return validateVaccine()">
+			<div class="body1">
+				<div class="container-fluid  bg-white">
+					<div class="container-fluid">
+						<div class="row row-cols-2">
+							<div class="col-sm-8 col_reponsive">
+								<span class="label">
+									Vaccine id:
+									<span class="label_sign">(*):</span>
+								</span>
+								<div class="label_header">
+									<input 
+										class="form-control" readonly type="text">
+								</div>
+							</div>
+							<div class="col-sm-4 col_reponsive">
+								<span class="label">Active:
+									<span class="label_sign">(*):</span>
+								</span>
+								<div class="label_header" style="display: flex;">
+									<i class="fa-solid fa-microscope"></i>
+									<div class="active">
+										<input class="checkbox" type="checkbox">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="body2">
+							<div class="row row-cols-3 row1">
+								<div class="col-sm">
+									<span class="label">Vaccine name:
+										<span class="label_sign">(*):</span>
+									</span>
+									<div class="label_header">
+
+										<input id="vaccineNameInput" onchange="checkVaccineName(this.value)" required
+											class="form-control" type="text">
+
+										<small id="vaccineNameInvalid" class="form-text text-danger" style="opacity: 0">
+											You must enter vaccine name!
+										</small>
+
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Vaccine Type
+										<span class="label_sign">(*):</span>
+									</span>
+									<div class="label_header">
+										<select class="form-select" aria-label="Default select example">
+											<option selected>-Select Vaccine Type</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Number of inject:
+									</span>
+									<div class="label_header">
+
+										<input id="numberOfInjectInput" onchange="checkNumberOfInject(this.value)"
+											required class="form-control" type="text">
+
+										<small id="numberOfInjectInvalid" class="form-text text-danger"
+											style="opacity: 0">
+											You can enter number only!
+										</small>
+
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-3 row1">
+								<div class="col-sm">
+									<span class="label">Usage:
+									</span>
+									<div class="label_header">
+
+										<textarea id="usageInput" onchange="checkUsage(this.value)" required
+											class="form-control input_text-normal" type="text" name="" cols="20"
+											rows="5"></textarea>
+
+										<small id="usageInvalid" class="form-text text-danger" style="opacity: 0">
+										</small>
+
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Indication:
+									</span>
+									<div class="label_header">
+
+										<textarea id="indicationInput" onchange="checkIndication(this.value)" required
+											class="form-control input_text-normal" type="text" name="" cols="20"
+											rows="5"></textarea>
+
+										<small id="indicationInputInvalid" class="form-text text-danger"
+											style="opacity: 0">
+										</small>
+
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Contraindication
+									</span>
+									<div class="label_header">
+
+										<textarea id="contraindicationInput"
+											onchange="checkContraindication(this.value)" required
+											class="form-control input_text-normal" type="text" name="" cols="20"
+											rows="5"></textarea>
+
+										<small id="contraindicationInvalid" class="form-text text-danger"
+											style="opacity: 0">
+										</small>
+
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-3">
+								<div class="col-sm">
+									<span class="label">Time of beginning next injection:
+									</span>
+									<div class="label_header">
+
+										<input id="timeBeginningInput" onchange="checkTimeBeginnig(this.value)" required
+											class="form-control" type="text">
+
+										<small id="timeBeginningInvalid" class="form-text text-danger"
+											style="opacity: 0">
+											You can enter date only!
+											Exp: dd/mm/yyyy
+										</small>
+
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Time of ending next injection:
+									</span>
+									<div class="label_header">
+										<input id="timeEndInput" onchange="checkTimeEnd(this.value)" required
+											class="form-control" type="text">
+
+										<small id="timeEndInvalid" class="form-text text-danger" style="opacity: 0">
+											You can enter date only!
+											Exp: dd/mm/yyyy
+										</small>
+									</div>
+								</div>
+								<div class="col-sm">
+									<span class="label">Origin:
+									</span>
+									<div class="label_header">
+										<input id="originInput" onchange="checkOrigin(this.value)" required
+											class="form-control" type="text">
+
+										<small id="originInvalid" class="form-text text-danger" style="opacity: 0">
+										</small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="button_bussiness">
+							<div class="buttons">
+								<button type="submit" class="btn-create">Save</button>
+								<button type="reset" class="btn-update">Reset</button>
+								<button type="button" class="btn-delete">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</main>
+	<script th:src="@{/js/vaccine-JS/validate-vaccine.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Create News</title>
+  <link rel="stylesheet" href="../../static/css/news-CSS/create.css">
+  <link rel="stylesheet" th:href="@{/css/news-CSS/create.css}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--<div th:action="@{/news/create_news}" method="post" th:object="${news}">-->
+<!--    <div th:text="${msg}"></div>>-->
+<h4 class="my-0 ml-auto mr-auto" id="content_title">CREATE NEWS</h4>
+<!--</div>-->
+<main>
+
+
+  <div class="container">
+    <form id="create-form">
+      <label for="title">Title(*)</label>
+      <input class="title" type="text" id="title" name="title" maxlength="300" required>
+      <div class="var">
+        <label  for="preview">Preview(*)</label>
+        <input  class="code" type="text" id="preview" name="preview" maxlength="4000" required>
+
+        <label for="content">Content(*)</label>
+        <input class="code" type="text" id="content" name="content" required>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="button" id="save-button">Save</button>
+        <button type="reset" class="button">Reset</button>
+        <button type="button" class="button" id="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/news-JS/news.js}"></script>
+</body>
+</html>
