@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ScheduleController {
 
-	@GetMapping("/schedule-list")
-    public String scheduleList() {
-    	return "schedule/schedule-list";
-    }
+//	@GetMapping("/schedule-list")
+//    public String scheduleList() {
+//    	return "schedule/schedule-list";
+//    }
 }
