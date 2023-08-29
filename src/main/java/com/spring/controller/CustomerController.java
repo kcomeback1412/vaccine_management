@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.entities.UserDetail;
 import com.spring.entities.Users;
 import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class CustomerController {
 	
@@ -47,10 +51,12 @@ public class CustomerController {
     	return "redirect:/customer_list";
     }
     
-    @GetMapping("/delete-customer/{id}")
-    public String deleteCustomer(@PathVariable("id") String id ){
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String deleteCustomer(HttpServletRequest request){
+    	for (String id : request.getParameterValues("id")) {
+			userDetailRepository.deleteById(Integer.parseInt(id));
+		}
     	
-    	userDetailRepository.deleteById(Integer.parseInt(id));
     	return "customer/customer_list";
     }
 
