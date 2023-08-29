@@ -3,6 +3,7 @@ package com.spring.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@ToString
 public class Users implements Serializable {
+	
     @Id
     @Column(name="USERS_ID")
     private String usersId;
