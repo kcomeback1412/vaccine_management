@@ -124,8 +124,10 @@ function validateCustomer() {
 
   let username = document.querySelector("#usernameInput").value;
   let password = document.querySelector("#passwordInput").value;
+  let rePassword = document.querySelector("#rePasswordInput").value;
   let email = document.querySelector("#emailInput").value;
   let phoneNumber = document.querySelector("#phoneInput").value;
+  let captcha = document.querySelector("#captchaInput").value;
 
 
   if (
@@ -134,8 +136,10 @@ function validateCustomer() {
     checkIdCard(idCard) &&
     checkUsername(username) &&
     checkPassword(password) &&
+    checkRePassword(rePassword) &&
     checkPhoneNumber(phoneNumber) &&
-    checkEmail(email) 
+    checkEmail(email) &&
+    checkCaptcha(captcha)
    
   ) {
     return true;
