@@ -1,72 +1,87 @@
-p{
-    margin-left: auto;
-    margin-right: auto;
-    width: 17%;
+p {
+	margin-left: auto;
+	margin-right: auto;
+	width: 17%;
+}
+
+.col-responsive{
+	width: 42%;
 }
 
 .container-fluid {
 	padding: 20px 0;
 }
 
-.body2{
-    margin-top: 2%;
+.body2 {
+	margin-top: 2%;
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-.table{
-    border: 1px solid lightgray;
+.table {
+	border: 1px solid lightgray;
 }
 
-.form-group{
-    width: 189%;
-    margin-bottom: 12px;
+thead{
+	background-color: #009688;
 }
 
-.paging{
-    
+.form-group {
+	width: 189%;
+	margin-bottom: 12px;
 }
 
+.paging {}
 
-.button{
-    border-style: none;
-    background-color: white;
-    font-weight: 600;
-    color: #8f8b8b;
-    font-size: 0.9rem;
+
+.button {
+	border-style: none;
+	background-color: white;
+	font-weight: 600;
+	color: #8f8b8b;
+	font-size: 0.9rem;
 }
 
-.paging_buton{
-    justify-content: end;
-    display: flex;
-    margin-right: 16%;
+.paging_buton {
+	justify-content: end;
+	display: flex;
+	margin-right: 16%;
 }
 
-.header_navbar{
-    display: flex;
+.header_navbar {
+	display: flex;
     justify-content: space-between;
     width: 98%;
 }
 
-.header_navbar-item{
-    display: flex;
-    justify-content: center;
-    margin-left: 4%;
+.header_navbar-item {
+	display: flex;
+	justify-content: center;
+	margin-left: 4%;
 }
 
-.dropdown-list{
-    border: none;
-    outline: none;
-    margin: 0 10px;
-    position: relative;
+.dropdown-list {
+	border: none;
+	outline: none;
+	margin: 0 10px;
+	position: relative;
+	border-bottom: 1px solid rgb(61, 133, 168);
+}
+
+.dropdown-list-search{
+	border: none;
+	outline: none;
+	margin: 0 10px;
+	position: relative;
+	border-bottom: 1px solid rgb(173, 177, 179);
 }
 
 .footer_buttons{
-    display: flex;
-    margin: auto;
-    justify-content: space-between;
-    width: 89%;
-    margin-top: 30px;
+	display: flex;
+	margin: auto;
+	justify-content: space-between;
+	width: 89%;
+	margin-top: 30px;
 }
 
 .btn-create {
@@ -85,18 +100,14 @@ p{
 	height: 35px;
 }
 
-.btn-delete {
-	border-style: none;
-	background-color:#FFC107;
-	color: white;
-	border-radius: 3px;
-	height: 35px;
+.buttons {
+	display: flex;
+	justify-content: space-around;
+	width: 105%;
 }
 
-.buttons{
-    display: flex;
-    justify-content: space-between;
-    width: 105%;
+.text_details{
+	padding-left: 3px;
 }
 
 .btn-create, .btn-update, .btn-delete {

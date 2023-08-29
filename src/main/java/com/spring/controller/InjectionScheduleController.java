@@ -11,9 +11,21 @@ public class InjectionScheduleController {
 	
 	@Autowired
 	private InjectionScheduleRepository injectionScheduleRepository;
+
+	@GetMapping("/schedule-list")
+	public String scheduleList() {
+		return "schedule/schedule-list";
+	}
 	
-	@GetMapping("/addInjectionSchedule")
-	public String addInjectionScheduleUI() {
-		return "Schedule/addInjectionSchedule";
+	@GetMapping("/create_injectionSchedule")
+	public String CreateInjectionScheduleUI() {
+		return "Schedule/create_injectionSchedule";
     }
+
+	@GetMapping("/update_injectionSchedule")
+	public String updateInjectionScheduleUI() {
+		return "schedule/update_injectionSchedule";
+	}
+
+
 }

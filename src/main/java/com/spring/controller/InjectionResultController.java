@@ -12,7 +12,13 @@ public class InjectionResultController {
 	
 	@Autowired
 	private InjectionResultRepository injectionResultRepository;
-	
+
+
+	@GetMapping("/vaccine_result_list")
+	public String VaccineResultList() {
+		return "Vaccine/vaccine_result_list";
+	}
+
 	@GetMapping("/addInjectionResult")
     public String addInjectionResultUI(Model model) {			
     	return "injectionResult/addInjectionResult";

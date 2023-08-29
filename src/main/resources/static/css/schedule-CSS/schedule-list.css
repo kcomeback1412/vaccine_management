@@ -4,6 +4,10 @@ p {
 	width: 17%;
 }
 
+.col-responsive{
+	width: 42%;
+}
+
 .container-fluid {
 	padding: 20px 0;
 }
@@ -16,6 +20,10 @@ p {
 
 .table {
 	border: 1px solid lightgray;
+}
+
+thead{
+	background-color: #009688;
 }
 
 .form-group {

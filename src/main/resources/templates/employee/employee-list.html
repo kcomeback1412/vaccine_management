@@ -3,7 +3,7 @@
 	th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main},~{::script})}">
 
 <head>
-	<title>EmployeeList</title>
+	<title>Employee List</title>
 	<link rel="stylesheet" href="css/emloyee-CSS/employee-list.css">
 </head>
 
@@ -35,18 +35,18 @@
 				</div>
 				<div class="body2">
 					<table class="table table-striped table-bordered">
-						<thead class="thead-light">
-							<tr class="table-primary">
+						<thead class="thead">
+							<tr class="table">
 								<th scope="col">
 									<input type="checkbox">
 								</th>
-								<th scope="col">Employee ID</th>
-								<th scope="col">Employee Name</th>
-								<th scope="col">Date of Birth</th>
-								<th scope="col">Gender</th>
-								<th scope="col">Phone</th>
-								<th scope="col">Address</th>
-								<th scope="col">Image</th>
+								<th scope="col" class="text-center text-white">Employee ID</th>
+								<th scope="col" class="text-center text-white">Employee Name</th>
+								<th scope="col" class="text-center text-white">Date of Birth</th>
+								<th scope="col" class="text-center text-white">Gender</th>
+								<th scope="col" class="text-center text-white">Phone</th>
+								<th scope="col" class="text-center text-white">Address</th>
+								<th scope="col" class="text-center text-white">Image</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -94,7 +94,7 @@
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
 							<button class="btn-create">New Employee</button>
-							<button class="btn-update">Update Employee</button>
+							<button class="btn-update"><a class="btn-update" th:href="@{/update-vaccine}">Update Employee</a></button>
 							<button class="btn-delete">Delete Employee</button>
 						</div>
 					</div>
