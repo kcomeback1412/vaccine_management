@@ -17,7 +17,7 @@ function checkName(value) {
     nameInvalid.style.setProperty("opacity", 1);
     return false;
   } else {
-    idInvalid.style.setProperty("opacity", 0);
+    nameInvalid.style.setProperty("opacity", 0);
     return true;
   }
 }
@@ -106,11 +106,22 @@ function checkPassword(value) {
   }
 }
 
+function checkRePassword(value) {
+  let rePasswordInvalid = document.querySelector("#rePasswordInvalid");
+  let passwordValue = document.querySelector("#passwordInput").value;
+  if (passwordValue != value) {
+    rePasswordInvalid.style.setProperty("opacity", 1);
+    return false;
+  } else {
+    rePasswordInvalid.style.setProperty("opacity", 0);
+    return true;
+  }
+}
+
 
 function validateEmployee() {
   let employeeInvalid = document.querySelector("#employeeInvalid");
 
-  let id = document.querySelector("#idInput").value;
   let name = document.querySelector("#nameInput").value;
   let phoneNumber = document.querySelector("#phoneInput").value;
   let address = document.querySelector("#addressInput").value;
@@ -119,9 +130,9 @@ function validateEmployee() {
   let position = document.querySelector("#positionInput").value;
   let username = document.querySelector("#usernameInput").value;
   let password = document.querySelector("#passwordInput").value;
+  let rePassword = document.querySelector("#rePasswordInput").value;
 
   if (
-    checkId(id) &&
     checkName(name) &&
     checkPhoneNumber(phoneNumber) &&
     checkAddress(address) &&
@@ -129,7 +140,8 @@ function validateEmployee() {
     checkWorkingPlace(workingPlace) &&
     checkPosition(position) &&
     checkUsername(username) &&
-    checkPassword(password)
+    checkPassword(password) &&
+    checkRePassword(rePassword)
   ) {
     employeeInvalid.style.setProperty("opacity", 0);
     return true;

@@ -4,7 +4,7 @@
 
 <head>
 	<title>Employee List</title>
-	<link rel="stylesheet" href="css/emloyee-CSS/employee-list.css">
+	<link rel="stylesheet" th:href="@{css/emloyee-CSS/employee-list.css}">
 </head>
 
 <body>
@@ -50,42 +50,20 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td scope="col">
-									<input type="checkbox">
-								</td>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td scope="col">
-									<input type="checkbox">
-								</td>
-								<th scope="row">2</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td scope="col">
-									<input type="checkbox">
-								</td>
-								<th scope="row">3</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
+
+						<tr th:each="employee : ${userDetails.content}">
+							<td>
+								<input type="checkbox">
+							</td>
+							<td th:text="${employee.id}"></td>
+							<td th:text="${employee.fullName}"></td>
+							<td th:text="${employee.dateOfBirth}"></td>
+							<td th:text="${employee.gender} == 0 ? 'Male' : 'Female'"></td>
+							<td th:text="${employee.phone}"></td>
+							<td th:text="${employee.address}"></td>
+							<td th:text="${employee.image}"></td>
+						</tr>
+
 						</tbody>
 					</table>
 				</div>
@@ -93,21 +71,32 @@
 					<div class="button_bussiness">
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
-							<button class="btn-create">New Employee</button>
-							<button class="btn-update">Update Employee</button>
+							<button class="btn-create">
+								<a class="btn-create" th:href="@{/create-employee}">New Employee</a>
+							</button>
+							<button class="btn-update"><a class="btn-update" th:href="@{/update-vaccine}">Update Employee</a></button>
 							<button class="btn-delete">Delete Employee</button>
 						</div>
 					</div>
 					<div class="paging">
-						<div class="paging_buton">
-							<button class="button">
-								<</button>
-									<button class="button">1</button>
-									<button class="button">2</button>
-									<button class="button">3</button>
-									<button class="button">4</button>
-									<button class="button">5</button>
-									<button class="button">></button>
+						<div class="paging_button">
+							<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+								<ul class="pagination">
+									<li th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+										<a th:href="@{'/?pageNum=' + ${currentPage - 1}}" class="page-link "><</a>
+									</li>
+									<th:block  th:each="i: ${#numbers.sequence(1, userDetails.totalPages)}">
+										<li th:attr="class=${userDetails == null ? 'page-item disabled' : 'page-item'}">
+											<a class="page-link"
+											   th:href="@{'/?pageNum=' + ${i}}"
+											   th:text="${i}"></a>
+										</li>
+									</th:block>
+									<li th:attr="class=${currentPage < userDetails.totalPages ? 'page-item' : 'page-item disabled'}">
+										<a th:href="@{'/?pageNum=' + ${currentPage + 1}}" class="page-link"> ></a>
+									</li>
+								</ul>
+							</nav>
 						</div>
 					</div>
 				</div>
