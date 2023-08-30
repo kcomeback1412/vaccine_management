@@ -1,15 +1,12 @@
 package com.spring.controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +17,7 @@ import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CustomerController {
@@ -51,8 +49,6 @@ public class CustomerController {
 	@PostMapping("/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
-		String id = UUID.nameUUIDFromBytes(customer.getUserName().getBytes()).toString();
-		customer.setUsersId(Integer.valueOf(id));
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
@@ -76,12 +72,16 @@ public class CustomerController {
 
 	// Update
 	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
-	public String updateCustomerUI(HttpServletRequest httpServletRequest) {
+	public String updateCustomerUI(HttpServletRequest httpServletRequest,
+			HttpSession httpSession,
+			Model model
+			) {
 		try {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					UserDetail user = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-					System.out.println(user);
+					System.out.println(user.getFullName());
+					model.addAttribute("userInfo", user);
 				}
 			}
 			return "redirect:/customer_list";

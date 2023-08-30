@@ -13,13 +13,16 @@
 
 <main>
     <form
-            action="#"
+           th:action="@{/update-customer}"
             class="px-3 py-4"
             onsubmit="return validateCustomer()"
+            method="post"
+            th:object="${userInfo}"
     >
         <div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap ">
             <h4 class="col-12 py-4 font-weight-bold">Personal Information</h4>
             <div class="col-12 col-md-6 col-lg-4 mb-2">
+				<input type="hidden" th:value="${customerInfo.id}" >>
                 <label for="nameInput" class="font-weight-bold">
                     Full name
                     <span class="text-danger">(*)</span>
@@ -30,6 +33,7 @@
                   </span>
                     <input
                             type="text"
+                            th:value="${userInfo.fullName}"
                             class="form-control mr-3 rounded"
                             id="nameInput"
                             placeholder="Employee name"
@@ -54,6 +58,7 @@
                       </span>
                     <div class="form-check mr-3">
                         <input
+                        th:value="${userInfo.gender}"
                                 class="form-check-input"
                                 type="radio"
                                 name="gender"
@@ -64,6 +69,7 @@
                     </div>
                     <div class="form-check">
                         <input
+                        th:value="${userInfo.gender}"
                                 class="form-check-input"
                                 type="radio"
                                 name="gender"
@@ -86,6 +92,7 @@
                         <i class="fa-solid fa-calendar-days"></i>
                       </span>
                     <input
+                    th:value="${userInfo.dateOfBirth}"
                             type="date"
                             class="form-control mr-3 rounded"
                             id="dateInput"
@@ -105,6 +112,7 @@
                   <i class="fa-solid fa-address-card"></i>
                 </span>
                     <input
+                    th:value="${userInfo.identityCard}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Identity card"
@@ -132,6 +140,7 @@
                         <i class="fa-solid fa-location-dot"></i>
                       </span>
                     <input
+                    	 th:value="${userInfo.address}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Address"
@@ -166,6 +175,7 @@
                         <i class="fa-solid fa-id-badge"></i>
                       </span>
                     <input
+                     th:value="${userInfo.userName}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Username"
@@ -193,6 +203,7 @@
                         <i class="fa-solid fa-phone"></i>
                       </span>
                     <input
+                    th:value="${userInfo.phone}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Phone number"
@@ -220,6 +231,7 @@
                         <i class="fa-solid fa-envelope"></i>
                       </span>
                     <input
+                    th:value="${userInfo.email}"
                             type="email"
                             class="form-control mr-3 rounded"
                             placeholder="Email"
