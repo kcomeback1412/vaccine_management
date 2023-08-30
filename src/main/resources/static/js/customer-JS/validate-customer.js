@@ -15,7 +15,7 @@ function checkName(value) {
     nameInvalid.style.setProperty("opacity", 1);
     return false;
   } else {
-    idInvalid.style.setProperty("opacity", 0);
+    nameInvalid.style.setProperty("opacity", 0);
     return true;
   }
 }
@@ -46,7 +46,6 @@ function checkIdCard(value) {
 
 function checkUsername(value) {
   let usernameInvalid = document.querySelector("#usernameInvalid");
-
   if ((value.length > 30) || (value.length < 5)) {
     usernameInvalid.style.setProperty("opacity", 1);
     return false;
