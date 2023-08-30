@@ -1,5 +1,6 @@
 package com.spring.entities;
 
+import com.spring.consts.StatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,6 +40,10 @@ public class Vaccine implements Serializable {
 
     @Column(name = "VACCINE_NAME", length = 100)
     private String vaccineName;
+
+    @Column(name = "VACCINE_STATUS")
+    @Enumerated(EnumType.STRING)
+    private StatusEnum vaccineStatus;
 
     @OneToMany(mappedBy = "vaccine1")
     private List<InjectionSchedule> injectionScheduleList;
