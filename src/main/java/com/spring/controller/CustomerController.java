@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,17 @@ public class CustomerController {
 		return "customer/customer_list";
 	}
 
+	// Create
+	@RequestMapping(value = "/update-delete", params = "create", method = RequestMethod.POST)
+	public String customerCreatePage() {
+		return "customer/create-customer";
+	}
+
+	@GetMapping("/create-customer")
+	public String createCustomerUI() {
+		return "customer/create-customer";
+	}
+
 	@PostMapping("/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
@@ -44,16 +56,14 @@ public class CustomerController {
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
-		System.out.println(customer.toString() + "+" + account.toString());
 		return "redirect:/customer_list";
 	}
-	
-	@RequestMapping(value="/update-delete",params="delete",method=RequestMethod.POST)
-	public String findCustomer(
-			HttpServletRequest httpServletRequest
-			) {
+
+	// Delete
+	@RequestMapping(value = "/update-delete", params = "delete", method = RequestMethod.POST)
+	public String findCustomer(HttpServletRequest httpServletRequest) {
 		try {
-			if(httpServletRequest.getParameterValues("id") != null) {
+			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					userDetailRepository.deleteById(Integer.parseInt(id));
 				}
@@ -63,20 +73,33 @@ public class CustomerController {
 			return "customer/customer_list";
 		}
 	}
-	
-	@RequestMapping(value="/update-delete",params="create",method=RequestMethod.POST)
-	public String customerCreatePage() {
-		return "customer/create-customer";
-	}
 
-	@RequestMapping(value="/update-delete",params="update",method=RequestMethod.POST)
-	public String updateCustomerUI() {
+	// Update
+	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
+	public String updateCustomerUI(HttpServletRequest httpServletRequest) {
+		try {
+			if (httpServletRequest.getParameterValues("id") != null) {
+				for (String id : httpServletRequest.getParameterValues("id")) {
+					UserDetail user = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+					System.out.println(user);
+				}
+			}
+			return "redirect:/customer_list";
+		} catch (Exception e) {
+			return "customer/customer_list";
+		}
+	}
+	
+	@PostMapping("/update-customer")
+	public String updateCustomerInfo() {
+		
 		return "customer/update-customer";
 	}
 
-	@GetMapping("/create-customer")
-	public String createCustomerUI() {
-		return "customer/create-customer";
+	@GetMapping("/update-customer")
+	public String updateCustomer() {
+		
+		return "customer/update-customer";
 	}
 
 }
