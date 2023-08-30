@@ -16,6 +16,6 @@ public class UserRolesId implements Serializable {
     private Integer roleId;
 
     @Column(name = "users_id")
-    private String userId;
+    private Integer userId;
 
 }
