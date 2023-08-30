@@ -52,7 +52,7 @@ public class CustomerController {
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
 		String id = UUID.nameUUIDFromBytes(customer.getUserName().getBytes()).toString();
-		customer.setUsersId(id);
+		customer.setUsersId(Integer.parseInt(id));
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
