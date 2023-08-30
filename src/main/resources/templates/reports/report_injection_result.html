@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+
+<head>
+    <title>Report Injection Result</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/reports-CSS/report-Injection-result.css">
+    <link rel="stylesheet" th:href="@{/css/reports-CSS/report-Injection-result.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h4 class="my-0 ml-auto mr-auto" id="content_title">REPORT INJECTION RESULT</h4>
+<main>
+    <form>
+        <div class="container">
+            <div class="row-colum">
+
+                <div class="daily">
+                    <label>Display Type:</label>
+                    <div class="btn-radio">
+                        <input type="radio" id="report" name="brand" value="report">
+                        <label for="report">Report</label>
+                        <input type="radio" id="chart" name="brand" value="chart">
+                        <label for="chart">Chart</label>
+                    </div>
+                </div>
+
+                <div class="daily1">
+                    <label>Inject Date:</label>
+                    <div class="btn-field">
+                        <label for="from">From:</label>
+                        <input type="text" id="from" name="from">
+                        <label for="to">To:</label>
+                        <input type="text" id="to" name="to">
+                    </div>
+                </div>
+
+
+            <div class="daily2">
+                <label for="prevention">Prevention:</label>
+                <input type="text" id="prevention" name="prevention">
+            </div>
+
+            <div class="daily3">
+                <span class="one">Vaccine type:</span>
+                <div class="mt-2">
+                    <select class="vaccine">
+                        <option>-Select vaccine type-</option>
+                    </select>
+                </div>
+            </div>
+                <div class="daily4">
+                    <div class="action-label">
+                        <label for="prevention">Action:</label>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="reset" type="reset">Reset</button>
+                        <button class="fill" type="button">Filter</button>
+                    </div>
+                </div>
+        </div>
+
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="container-beside">
+            <table id="data-table">
+                <tbody>
+                <thead>
+                <tr>
+
+                    <th scope="col" style="text-align: center;">No.</th>
+                    <th scope="col" style="text-align: center;">Vaccine</th>
+                    <th scope="col" style="text-align: center;">Prevention</th>
+                    <th scope="col" style="text-align: center;">Customer name</th>
+                    <th scope="col" style="text-align: center;">Date of Inject</th>
+                    <th scope="col" style="text-align: center;">Num of Inject</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Vaccine</td>
+                    <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+                    <td>Đà Nẵng</td>
+                    <td>13/4/2011</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Vaccine</td>
+                    <td>Hiện nay có 4 loại vacxin chính, tuỳ thuộc vào cách chế biến và sản xuất vacxin</td>
+                    <td>Đà Nẵng</td>
+                    <td>13/4/2011</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Vaccine</td>
+                    <td>Viêm Não Nhât Bản</td>
+                    <td>Đà Nẵng</td>
+                    <td>13/4/2011</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Vaccine</td>
+                    <td>Viêm Não Nhât Bản</td>
+                    <td>Đà Nẵng</td>
+                    <td>13/4/2011</td>
+                    <td>12</td>
+                </tr>
+            </table>
+            <div class="paging">
+                <span class="text" style="padding-left: 3px;">Showing 1 to 5 of ... entries</span>
+                <div>
+                    <button class="button">
+                        <</button>
+                    <button class="button">1</button>
+                    <button class="button">2</button>
+                    <button class="button">></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script th:src="@{/js/reports-JS/report.js}"></script>
+</body>
+</html>
