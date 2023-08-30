@@ -9,5 +9,6 @@ class VaccinationSrsApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+	
 
 }
