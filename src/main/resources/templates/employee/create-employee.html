@@ -3,9 +3,9 @@
 	  th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
-  <title>Add Employee</title>
+  <title>Create Employee</title>
 
-	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-employee.css}"/>
+	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-update-employee.css}"/>
 </head>
 
 <body>
@@ -13,7 +13,9 @@
 
 	<main>
 		<form
-			action="add-employee-success.html"
+			th:action="@{/create-employee}"
+			method="post"
+			th:object="${employeeToCreate}"
 			class="bg-white rounded shadow px-3 py-4"
 			onsubmit="return validateEmployee()"
 		>
@@ -25,32 +27,6 @@
 				You must input all required fields in correct format
 			</small>
 			<div class="form-group row mb-3 d-flex flex-wrap">
-				<div class="col-12 col-md-6 col-lg-4 mb-2">
-					<label for="idInput" class="font-weight-bold">
-						Employee ID
-						<span class="text-danger">(*)</span>
-					</label>
-					<div class="d-flex">
-                  <span class="mt-2 mr-2">
-                    <i class="fa-solid fa-id-badge"></i>
-                  </span>
-						<input
-							type="text"
-							class="form-control mr-3 rounded"
-							placeholder="Employee id"
-							id="idInput"
-							onchange="checkId(this.value)"
-							required
-						/>
-					</div>
-					<small
-						id="idInvalid"
-						class="form-text text-danger"
-						style="opacity: 0"
-					>
-						ID min-length is 5 and max-length is 12.
-					</small>
-				</div>
 
 				<div class="col-12 col-md-6 col-lg-4 mb-2">
 					<label for="nameInput" class="font-weight-bold">
@@ -67,6 +43,7 @@
 							id="nameInput"
 							placeholder="Employee name"
 							onchange="checkName(this.value)"
+							name="fullName"
 							required
 						/>
 					</div>
@@ -90,6 +67,7 @@
 								class="form-check-input"
 								type="radio"
 								name="gender"
+								value="0"
 								id="gender1"
 								checked
 							/>
@@ -100,6 +78,7 @@
 								class="form-check-input"
 								type="radio"
 								name="gender"
+								value="1"
 								id="gender2"
 							/>
 							<label class="form-check-label ml-2" for="gender2">
@@ -122,6 +101,7 @@
 							type="date"
 							class="form-control mr-3 rounded"
 							id="dateInput"
+							name="dateOfBirth"
 							required
 						/>
 					</div>
@@ -142,6 +122,7 @@
 							placeholder="Phone number"
 							id="phoneInput"
 							onchange="checkPhoneNumber(this.value)"
+							name="phone"
 							required
 						/>
 					</div>
@@ -169,6 +150,7 @@
 							placeholder="Address"
 							id="addressInput"
 							onchange="checkAddress(this.value)"
+							name="address"
 							required
 						/>
 					</div>
@@ -196,6 +178,7 @@
 							placeholder="Email"
 							id="emailInput"
 							onchange="checkEmail(this.value)"
+							name="email"
 							required
 						/>
 					</div>
@@ -222,6 +205,7 @@
 							placeholder="Working Place"
 							id="workPlaceInput"
 							onchange="checkWorkingPlace(this.value)"
+							name="workingPlace"
 						/>
 					</div>
 					<small
@@ -247,6 +231,7 @@
 							placeholder="Position"
 							id="positionInput"
 							onchange="checkPosition(this.value)"
+							name="position"
 						/>
 					</div>
 					<small
@@ -269,6 +254,7 @@
 							class="form-control-file mr-3 border rounded"
 							id="imageInput"
 							accept="image/*"
+							name="image"
 						/>
 					</div>
 				</div>
@@ -288,6 +274,7 @@
 							placeholder="Username"
 							id="usernameInput"
 							onchange="checkUsername(this.value)"
+							name="username"
 							required
 						/>
 					</div>
@@ -307,7 +294,7 @@
 					</label>
 					<div class="d-flex">
                   <span class="mt-2 mr-2">
-                    <i class="fa-solid fa-id-badge"></i>
+                     <i class="fa-solid fa-lock"></i>
                   </span>
 						<input
 							type="password"
@@ -315,6 +302,7 @@
 							placeholder="Password"
 							id="passwordInput"
 							onchange="checkPassword(this.value)"
+							name="password"
 							required
 						/>
 					</div>
@@ -324,6 +312,33 @@
 						style="opacity: 0"
 					>
 						Password min-length is 10 and max-length is 30.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="rePasswordInput" class="font-weight-bold">
+						Re-password
+						<span class="text-danger">(*)</span>
+					</label>
+					<div class="d-flex">
+                    <span class="mt-2 mr-2">
+                      <i class="fa-solid fa-lock"></i>
+                    </span>
+						<input
+								type="password"
+								class="form-control mr-3 rounded"
+								placeholder="Re-password"
+								id="rePasswordInput"
+								onchange="checkRePassword(this.value)"
+								required
+						/>
+					</div>
+					<small
+							id="rePasswordInvalid"
+							class="form-text text-danger"
+							style="opacity: 0"
+					>
+						Re-password not match the entered password.
 					</small>
 				</div>
 

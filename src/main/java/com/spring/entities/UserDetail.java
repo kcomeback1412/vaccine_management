@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@ToString
 public class UserDetail implements Serializable {
     @Id
     @Column(name = "ID", length = 12, nullable = false)

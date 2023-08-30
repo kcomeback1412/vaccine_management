@@ -8,7 +8,7 @@
 	<div th:fragment="header" class="header d-flex justify-content-between align-items-center px-4 py-3">
 		<div class="h-100">
 			<a class="h-100" href="/dashboard">
-                <img src="./img/logoFPT.png" alt="Logo" class="h-100">
+                <img th:src="@{/img/logoFPT.png}" alt="Logo" class="h-100">
             </a>
 		</div>
 		
@@ -22,7 +22,7 @@
         <div class="user-info p-4">
             <div class="h-100 d-flex">
                 <a href="/dashboard" class="h-100 mr-4">
-                    <img src="./img/UserImg.png" alt="" class="user_logo h-100">
+                    <img th:src="@{/img/UserImg.png}" alt="" class="user_logo h-100">
                 </a>
                 
                 <div class="d-flex flex-column justify-content-around">
@@ -45,7 +45,7 @@
 				<div class="card">
 					<div class="card-header p-3" id="headingOne">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Emplyee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Employee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
 						</h2>
 					</div>
 							

@@ -10,7 +10,7 @@
 <body>
 	<h2 class="my-0 ml-auto mr-auto" id="content_title">CUSTOMER LIST</h2>
 	<main>
-	
+
 		<div>
 			<div class="container-fluid bg-white">
 				<div class="body_header">
@@ -38,7 +38,7 @@
 						<thead class="thead">
 							<tr class="table">
 								<th scope="col">
-									<input type="checkbox" >
+									<input type="checkbox">
 								</th>
 								<th scope="col" class="text-center text-white">Full name</th>
 								<th scope="col" class="text-center text-white">Date of Birth</th>
@@ -48,8 +48,8 @@
 								<th scope="col" class="text-center text-white">Phone</th>
 							</tr>
 						</thead>
-						<form method="post" th:action="@{/delete}">
 						<tbody>
+							<form action="update-delete" method="post">
 							<tr th:each="d, status : ${customerList}">
 								<td scope="col">
 									<input type="checkbox" th:value="${d.id}" name="id">
@@ -61,20 +61,20 @@
 								<td th:text="${d.identityCard}"></td>
 								<td th:text="${d.phone}"></td>
 							</tr>
+							
 						</tbody>
-						
-						
 					</table>
 				</div>
 				<div class="footer_buttons">
 					<div class="button_bussiness">
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
-							<a th:href="@{/create-customer}"><button class="btn-create">Register</button></a>
-							<a th:href="@{/update-customer}"><button class="btn-update">Update Customer</button></a>
-							<input class="btn-delete" type="submit" value="Delete">
+							<button class="btn-create" name="create">Register</button>
+							<button class="btn-update" name="update">Update Customer</button>
+							<button class="btn-delete" onclick="" name="delete">Delete Customer</button>
+							</form>
 						</div>
-						</form>
+						
 					</div>
 					<div class="paging">
 						<div class="paging_buton">
@@ -88,9 +88,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</main>
-	<script src="#"></script>
+	<script th:src="@{/js/customer-JS/list-customer.js}"></script>
 </body>
 
 </html>
