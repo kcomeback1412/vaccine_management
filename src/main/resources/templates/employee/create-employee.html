@@ -13,7 +13,9 @@
 
 	<main>
 		<form
-			action="add-employee-success.html"
+			th:action="@{/create-employee}"
+			method="post"
+			th:object="${employeeToCreate}"
 			class="bg-white rounded shadow px-3 py-4"
 			onsubmit="return validateEmployee()"
 		>
@@ -41,6 +43,7 @@
 							id="nameInput"
 							placeholder="Employee name"
 							onchange="checkName(this.value)"
+							name="fullName"
 							required
 						/>
 					</div>
@@ -64,6 +67,7 @@
 								class="form-check-input"
 								type="radio"
 								name="gender"
+								value="0"
 								id="gender1"
 								checked
 							/>
@@ -74,6 +78,7 @@
 								class="form-check-input"
 								type="radio"
 								name="gender"
+								value="1"
 								id="gender2"
 							/>
 							<label class="form-check-label ml-2" for="gender2">
@@ -96,6 +101,7 @@
 							type="date"
 							class="form-control mr-3 rounded"
 							id="dateInput"
+							name="dateOfBirth"
 							required
 						/>
 					</div>
@@ -116,6 +122,7 @@
 							placeholder="Phone number"
 							id="phoneInput"
 							onchange="checkPhoneNumber(this.value)"
+							name="phone"
 							required
 						/>
 					</div>
@@ -143,6 +150,7 @@
 							placeholder="Address"
 							id="addressInput"
 							onchange="checkAddress(this.value)"
+							name="address"
 							required
 						/>
 					</div>
@@ -170,6 +178,7 @@
 							placeholder="Email"
 							id="emailInput"
 							onchange="checkEmail(this.value)"
+							name="email"
 							required
 						/>
 					</div>
@@ -196,6 +205,7 @@
 							placeholder="Working Place"
 							id="workPlaceInput"
 							onchange="checkWorkingPlace(this.value)"
+							name="workingPlace"
 						/>
 					</div>
 					<small
@@ -221,6 +231,7 @@
 							placeholder="Position"
 							id="positionInput"
 							onchange="checkPosition(this.value)"
+							name="position"
 						/>
 					</div>
 					<small
@@ -243,6 +254,7 @@
 							class="form-control-file mr-3 border rounded"
 							id="imageInput"
 							accept="image/*"
+							name="image"
 						/>
 					</div>
 				</div>
@@ -262,6 +274,7 @@
 							placeholder="Username"
 							id="usernameInput"
 							onchange="checkUsername(this.value)"
+							name="username"
 							required
 						/>
 					</div>
@@ -289,6 +302,7 @@
 							placeholder="Password"
 							id="passwordInput"
 							onchange="checkPassword(this.value)"
+							name="password"
 							required
 						/>
 					</div>
