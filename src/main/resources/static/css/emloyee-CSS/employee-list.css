@@ -28,7 +28,6 @@ thead{
 	margin-bottom: 12px;
 }
 
-.paging {}
 
 
 .button {
@@ -39,7 +38,7 @@ thead{
 	font-size: 0.9rem;
 }
 
-.paging_buton {
+.paging_button {
 	justify-content: end;
 	display: flex;
 	margin-right: 16%;

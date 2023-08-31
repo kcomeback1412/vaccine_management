@@ -15,7 +15,7 @@ function checkName(value) {
     nameInvalid.style.setProperty("opacity", 1);
     return false;
   } else {
-    idInvalid.style.setProperty("opacity", 0);
+    nameInvalid.style.setProperty("opacity", 0);
     return true;
   }
 }
@@ -46,7 +46,6 @@ function checkIdCard(value) {
 
 function checkUsername(value) {
   let usernameInvalid = document.querySelector("#usernameInvalid");
-
   if ((value.length > 30) || (value.length < 5)) {
     usernameInvalid.style.setProperty("opacity", 1);
     return false;
@@ -124,8 +123,10 @@ function validateCustomer() {
 
   let username = document.querySelector("#usernameInput").value;
   let password = document.querySelector("#passwordInput").value;
+  let rePassword = document.querySelector("#rePasswordInput").value;
   let email = document.querySelector("#emailInput").value;
   let phoneNumber = document.querySelector("#phoneInput").value;
+  let captcha = document.querySelector("#captchaInput").value;
 
 
   if (
@@ -134,8 +135,10 @@ function validateCustomer() {
     checkIdCard(idCard) &&
     checkUsername(username) &&
     checkPassword(password) &&
+    checkRePassword(rePassword) &&
     checkPhoneNumber(phoneNumber) &&
-    checkEmail(email) 
+    checkEmail(email) &&
+    checkCaptcha(captcha)
    
   ) {
     return true;
