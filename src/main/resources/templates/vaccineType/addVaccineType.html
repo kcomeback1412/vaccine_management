@@ -17,10 +17,10 @@
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="my-2">
-            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="p-2" type="text" name="vaccineTypeId" placeholder="-Vaccine Type Code-">
+            				<input class="form-control px-2 py-4" type="text" name="vaccineTypeId" placeholder="-Vaccine Type Code-">
             			</div>
             			
 						<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeId')}" th:errorclass="error" th:errors="*{vaccineTypeId}"></span>
@@ -31,10 +31,10 @@
             		<div class="col">
             			<span>Vaccine Type Name<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="my-2">
-            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="p-2" type="text" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
+            				<input class="form-control px-2 py-4" type="text" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
             			</div>
             			
             			<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeName')}" th:errorclass="error" th:errors="*{vaccineTypeName}"></span>
@@ -55,10 +55,10 @@
             		<div class="col">
             			<span>Description:</span>
             			
-            			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-file-lines mr-3"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-file-lines mr-4"></i>
             				
-            				<textarea class="px-2 py-1" rows="4" cols="100" name="description"></textarea>
+            				<textarea class="form-control p-2" rows="4" cols="100" name="description"></textarea>
             			</div>
             		</div>
             	</div>
@@ -68,7 +68,7 @@
             			<span>Image:</span>
             			
             			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-image mr-2"></i>
+            				<i class="fa-solid fa-image mr-3"></i>
             				
             				<input class="w-auto rounded border p-1" type="file">
             			</div>
@@ -79,7 +79,9 @@
             		<div class="col">
             			<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
             			<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
-            			<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
+            			<a href="/vaccine-type-list">
+            				<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
+            			</a>
             		</div>
             	</div>
             </form>     
