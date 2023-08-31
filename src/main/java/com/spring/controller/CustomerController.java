@@ -74,27 +74,27 @@ public class CustomerController {
 	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
 	public String updateCustomerUI(HttpServletRequest httpServletRequest,
 			HttpSession httpSession,
+			@ModelAttribute("userInfo") UserDetail userDetail,
 			Model model
 			) {
 		try {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
-					UserDetail user = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-					System.out.println(user.getFullName());
-					model.addAttribute("userInfo", user);
+					userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+					model.addAttribute("userInfo", userDetail);
 				}
 			}
-			return "redirect:/customer_list";
+			return "customer/update-customer";
 		} catch (Exception e) {
 			return "customer/customer_list";
 		}
 	}
 	
-	@PostMapping("/update-customer")
-	public String updateCustomerInfo() {
-		
-		return "customer/update-customer";
-	}
+//	@PostMapping("/update-customer")
+//	public String updateCustomerInfo() {
+//		
+//		return "customer/update-customer";
+//	}
 
 	@GetMapping("/update-customer")
 	public String updateCustomer() {
