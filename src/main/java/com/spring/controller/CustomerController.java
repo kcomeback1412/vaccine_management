@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.consts.RoleEnum;
 import com.spring.entities.UserDetail;
 import com.spring.entities.Users;
 import com.spring.repositories.UserDetailRepository;
@@ -49,6 +50,7 @@ public class CustomerController {
 	@PostMapping("/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
+		customer.setRoleEnum(RoleEnum.ROLE_CUSTOMER);
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
@@ -74,31 +76,51 @@ public class CustomerController {
 	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
 	public String updateCustomerUI(HttpServletRequest httpServletRequest,
 			HttpSession httpSession,
-			@ModelAttribute("userInfo") UserDetail userDetail,
+			@ModelAttribute("userDetailInfo") UserDetail userDetail,
+			@ModelAttribute("userInfo") Users user,
 			Model model
 			) {
-		try {
+		
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-					model.addAttribute("userInfo", userDetail);
+					user = (Users) usersRepository.findByIdUser(id);
+					model.addAttribute("userDetailInfo", userDetail);
+					model.addAttribute("userInfo", user);
 				}
+				return "customer/update-customer";
+			}else {
+				return "redirect:/customer_list";
 			}
-			return "customer/update-customer";
-		} catch (Exception e) {
-			return "customer/customer_list";
-		}
 	}
 	
-//	@PostMapping("/update-customer")
-//	public String updateCustomerInfo() {
-//		
-//		return "customer/update-customer";
-//	}
-
-	@GetMapping("/update-customer")
-	public String updateCustomer() {
+	@RequestMapping(value = "/update-delete", params = "save", method = RequestMethod.POST)
+	public String updateCustomerInfo(
+			@ModelAttribute("userDetailInfo") UserDetail userDetail,
+			@ModelAttribute("userInfo") Users user,
+			HttpServletRequest httpServletRequest
+			) {
 		
+		for (String id : httpServletRequest.getParameterValues("userId")) {
+			Users userDB = (Users) usersRepository.findByIdUser(id);
+			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+			System.out.println(user.getUserName());
+			
+			
+			userDetailDB.setFullName(userDetail.getFullName());
+			usersRepository.save(userDB);
+			userDetailDB.setUsers2(userDB);
+			userDetailRepository.save(userDetailDB);
+		}
+		return "redirect:/customer_list";
+	}
+	
+	@GetMapping("/update-customer")
+	public String updateCustomer(
+			Model model
+			) {
+		model.addAttribute("userDetailInfo", new UserDetail());
+		model.addAttribute("userInfo", new Users());
 		return "customer/update-customer";
 	}
 
