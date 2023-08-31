@@ -1,8 +1,12 @@
 package com.spring.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.consts.RoleEnum;
 import com.spring.entities.UserDetail;
@@ -30,11 +35,25 @@ public class CustomerController {
 	UserDetailRepository userDetailRepository;
 
 	@GetMapping("/customer_list")
-	public String CustomerList(Model model) {
-		List<UserDetail> customer = userDetailRepository.findAll();
-		model.addAttribute("customerList", customer);
+	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model
+			) {
+
+		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+		model.addAttribute("pageUserDetail", pageUserDetail);
 		return "customer/customer_list";
 	}
+//	
+//	@ModelAttribute("pageCert")
+//	Page<UserDetail> pageCert(Model model){
+//		Integer pageNum = 1;
+//		Integer pageSize = 5;
+//		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+//		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+//		return pageUserDetail;
+//	}
 
 	// Create
 	@RequestMapping(value = "/update-delete", params = "create", method = RequestMethod.POST)
@@ -60,16 +79,15 @@ public class CustomerController {
 	// Delete
 	@RequestMapping(value = "/update-delete", params = "delete", method = RequestMethod.POST)
 	public String findCustomer(HttpServletRequest httpServletRequest) {
-		try {
+		
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					userDetailRepository.deleteById(Integer.parseInt(id));
 				}
+				return "redirect:/customer_list";
+			}else {
+				return "customer/customer_list";
 			}
-			return "redirect:/customer_list";
-		} catch (Exception e) {
-			return "customer/customer_list";
-		}
 	}
 
 	// Update
@@ -81,14 +99,15 @@ public class CustomerController {
 			Model model
 			) {
 		
-			if (httpServletRequest.getParameterValues("id") != null) {
-				for (String id : httpServletRequest.getParameterValues("id")) {
-					userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-					user = (Users) usersRepository.findByIdUser(id);
-					model.addAttribute("userDetailInfo", userDetail);
-					model.addAttribute("userInfo", user);
-				}
-				return "customer/update-customer";
+			if (httpServletRequest.getParameterValues("id") != null && httpServletRequest.getParameterValues("id").length < 2) {
+					for (String id : httpServletRequest.getParameterValues("id")) {
+						userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+						user = (Users) usersRepository.findByIdUser(id);
+						model.addAttribute("userDetailInfo", userDetail);
+						model.addAttribute("userInfo", user);
+						System.out.println(httpServletRequest.getParameterValues("id").length);
+					}
+					return "customer/update-customer";
 			}else {
 				return "redirect:/customer_list";
 			}
@@ -108,6 +127,11 @@ public class CustomerController {
 			
 			
 			userDetailDB.setFullName(userDetail.getFullName());
+			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());
+			userDetailDB.setGender(userDetail.getGender());
+			userDetailDB.setAddress(userDetail.getAddress());
+			userDetailDB.setPhone(userDetail.getPhone());
+			
 			usersRepository.save(userDB);
 			userDetailDB.setUsers2(userDB);
 			userDetailRepository.save(userDetailDB);

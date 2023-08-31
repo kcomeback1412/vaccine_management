@@ -38,7 +38,7 @@
 						<thead class="thead">
 							<tr class="table">
 								<th scope="col">
-									<input type="checkbox">
+									<input type="checkbox" id="option-all" name="id" onclick="checkUncheck(this)">
 								</th>
 								<th scope="col" class="text-center text-white">Full name</th>
 								<th scope="col" class="text-center text-white">Date of Birth</th>
@@ -50,7 +50,7 @@
 						</thead>
 						<tbody>
 							<form action="update-delete" method="post">
-							<tr th:each="d, status : ${customerList}">
+							<tr th:each="d, status : ${pageUserDetail}">
 								<td scope="col">
 									<input type="checkbox" th:value="${d.id}" name="id">
 								</td>
@@ -69,21 +69,19 @@
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
 							<button class="btn-create" name="create">Register</button>
-							<button class="btn-update" name="update">Update Customer</button>
+							<button class="btn-update" onclick="return updateCheck()" name="update">Update Customer</button>
 							<button class="btn-delete" onclick="" name="delete">Delete Customer</button>
 							</form>
 						</div>
 						
 					</div>
-					<div class="paging">
-						<div class="paging_buton">
-							<button class="button">
-								<</button>
-									<button class="button">1</button>
-									<button class="button">2</button>
-									<button class="button">></button>
-						</div>
-					</div>
+					<ul class="pagination">
+					<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">				
+					<li class="page-item" style="display: flex"><a
+						class="page-link" th:href="@{'/customer_list?pageNum=' + ${i}}"
+						th:text="${i}"></a></li>
+				</th:block>
+			</ul>
 				</div>
 			</div>
 		</div>
