@@ -31,9 +31,6 @@ thead{
 	margin-bottom: 12px;
 }
 
-.paging {}
-
-
 .button {
 	border-style: none;
 	background-color: white;
@@ -78,10 +75,8 @@ thead{
 
 .footer_buttons{
 	display: flex;
-	margin: auto;
+	margin: 30px 20px;
 	justify-content: space-between;
-	width: 89%;
-	margin-top: 30px;
 }
 
 .btn-create {
@@ -122,4 +117,19 @@ thead{
 .btn-update:hover{
   background-color: rgb(204, 153, 0);
   color: white;
+}
+
+#content select {
+	height: auto;
+	padding: 0.25rem 0.5rem !important;
+	font-size: 1.4rem !important;
+}
+
+.modal,
+.close span {
+	font-size: 2rem;
+}
+
+.modal button {
+	font-size: 1.5rem;
 }
