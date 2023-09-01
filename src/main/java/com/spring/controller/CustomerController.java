@@ -40,20 +40,21 @@ public class CustomerController {
 			) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+		 model.addAttribute("currentPage", pageNum);
 
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		return "customer/customer_list";
 	}
-//	
-//	@ModelAttribute("pageCert")
-//	Page<UserDetail> pageCert(Model model){
-//		Integer pageNum = 1;
-//		Integer pageSize = 5;
-//		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-//		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
-//		return pageUserDetail;
-//	}
+	
+	@ModelAttribute("pageUserDetail")
+	Page<UserDetail> pageCert(Model model){
+		Integer pageNum = 1;
+		Integer pageSize = 5;
+		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+		return pageUserDetail;
+	}
 
 	// Create
 	@RequestMapping(value = "/update-delete", params = "create", method = RequestMethod.POST)
@@ -69,12 +70,7 @@ public class CustomerController {
 	@PostMapping("/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
-<<<<<<< HEAD
-		String id = UUID.nameUUIDFromBytes(customer.getUserName().getBytes()).toString();
-		customer.setUsersId(Integer.parseInt(id));
-=======
 		customer.setRoleEnum(RoleEnum.ROLE_CUSTOMER);
->>>>>>> ae1e9d9b44d7627f8ae45adbc5c5c91f75276f54
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
