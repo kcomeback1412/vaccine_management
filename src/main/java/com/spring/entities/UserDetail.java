@@ -35,11 +35,16 @@ public class UserDetail implements Serializable {
     @Column(name = "PHONE", length = 20)
     private String phone;
 
-    // id of customer
+
     @Column(name = "IDENTITY_CARD", length = 12)
     private String identityCard;
 
     // employee
+
+    // id of employee
+    @Column(name = "CODE", length = 36)
+    private String code;
+
     @Column(name = "IMAGE", length = 255)
     private String image;
 

@@ -4,7 +4,7 @@
 <head>
   <title>Update Vaccine Type</title>
   
-  <link rel="stylesheet" href="css/vaccine-type-CSS/addVaccineType.css">
+  <link rel="stylesheet" href="/css/vaccine-type-CSS/addVaccineType.css">
 </head>
 
 <body>
@@ -12,28 +12,30 @@
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/addVaccineType}" method="post" th:object="${vaccineType}">
+            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/updateVaccineType}" method="post" th:object="${vaccineType}">
             	<div class="row my-5">
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="my-2">
-            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="p-2" type="text" name="vaccineTypeId" disabled>
+            				<input class="form-control px-2 py-4" type="text" th:value="${vaccineTypeId}" name="vaccineTypeId" readonly>
             			</div>
             		</div>
             		
             		<div class="col">
             			<span>Vaccine Type Name<span class="text-danger">(*)</span>:</span>
             			
-            			<div class="my-2">
-            				<i class="fa-solid fa-pen-to-square mr-2"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="p-2" type="text" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
+            				<input class="form-control px-2 py-4" type="text" th:value="${vaccineTypeName}" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
             			</div>
             			
             			<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeName')}" th:errorclass="error" th:errors="*{vaccineTypeName}"></span>
+            			
+            			<span class="text-danger font-weight-bold" th:text="${vaccineTypeNameMsg}"></span>
             		</div>
             		
             		<div class="col">
@@ -42,7 +44,7 @@
             			<div class="mt-3">
             				<i class="fa-solid fa-check-to-slot mr-3"></i>
             				
-            				<input class="w-auto" type="checkbox">
+            				<input class="w-auto" type="checkbox" name="activeCheckBox" th:checked="${checked}">
             			</div>
             		</div>
             	</div>
@@ -51,10 +53,10 @@
             		<div class="col">
             			<span>Description:</span>
             			
-            			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-file-lines mr-3"></i>
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-file-lines mr-4"></i>
             				
-            				<textarea class="px-2 py-1" rows="4" cols="100" name="description"></textarea>
+            				<textarea class="form-control p-2" rows="4" cols="100" th:text="${description}" name="description"></textarea>
             			</div>
             		</div>
             	</div>
@@ -64,7 +66,7 @@
             			<span>Image:</span>
             			
             			<div class="d-flex align-items-center mt-2">
-            				<i class="fa-solid fa-image mr-2"></i>
+            				<i class="fa-solid fa-image mr-3"></i>
             				
             				<input class="w-auto rounded border p-1" type="file">
             			</div>
@@ -75,7 +77,9 @@
             		<div class="col">
             			<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
             			<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
-            			<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
+						<a href="/vaccine-type-list">
+            				<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
+            			</a>            		
             		</div>
             	</div>
             </form>     
