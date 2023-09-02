@@ -40,20 +40,21 @@ public class CustomerController {
 			) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+		 model.addAttribute("currentPage", pageNum);
 
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		return "customer/customer_list";
 	}
-//	
-//	@ModelAttribute("pageCert")
-//	Page<UserDetail> pageCert(Model model){
-//		Integer pageNum = 1;
-//		Integer pageSize = 5;
-//		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-//		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
-//		return pageUserDetail;
-//	}
+	
+	@ModelAttribute("pageUserDetail")
+	Page<UserDetail> pageCert(Model model){
+		Integer pageNum = 1;
+		Integer pageSize = 5;
+		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+		return pageUserDetail;
+	}
 
 	// Create
 	@RequestMapping(value = "/update-delete", params = "create", method = RequestMethod.POST)

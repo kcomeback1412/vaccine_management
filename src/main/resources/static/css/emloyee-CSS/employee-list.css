@@ -132,3 +132,9 @@ thead{
   background-color: rgb(255, 128, 128);
   color: white;
 }
+
+.page-link{
+	height: 27px;
+	border-style: none;
+	color: gray;
+}
