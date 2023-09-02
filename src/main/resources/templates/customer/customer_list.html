@@ -29,7 +29,9 @@
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<input class="dropdown-list-search" type="text">
+							<form action="update-delete" method="post">
+								<input name="search" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
+							</form>
 						</div>
 					</div>
 				</div>
