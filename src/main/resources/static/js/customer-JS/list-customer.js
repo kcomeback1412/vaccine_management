@@ -24,3 +24,16 @@ function updateCheck(){
 	}
 	
 }
+
+  let checkbox = document.querySelector('#myCheck');
+        let button = document.querySelector('#myButton');
+
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                button.disabled = true;
+            } else {
+                button.disabled = false;
+            }
+        });
+        
+        

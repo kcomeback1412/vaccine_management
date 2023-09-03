@@ -54,7 +54,7 @@
 							<form action="update-delete" method="post">
 								<tr th:each="d, status : ${pageUserDetail}">
 									<td scope="col">
-										<input type="checkbox" th:value="${d.id}" name="id">
+										<input type="checkbox" id="myCheck"  th:value="${d.id}" name="id">
 									</td>
 									<td th:text="${d.fullName}"></td>
 									<td th:text="${d.dateOfBirth}"></td>
@@ -71,9 +71,9 @@
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
 							<button class="btn-create" name="create">Register</button>
-							<button class="btn-update" onclick="return updateCheck()" name="update">Update
+							<button class="btn-update" id="myButton" onclick="return updateCheck()" name="update">Update
 								Customer</button>
-							<button class="btn-delete" onclick="" name="delete">Delete Customer</button>
+							<button class="btn-delete" id="myButton" name="delete">Delete Customer</button>
 							</form>
 						</div>
 
