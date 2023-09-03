@@ -3,6 +3,7 @@ package com.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +37,8 @@ public class CustomerController {
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model
+			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model,
+			HttpSession session
 			) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -44,11 +46,13 @@ public class CustomerController {
 
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
 		model.addAttribute("pageUserDetail", pageUserDetail);
+		String id = "";
+		session.setAttribute("userDetailId",id);
 		return "customer/customer_list";
 	}
 	
 	@ModelAttribute("pageUserDetail")
-	Page<UserDetail> pageCert(Model model){
+	Page<UserDetail> pageData(){
 		Integer pageNum = 1;
 		Integer pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -79,7 +83,7 @@ public class CustomerController {
 
 	// Delete
 	@RequestMapping(value = "/update-delete", params = "delete", method = RequestMethod.POST)
-	public String findCustomer(HttpServletRequest httpServletRequest) {
+	public String deleteCustomer(HttpServletRequest httpServletRequest) {
 		
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
@@ -148,5 +152,31 @@ public class CustomerController {
 		model.addAttribute("userInfo", new Users());
 		return "customer/update-customer";
 	}
+	
+	//Search
+	@RequestMapping(value = "/update-delete", params = "search", method = RequestMethod.POST)
+	public String searchCustomer(
+			HttpServletRequest httpServletRequest,
+			@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, 
+			Model model,
+			HttpSession session
+			) {
+		
+		if(httpServletRequest.getParameterValues("search") != null) {
+			for (String idAndName : httpServletRequest.getParameterValues("search")) {
+				Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+				 model.addAttribute("currentPage", pageNum);
+
+				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
+				model.addAttribute("pageUserDetail", pageUserDetail);
+				session.setAttribute("userDetailId",idAndName);
+			}
+			return "customer/customer_list";
+		}else {
+			return "redirect:/customer_list";
+		}
+	}
+	
 
 }
