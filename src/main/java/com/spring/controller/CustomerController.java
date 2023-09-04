@@ -163,20 +163,23 @@ public class CustomerController {
 			Model model,
 			HttpSession session
 			) {
-		
-		if(httpServletRequest.getParameterValues("search") != null) {
+		String id = "";
 			for (String idAndName : httpServletRequest.getParameterValues("search")) {
-				Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-				 model.addAttribute("currentPage", pageNum);
-
-				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
-				model.addAttribute("pageUserDetail", pageUserDetail);
-				session.setAttribute("userDetailId",idAndName);
+				if(!(idAndName.equals(id))) {
+					Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+					 model.addAttribute("currentPage", pageNum);
+					 System.out.println("Id :" + idAndName);
+					Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
+					model.addAttribute("pageUserDetail", pageUserDetail);
+					session.setAttribute("userDetailId",idAndName);
+					return "customer/customer_list";
+				}
+				else {
+					return "redirect:/customer_list";
+				}
 			}
-			return "customer/customer_list";
-		}else {
-			return "redirect:/customer_list";
-		}
+		return "redirect:/customer_list";
+		
 	}
 	
 
