@@ -88,10 +88,11 @@ public class CustomerController {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					userDetailRepository.deleteById(Integer.parseInt(id));
+					usersRepository.deleteById(Integer.parseInt(id));
 				}
 				return "redirect:/customer_list";
 			}else {
-				return "customer/customer_list";
+				return "redirect:/customer_list";
 			}
 	}
 
