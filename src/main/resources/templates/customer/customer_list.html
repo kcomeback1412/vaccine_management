@@ -29,7 +29,9 @@
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<input class="dropdown-list-search" type="text">
+							<form action="update-delete" method="post">
+								<input name="search" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -38,7 +40,7 @@
 						<thead class="thead">
 							<tr class="table">
 								<th scope="col">
-									<input type="checkbox">
+									<input type="checkbox" id="option-all" name="id" onclick="checkUncheck(this)">
 								</th>
 								<th scope="col" class="text-center text-white">Full name</th>
 								<th scope="col" class="text-center text-white">Date of Birth</th>
@@ -50,17 +52,17 @@
 						</thead>
 						<tbody>
 							<form action="update-delete" method="post">
-							<tr th:each="d, status : ${customerList}">
-								<td scope="col">
-									<input type="checkbox" th:value="${d.id}" name="id">
-								</td>
-								<td th:text="${d.fullName}"></td>
-								<td th:text="${d.dateOfBirth}"></td>
-								<td th:text="${d.gender}"></td>
-								<td th:text="${d.address}"></td>
-								<td th:text="${d.identityCard}"></td>
-								<td th:text="${d.phone}"></td>
-							</tr>
+								<tr th:each="d, status : ${pageUserDetail}">
+									<td scope="col">
+										<input type="checkbox" th:value="${d.id}" name="id">
+									</td>
+									<td th:text="${d.fullName}"></td>
+									<td th:text="${d.dateOfBirth}"></td>
+									<td th:text="${d.gender}"></td>
+									<td th:text="${d.address}"></td>
+									<td th:text="${d.identityCard}"></td>
+									<td th:text="${d.phone}"></td>
+								</tr>
 						</tbody>
 					</table>
 				</div>
@@ -69,21 +71,27 @@
 						<span class="text_details">Showing 1 to 5 of ... entries</span>
 						<div class="buttons">
 							<button class="btn-create" name="create">Register</button>
-							<button class="btn-update" name="update">Update Customer</button>
+							<button class="btn-update" onclick="return updateCheck()" name="update">Update
+								Customer</button>
 							<button class="btn-delete" onclick="" name="delete">Delete Customer</button>
 							</form>
 						</div>
-						
+
 					</div>
-					<div class="paging">
-						<div class="paging_buton">
-							<button class="button">
-								<</button>
-									<button class="button">1</button>
-									<button class="button">2</button>
-									<button class="button">></button>
-						</div>
-					</div>
+					<ul class="pagination" style="display: flex;">
+						<li th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+							<a th:href="@{'/customer_list?pageNum=' + ${currentPage - 1}}"
+								class="page-link"><</a>
+						</li>
+						<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
+							<li class="page-item" style="display: flex"><a
+									th:attr="class=${i == currentPage ? 'page-link text-danger' : 'page-link'}"
+									th:href="@{'/customer_list?pageNum=' + ${i}}" th:text="${i}"></a></li>
+						</th:block>
+						<li th:attr="class=${currentPage < pageUserDetail.totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:href="@{'/customer_list?pageNum=' + ${currentPage + 1}}" class="page-link ">></a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

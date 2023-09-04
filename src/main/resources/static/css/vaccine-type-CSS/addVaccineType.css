@@ -2,7 +2,8 @@
 	box-shadow: 2px 2px 5px #888888;
 }
 
-.form_content input {
+.form_content input,
+.form_content textarea {
 	width: 80%;
 	font-size: 1.4rem !important;
 }

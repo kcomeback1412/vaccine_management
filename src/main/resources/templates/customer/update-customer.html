@@ -13,16 +13,18 @@
 
 <main>
     <form
-           th:action="@{/update-customer}"
+           action="update-delete"
             class="px-3 py-4"
             onsubmit="return validateCustomer()"
             method="post"
-            th:object="${userInfo}"
+            th:object="${userDetailInfo}"
     >
+    <div th:object="${userInfo}">
         <div class="bg-white rounded shadow form-group row mb-3 d-flex flex-wrap ">
             <h4 class="col-12 py-4 font-weight-bold">Personal Information</h4>
             <div class="col-12 col-md-6 col-lg-4 mb-2">
-				<input type="hidden" th:value="${customerInfo.id}" >>
+				<input type="hidden" name="userDetailId" th:value="${userDetailInfo.id}">
+				<input type="hidden" name="userId" th:value="${userInfo.usersId}">
                 <label for="nameInput" class="font-weight-bold">
                     Full name
                     <span class="text-danger">(*)</span>
@@ -33,12 +35,13 @@
                   </span>
                     <input
                             type="text"
-                            th:value="${userInfo.fullName}"
+                            th:value="${userDetailInfo.fullName}"
                             class="form-control mr-3 rounded"
                             id="nameInput"
                             placeholder="Employee name"
                             onchange="checkName(this.value)"
                             required
+                            name="fullName"
                     />
                 </div>
                 <small
@@ -58,7 +61,7 @@
                       </span>
                     <div class="form-check mr-3">
                         <input
-                        th:value="${userInfo.gender}"
+                        th:value="${userDetailInfo.gender}"
                                 class="form-check-input"
                                 type="radio"
                                 name="gender"
@@ -69,7 +72,7 @@
                     </div>
                     <div class="form-check">
                         <input
-                        th:value="${userInfo.gender}"
+                        th:value="${userDetailInfo.gender}"
                                 class="form-check-input"
                                 type="radio"
                                 name="gender"
@@ -92,11 +95,12 @@
                         <i class="fa-solid fa-calendar-days"></i>
                       </span>
                     <input
-                    th:value="${userInfo.dateOfBirth}"
+                    th:value="${userDetailInfo.dateOfBirth}"
                             type="date"
                             class="form-control mr-3 rounded"
                             id="dateInput"
                             required
+                            name="dateOfBirth"
                     />
                 </div>
             </div>
@@ -112,13 +116,14 @@
                   <i class="fa-solid fa-address-card"></i>
                 </span>
                     <input
-                    th:value="${userInfo.identityCard}"
+                    th:value="${userDetailInfo.identityCard}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Identity card"
                             id="idCardInput"
                             readonly
                             required
+                            name="identityCard"
                     />
                 </div>
                 <small
@@ -140,13 +145,14 @@
                         <i class="fa-solid fa-location-dot"></i>
                       </span>
                     <input
-                    	 th:value="${userInfo.address}"
+                    	 th:value="${userDetailInfo.address}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Address"
                             id="addressInput"
                             onchange="checkAddress(this.value)"
                             required
+                            name="address"
                     />
                 </div>
                 <small
@@ -182,6 +188,7 @@
                             id="usernameInput"
                             readonly
                             required
+                            name="userName"
                     />
                 </div>
                 <small
@@ -203,13 +210,14 @@
                         <i class="fa-solid fa-phone"></i>
                       </span>
                     <input
-                    th:value="${userInfo.phone}"
+                    th:value="${userDetailInfo.phone}"
                             type="text"
                             class="form-control mr-3 rounded"
                             placeholder="Phone number"
                             id="phoneInput"
                             onchange="checkPhoneNumber(this.value)"
                             required
+                            name="phone"
                     />
                 </div>
                 <small
@@ -231,13 +239,14 @@
                         <i class="fa-solid fa-envelope"></i>
                       </span>
                     <input
-                    th:value="${userInfo.email}"
+                    th:value="${userDetailInfo.email}"
                             type="email"
                             class="form-control mr-3 rounded"
                             placeholder="Email"
                             id="emailInput"
                             onchange="checkEmail(this.value)"
                             required
+                            name="email"
                     />
                 </div>
                 <small
@@ -292,14 +301,14 @@
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <input type="submit" class="btn btn-success mr-2" value="Save"/>
+                <button type="submit" name="save" class="btn btn-success mr-2">Save</button>
                 <button type="reset" class="btn btn-info mr-2">Reset</button>
                 <button type="button" class="btn btn-warning">Cancel</button>
             </div>
         </div>
-
-
-    </form>
+	</form>
+    </div>
+    
 </main>
 <script th:src="@{/js/customer-JS/validate-customer.js}"></script>
 </body>
