@@ -16,6 +16,7 @@
 			th:action="@{/create-employee}"
 			method="post"
 			th:object="${employeeToCreate}"
+			enctype=”multipart/form-data”
 			class="bg-white rounded shadow px-3 py-4"
 			onsubmit="return validateEmployee()"
 		>
@@ -255,6 +256,7 @@
 							id="imageInput"
 							accept="image/*"
 							name="image"
+							multiple="multiple"
 						/>
 					</div>
 				</div>
@@ -347,7 +349,7 @@
 			<div class="">
 				<input type="submit" class="btn btn-success mr-2" value="Save" />
 				<button type="reset" class="btn btn-info mr-2">Reset</button>
-				<button type="button" class="btn btn-warning">Cancel</button>
+				<button type="button" class="btn btn-warning" onclick="history.back()">Cancel</button>
 			</div>
 		</form>
 	</main>
