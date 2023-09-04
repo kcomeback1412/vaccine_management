@@ -30,9 +30,9 @@ function updateCheck(){
 
         checkbox.addEventListener('change', function() {
             if(this.checked) {
-                button.disabled = true;
-            } else {
                 button.disabled = false;
+            } else {
+                button.disabled = true;
             }
         });
         

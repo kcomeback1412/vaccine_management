@@ -37,7 +37,7 @@ public class CustomerController {
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model,
+			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model,
 			HttpSession session
 			) {
 
@@ -179,8 +179,32 @@ public class CustomerController {
 				}
 			}
 		return "redirect:/customer_list";
-		
 	}
 	
+	//Show list
+	@RequestMapping(value = "/update-delete", params = "show", method = RequestMethod.POST)
+	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+			Model model,
+			HttpSession session,
+			HttpServletRequest pageSize
+			) {
+		String blank = "";
+		for (String size : pageSize.getParameterValues("show")) {
+			if(!(size.equals(blank))) {
+			Pageable pageable = PageRequest.of(pageNum - 1, Integer.parseInt(size));
+			 model.addAttribute("currentPage", pageNum);
+
+			Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+			model.addAttribute("pageUserDetail", pageUserDetail);
+			String id = "";
+			session.setAttribute("userDetailId",id);
+			return "customer/customer_list";
+			}
+			else {
+				return "redirect:/customer_list";
+			}
+		}
+		return "customer/customer_list";
+	}
 
 }
