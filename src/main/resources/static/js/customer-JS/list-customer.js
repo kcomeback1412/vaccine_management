@@ -7,7 +7,6 @@ function checkUncheck(main){
 
 function updateCheck(){
 	var a = document.getElementsByName('id');
-	
 	var newvar = 0;
 	var count;
 	
@@ -22,7 +21,24 @@ function updateCheck(){
 	}else if(newvar < 1){
 		alert("You must select a row to update!");
 	}
+}
+
+function deleteCheck(){
+	var a = document.getElementsByName('id');
+	var newvar = 0;
+	var count;
 	
+	for(count = 0 ; count < a.length; count ++){
+		if(a[count].checked == true){
+			newvar = newvar + 1;
+		}
+	}
+	
+	if(newvar > 0){
+		return confirm("Are you sure to delete?");
+	}else if(newvar < 1){
+		alert("No data delete!");
+	}
 }
 
   let checkbox = document.querySelector('#myCheck');
@@ -36,4 +52,13 @@ function updateCheck(){
             }
         });
         
+function searchForm(){
+
+  var name=document.myform.searchId.value;  
+   if (name == "") {
+    alert("No data found!");
+  }
+  
+ 
+}        
         

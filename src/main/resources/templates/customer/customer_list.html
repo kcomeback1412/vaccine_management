@@ -31,8 +31,8 @@
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<form action="update-delete" method="post">
-								<input name="search" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
+							<form name="myform" onsubmit="return searchForm()" action="update-delete" method="post">
+								<input name="search" id="searchId" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
 							</form>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 							<button class="btn-create" name="create">Register</button>
 							<button class="btn-update" id="myButton" onclick="return updateCheck()" name="update">Update
 								Customer</button>
-							<button class="btn-delete" id="myButton" name="delete">Delete Customer</button>
+							<button class="btn-delete" onclick="return deleteCheck()" id="myButton" name="delete">Delete Customer</button>
 							</form>
 						</div>
 
