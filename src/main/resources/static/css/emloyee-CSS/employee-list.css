@@ -81,11 +81,14 @@ thead{
 }
 
 .btn-create {
+	display: inline-block;
 	border-style: none;
 	background-color:#009688;
 	color: white;
 	border-radius: 3px;
 	height: 35px;
+	line-height: 35px;
+	padding: 0 12px;
 }
 
 .btn-update {
@@ -94,6 +97,8 @@ thead{
 	color: white;
 	border-radius: 3px;
 	height: 35px;
+	line-height: 35px;
+	padding: 0 12px;
 }
 
 .btn-delete {
@@ -102,6 +107,8 @@ thead{
 	color: white;
 	border-radius: 3px;
 	height: 35px;
+	line-height: 35px;
+	padding: 0 12px;
 }
 
 .buttons {
@@ -131,4 +138,10 @@ thead{
 .btn-delete:hover{
   background-color: rgb(255, 128, 128);
   color: white;
+}
+
+.page-link{
+	height: 27px;
+	border-style: none;
+	color: gray;
 }

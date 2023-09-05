@@ -22,3 +22,7 @@ $(document).ready(function(){
 		$(this).find(".fa-minus").toggleClass("show");
 	});
 });
+
+
+
+
