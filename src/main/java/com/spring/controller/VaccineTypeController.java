@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.consts.StatusEnum;
+import com.spring.entities.UserDetail;
 import com.spring.entities.VaccineType;
 import com.spring.repositories.VaccineTypeRepository;
 
@@ -67,22 +68,11 @@ public class VaccineTypeController {
 		return "vaccineType/vaccine-type-list";
 	}
 
-//	@PostMapping("/update-vaccine-type-list")
-//    public String updateVaccineTypeList(
-//    		@ModelAttribute("vaccineTypeList") VaccineType vaccineTypeList,
-//    		Model model) {
-//		
-//		System.out.println(1);
-//		
-//    	return "redirect:/vaccine-type-list";
-//    }
-
 	@PostMapping("/update-vaccine-type-list")
-	public String findCustomer(HttpServletRequest httpServletRequest) {
+	public String updateCustomerUI(HttpServletRequest httpServletRequest) {
 		try {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
-					System.out.println(id);
 					VaccineType vaccineType = vaccineTypeRepository.getById(id);
 					vaccineType.setVaccineTypeStatus(StatusEnum.IN_ACTIVE);
 					vaccineTypeRepository.save(vaccineType);
@@ -90,7 +80,7 @@ public class VaccineTypeController {
 			}
 			return "redirect:/vaccine-type-list";
 		} catch (Exception e) {
-			return "customer/vaccine-type-list";
+			return "vaccineType/vaccine-type-list";
 		}
 	}
 
