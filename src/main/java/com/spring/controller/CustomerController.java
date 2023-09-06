@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/customer-manage")
 public class CustomerController {
 
 	@Autowired
@@ -57,43 +58,37 @@ public class CustomerController {
 	}
 
 	// Create
-	@RequestMapping(value = "/update-delete", params = "create", method = RequestMethod.POST)
-	public String customerCreatePage() {
-		return "customer/create-customer";
-	}
-
 	@GetMapping("/create-customer")
 	public String createCustomerUI() {
 		return "customer/create-customer";
 	}
 
-	@PostMapping("/create-customer")
+	@PostMapping(value = "/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
-		return "redirect:/customer_list";
+		return "redirect:/customer-manage/customer_list";
 	}
 
 	// Delete
-	@RequestMapping(value = "/update-delete", params = "delete", method = RequestMethod.POST)
+	@PostMapping(value = "/update-delete-customer", params = "delete")
 	public String deleteCustomer(HttpServletRequest httpServletRequest) {
-
 		if (httpServletRequest.getParameterValues("id") != null) {
 			for (String id : httpServletRequest.getParameterValues("id")) {
 				userDetailRepository.deleteById(Integer.parseInt(id));
 				usersRepository.deleteById(Integer.parseInt(id));
 			}
-			return "redirect:/customer_list";
+			return "redirect:/customer-manage/customer_list";
 		} else {
-			return "redirect:/customer_list";
+			return "redirect:/customer-manage/customer_list";
 		}
 	}
 
 	// Update
-	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
+	@PostMapping(value = "/update-delete-customer", params = "update")
 	public String updateCustomerUI(HttpServletRequest httpServletRequest, HttpSession httpSession,
 			@ModelAttribute("userDetailInfo") UserDetail userDetail, @ModelAttribute("userInfo") Users user,
 			Model model) {
@@ -109,11 +104,12 @@ public class CustomerController {
 			}
 			return "customer/update-customer";
 		} else {
-			return "redirect:/customer_list";
+			return "redirect:/customer-manage/customer_list";
 		}
 	}
-
-	@RequestMapping(value = "/update-delete", params = "save", method = RequestMethod.POST)
+	
+	// Update by id
+	@PostMapping(value = "/update-delete-customer", params = "save-update")
 	public String updateCustomerInfo(@ModelAttribute("userDetailInfo") UserDetail userDetail,
 			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest) {
 
@@ -132,7 +128,7 @@ public class CustomerController {
 			userDetailDB.setUsers2(userDB);
 			userDetailRepository.save(userDetailDB);
 		}
-		return "redirect:/customer_list";
+		return "redirect:/customer-manage/customer_list";
 	}
 
 	@GetMapping("/update-customer")
@@ -143,30 +139,28 @@ public class CustomerController {
 	}
 
 	// Search
-	@RequestMapping(value = "/update-delete", params = "search", method = RequestMethod.POST)
+	@PostMapping(value = "/search-customer", params = "search")
 	public String searchCustomer(HttpServletRequest httpServletRequest,
 			@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model, HttpSession session) {
 		String id = "";
-		String number = "/^[0-9]+(\\.?[0-9]+)?$/";
 		for (String idAndName : httpServletRequest.getParameterValues("search")) {
 			if (!(idAndName.equals(id))) {
 				Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 				model.addAttribute("currentPage", pageNum);
-				System.out.println("Id :" + idAndName);
 				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
 				model.addAttribute("pageUserDetail", pageUserDetail);
 				session.setAttribute("userDetailId", idAndName);
 				return "customer/customer_list";
 			} else {
-				return "redirect:/customer_list";
+				return "redirect:/customer-manage/customer_list";
 			}
 		}
-		return "redirect:/customer_list";
+		return "redirect:/customer-manage/customer_list";
 	}
 
 	// Show list
-	@RequestMapping(value = "/update-delete", params = "show", method = RequestMethod.POST)
+	@PostMapping(value = "/list-customer", params = "show")
 	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, Model model,
 			HttpSession session, HttpServletRequest pageSize) {
 		String blank = "";
@@ -182,7 +176,7 @@ public class CustomerController {
 				session.setAttribute("userDetailId", id);
 				return "customer/customer_list";
 			} else {
-				return "redirect:/customer_list";
+				return "redirect:/customer-manage/customer_list";
 			}
 		}
 		return "customer/customer_list";
