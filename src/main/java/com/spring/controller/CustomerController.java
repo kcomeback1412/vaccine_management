@@ -74,7 +74,7 @@ public class CustomerController {
 	@PostMapping("/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
-		customer.setRoleEnum(RoleEnum.ROLE_CUSTOMER);
+		customer.setRoleEnum(RoleEnum.CUSTOMER);
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);

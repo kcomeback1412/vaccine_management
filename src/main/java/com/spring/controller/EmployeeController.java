@@ -55,7 +55,7 @@ public class EmployeeController {
         Users user = new Users();
         user.setUserName(username);
         user.setPassword(password);
-        user.setRoleEnum(RoleEnum.ROLE_EMPLOYEE);
+        user.setRoleEnum(RoleEnum.EMPLOYEE);
         usersService.save(user);
 
         String name = ConvertName.replaceAllSpace(userDetail.getFullName());

@@ -26,8 +26,8 @@
                 </a>
                 
                 <div class="d-flex flex-column justify-content-around">
-                	<span id="user_role">#Role</span>
-                	<span id="user_email">#Email</span>
+                	<span id="user_userName" th:text="${userName}"></span>
+                	<span id="user_userRole" th:text="${userRole}"></span>
             	</div>
             </div>
         </div>
@@ -199,6 +199,14 @@
                         		<a class="" href="#">Report</a>
                     		</li>
                 		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3">
+						<h2 class="clearfix mb-0">
+							<a class="btn btn-link" href="/logout">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>									
+						</h2>
 					</div>
 				</div>
 			</div>
