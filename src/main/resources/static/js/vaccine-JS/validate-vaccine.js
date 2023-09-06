@@ -70,29 +70,7 @@ function checkContraindication(value) {
   }
 }
 
-function checkTimeBeginnig(value) {
-  let timeBegin = document.querySelector("#timeBeginningInvalid");
-  let z1 = /\d{1,2}\/\d{1,2}\/\d{2,4}/;
-  if (!value.match(z1)) {
-    timeBegin.style.setProperty("opacity", 1);
-    return false;
-  } else {
-    timeBegin.style.setProperty("opacity", 0);
-    return true;
-  }
-}
 
-function checkTimeEnd(value) {
-  let timeEnd = document.querySelector("#timeEndInvalid");
-  let z1 = /\d{1,2}\/\d{1,2}\/\d{2,4}/;
-  if (!value.match(z1)) {
-    timeEnd.style.setProperty("opacity", 1);
-    return false;
-  } else {
-    timeEnd.style.setProperty("opacity", 0);
-    return true;
-  }
-}
 
 function checkOrigin(value) {
   let origin = document.querySelector("#originInvalid");
@@ -115,8 +93,8 @@ function validateVaccine() {
   let usage = document.querySelector("#usageInput").value;
   let idication = document.querySelector("#indicationInput").value;
   let contraindication = document.querySelector("#contraindicationInput").value;
-  let timeBegin = document.querySelector("#timeBeginningInput").value;
-  let timeEnd = document.querySelector("#timeEndInput").value;
+  // let timeBegin = document.querySelector("#timeBeginningInput").value;
+  // let timeEnd = document.querySelector("#timeEndInput").value;
   let origin = document.querySelector("#originInput").value;
 
 
@@ -127,8 +105,8 @@ function validateVaccine() {
     checkUsage(usage) &&
     checkIndication(idication) &&
     checkContraindication(contraindication) &&
-    checkTimeBeginnig(timeBegin) &&
-    checkTimeEnd(timeEnd) &&
+    // checkTimeBeginnig(timeBegin) &&
+    // checkTimeEnd(timeEnd) &&
     checkOrigin(origin)
    
   ) {
