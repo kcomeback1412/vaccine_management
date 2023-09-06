@@ -4,7 +4,7 @@
 
 <head>
     <title>Employee List</title>
-    <link rel="stylesheet" th:href="@{css/emloyee-CSS/employee-list.css}">
+    <link rel="stylesheet" th:href="@{/css/emloyee-CSS/employee-list.css}">
 </head>
 
 <body>
@@ -255,7 +255,7 @@
                               + ' to ' + ${((currentPage - 1) * pageSize) + userDetails.content.size()}
                               + ' of ' + ${totalEmployee} + ' employee'">  </span>
                         <div class="buttons">
-                            <a class="btn-create text-decoration-none" th:href="@{/create-employee}">New Employee</a>
+                            <a class="btn-create text-decoration-none" th:href="@{/employee-management/create-employee}">New Employee</a>
                             <button
                                     name="update"
                                     class="btn-update"
