@@ -10,6 +10,8 @@ function checkId(value) {
   }
 }
 
+document.querySelector("#dateInput").max = new Date().toISOString().split("T")[0];
+
 function checkName(value) {
   let nameInvalid = document.querySelector("#nameInvalid");
 

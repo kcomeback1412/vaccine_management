@@ -17,7 +17,9 @@
 					<div class="header_navbar">
 						<div class="header_navbar-item">
 							<span class="text">Show</span>
-							<input class="dropdown-list" list="datalistOptions" id="exampleDataList">
+							<form action="update-delete" method="post">
+							<input name="show" class="dropdown-list" list="datalistOptions" id="exampleDataList">
+							</form>
 							<datalist id="datalistOptions">
 								<option value="10">
 								<option value="25">
@@ -29,8 +31,8 @@
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<form action="update-delete" method="post">
-								<input name="search" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
+							<form name="myform" onsubmit="return searchForm()" action="update-delete" method="post">
+								<input name="search" id="searchId" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
 							</form>
 						</div>
 					</div>
@@ -40,7 +42,7 @@
 						<thead class="thead">
 							<tr class="table">
 								<th scope="col">
-									<input type="checkbox" id="option-all" name="id" onclick="checkUncheck(this)">
+									<input type="checkbox" name="id" onclick="checkUncheck(this)">
 								</th>
 								<th scope="col" class="text-center text-white">Full name</th>
 								<th scope="col" class="text-center text-white">Date of Birth</th>
@@ -73,7 +75,7 @@
 							<button class="btn-create" name="create">Register</button>
 							<button class="btn-update" id="myButton" onclick="return updateCheck()" name="update">Update
 								Customer</button>
-							<button class="btn-delete" id="myButton" name="delete">Delete Customer</button>
+							<button class="btn-delete" onclick="return deleteCheck()" id="myButton" name="delete">Delete Customer</button>
 							</form>
 						</div>
 

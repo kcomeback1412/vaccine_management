@@ -16,7 +16,7 @@
                     	<span class="text mr-2">Show</span>
                  
                     	<select class="form-select form-control px-2 py-4">
-                    		<option value=5 th:selected="${option == 5}">5</option>
+                    		<option value=5  th:selected="${option == 5}">5</option>
             				<option value=10 th:selected="${option == 10}">10</option>
                         	<option value=15 th:selected="${option == 15}">15</option>
                         	<option value=25 th:selected="${option == 25}">25</option>
@@ -34,12 +34,12 @@
         	</div>
         	
         	<div class="body2">
-        	<form>
+        	<form id="tableForm" th:action="@{/update-vaccine-type-list}" method="post">
             	<table class="table table-striped table-bordered">
                 	<thead class="thead">
                     	<tr class="table">
 							<th scope="col" class="text-center">
-								<i class="fa-solid fa-check-to-slot text-white"></i>
+								<input type="checkbox" id="checkAll">
 							</th>
                         	<th scope="col" class="text-center text-white">Code</th>
                         	<th scope="col" class="text-center text-white">Vaccine Type Name</th>
@@ -62,13 +62,14 @@
 						</tr>
                 	</tbody>
             	</table>
+            </form>
             	
             	<div class="footer_buttons">
             	<div class="button_bussiness">
                 	<span class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
-                	<div class="buttons mt-2f">
+                	<div class="buttons mt-2">
                 		<a th:href="@{/addVaccineType}">
-                			<button class="btn-create px-3 py-2">New Vaccine Type</button>
+                			<button type="button" class="btn-create px-3 py-2">New Vaccine Type</button>
                 		</a>
                 		
                     	<button type="button" class="btn-update px-3 py-2">Make In-Active</button>
@@ -97,11 +98,10 @@
     					</li>
   					</ul>
 				</div>
-    		</div>
-    		</form>
-        	</div>
+    		</div>			
+			</div>
     		
-    		<span class="" id="formMsg"></span>
+    		<span class="text-danger font-weight-bold ml-5" id="formMsg"></span>
     	</div>
     	
     	<div class="modal" id="comfirmModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -122,7 +122,7 @@
       					</div>
       					
       					<div class="">
-        					<button type="button" class="btn btn-primary px-5 py-2 mr-5" id="confirmBtn">OK</button>
+        					<button type="submit" class="btn btn-primary px-5 py-2 mr-5" form="tableForm">OK</button>
         					<button type="button" class="btn btn-danger px-5 py-2" data-dismiss="modal">Cancel</button>
       					</div>
       				</div>
