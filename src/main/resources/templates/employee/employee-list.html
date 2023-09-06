@@ -73,7 +73,170 @@
                                 <input type="checkbox" name="listId" th:value="${employee.id}"/>
 
                             </td>
-                            <td th:text="${employee.id}"></td>
+                            <td class="text-center">
+                                <a
+                                    href="#"
+                                    class="font-weight-bold d-inline-block px-3 py-1"
+                                    type="button"
+                                    data-toggle="modal"
+                                    th:attr="data-target='#detailInfoModal' + ${employee.id}"
+                                    th:text="${employee.id}"
+                                >
+                                </a>
+
+                                <!-- Modal-->
+                                <div
+                                    class="modal fade detailInfoModal"
+                                    th:id="'detailInfoModal' + ${employee.id}"
+                                    tabindex="-1"
+                                    style="font-size: 1.4rem;"
+                                    role="dialog"
+                                    aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true"
+                                >
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header ">
+                                                <h4 class="modal-title font-weight-bold" id="exampleModalLabel ">Details information of Employee </h4>
+                                                <button type="button" class="close btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div
+                                                    class="bg-white rounded shadow px-3 py-4 "
+                                                >
+                                                    <div class="row mb-3 d-flex flex-wrap">
+                                                        <div class="col-12 mb-2">
+
+                                                            <div class="d-flex">
+                                                                <span for="nameInput" class="font-weight-bold ">
+                                                                    Employee name
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-id-badge"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.fullName}"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-2">
+                                                            <div class="d-flex">
+                                                                <span class="font-weight-bold"> Gender </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-venus-mars"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.gender} == 0 ? 'Male' : 'Female'"></span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+
+                                                            <div class="d-flex">
+                                                                <span for="dateInput" class="font-weight-bold">
+                                                                Date of birth
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-calendar-days"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.dateOfBirth}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+                                                            <div class="d-flex">
+                                                                <span for="phoneInput" class="font-weight-bold">
+                                                                    Phone number
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-phone"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.phone}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+                                                            <div class="d-flex">
+                                                                <span for="addressInput" class="font-weight-bold">
+                                                                    Address
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-location-dot"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.address}"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-2">
+                                                            <div class="d-flex">
+                                                                <span for="emailInput" class="font-weight-bold">
+                                                                    Email
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-envelope"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.email}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+
+                                                            <div class="d-flex">
+                                                                <span for="workPlaceInput" class="font-weight-bold">
+                                                                    Working place
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-hotel"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.workingPlace}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+
+                                                            <div class="d-flex">
+                                                                <span for="positionInput" class="font-weight-bold">
+                                                                    Position
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-briefcase"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.position}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-3">
+
+                                                            <div class="d-flex">
+                                                                <span for="imageInput" class="font-weight-bold"> Image </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-image"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.image}"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 mb-2">
+
+                                                            <div class="d-flex">
+                                                                 <span for="usernameInput" class="font-weight-bold">
+                                                                     Username
+                                                                </span>
+                                                                <span class="font-weight-bold mx-2">
+                                                                    <i class="fa-solid fa-id-badge"></i> :
+                                                                </span>
+                                                                <span th:text="${employee.users2.userName}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td th:text="${employee.fullName}"></td>
                             <td th:text="${employee.dateOfBirth}"></td>
                             <td th:text="${employee.gender} == 0 ? 'Male' : 'Female'"></td>
