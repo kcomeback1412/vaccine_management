@@ -1,8 +1,6 @@
 package com.spring.controller;
 
-
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,22 +35,20 @@ public class CustomerController {
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model,
-			HttpSession session
-			) {
+			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		 model.addAttribute("currentPage", pageNum);
+		model.addAttribute("currentPage", pageNum);
 
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		String id = "";
-		session.setAttribute("userDetailId",id);
+		session.setAttribute("userDetailId", id);
 		return "customer/customer_list";
 	}
-	
+
 	@ModelAttribute("pageUserDetail")
-	Page<UserDetail> pageData(){
+	Page<UserDetail> pageData() {
 		Integer pageNum = 1;
 		Integer pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -84,123 +80,108 @@ public class CustomerController {
 	// Delete
 	@RequestMapping(value = "/update-delete", params = "delete", method = RequestMethod.POST)
 	public String deleteCustomer(HttpServletRequest httpServletRequest) {
-		
-			if (httpServletRequest.getParameterValues("id") != null) {
-				for (String id : httpServletRequest.getParameterValues("id")) {
-					userDetailRepository.deleteById(Integer.parseInt(id));
-					usersRepository.deleteById(Integer.parseInt(id));
-				}
-				return "redirect:/customer_list";
-			}else {
-				return "redirect:/customer_list";
+
+		if (httpServletRequest.getParameterValues("id") != null) {
+			for (String id : httpServletRequest.getParameterValues("id")) {
+				userDetailRepository.deleteById(Integer.parseInt(id));
+				usersRepository.deleteById(Integer.parseInt(id));
 			}
+			return "redirect:/customer_list";
+		} else {
+			return "redirect:/customer_list";
+		}
 	}
 
 	// Update
 	@RequestMapping(value = "/update-delete", params = "update", method = RequestMethod.POST)
-	public String updateCustomerUI(HttpServletRequest httpServletRequest,
-			HttpSession httpSession,
-			@ModelAttribute("userDetailInfo") UserDetail userDetail,
-			@ModelAttribute("userInfo") Users user,
-			Model model
-			) {
-		
-			if (httpServletRequest.getParameterValues("id") != null && httpServletRequest.getParameterValues("id").length < 2) {
-					for (String id : httpServletRequest.getParameterValues("id")) {
-						userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-						user = (Users) usersRepository.findByIdUser(id);
-						model.addAttribute("userDetailInfo", userDetail);
-						model.addAttribute("userInfo", user);
-						System.out.println(httpServletRequest.getParameterValues("id").length);
-					}
-					return "customer/update-customer";
-			}else {
-				return "redirect:/customer_list";
+	public String updateCustomerUI(HttpServletRequest httpServletRequest, HttpSession httpSession,
+			@ModelAttribute("userDetailInfo") UserDetail userDetail, @ModelAttribute("userInfo") Users user,
+			Model model) {
+
+		if (httpServletRequest.getParameterValues("id") != null
+				&& httpServletRequest.getParameterValues("id").length < 2) {
+			for (String id : httpServletRequest.getParameterValues("id")) {
+				userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+				user = (Users) usersRepository.findByIdUser(id);
+				model.addAttribute("userDetailInfo", userDetail);
+				model.addAttribute("userInfo", user);
+				System.out.println(httpServletRequest.getParameterValues("id").length);
 			}
+			return "customer/update-customer";
+		} else {
+			return "redirect:/customer_list";
+		}
 	}
-	
+
 	@RequestMapping(value = "/update-delete", params = "save", method = RequestMethod.POST)
-	public String updateCustomerInfo(
-			@ModelAttribute("userDetailInfo") UserDetail userDetail,
-			@ModelAttribute("userInfo") Users user,
-			HttpServletRequest httpServletRequest
-			) {
-		
+	public String updateCustomerInfo(@ModelAttribute("userDetailInfo") UserDetail userDetail,
+			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest) {
+
 		for (String id : httpServletRequest.getParameterValues("userId")) {
 			Users userDB = (Users) usersRepository.findByIdUser(id);
 			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
 			System.out.println(user.getUserName());
-			
-			
+
 			userDetailDB.setFullName(userDetail.getFullName());
 			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());
 			userDetailDB.setGender(userDetail.getGender());
 			userDetailDB.setAddress(userDetail.getAddress());
 			userDetailDB.setPhone(userDetail.getPhone());
-			
+
 			usersRepository.save(userDB);
 			userDetailDB.setUsers2(userDB);
 			userDetailRepository.save(userDetailDB);
 		}
 		return "redirect:/customer_list";
 	}
-	
+
 	@GetMapping("/update-customer")
-	public String updateCustomer(
-			Model model
-			) {
+	public String updateCustomer(Model model) {
 		model.addAttribute("userDetailInfo", new UserDetail());
 		model.addAttribute("userInfo", new Users());
 		return "customer/update-customer";
 	}
-	
-	//Search
+
+	// Search
 	@RequestMapping(value = "/update-delete", params = "search", method = RequestMethod.POST)
-	public String searchCustomer(
-			HttpServletRequest httpServletRequest,
+	public String searchCustomer(HttpServletRequest httpServletRequest,
 			@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, 
-			Model model,
-			HttpSession session
-			) {
+			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model, HttpSession session) {
 		String id = "";
-			for (String idAndName : httpServletRequest.getParameterValues("search")) {
-				if(!(idAndName.equals(id))) {
-					Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-					 model.addAttribute("currentPage", pageNum);
-					 System.out.println("Id :" + idAndName);
-					Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
-					model.addAttribute("pageUserDetail", pageUserDetail);
-					session.setAttribute("userDetailId",idAndName);
-					return "customer/customer_list";
-				}
-				else {
-					return "redirect:/customer_list";
-				}
+		String number = "/^[0-9]+(\\.?[0-9]+)?$/";
+		for (String idAndName : httpServletRequest.getParameterValues("search")) {
+			if (!(idAndName.equals(id))) {
+				Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+				model.addAttribute("currentPage", pageNum);
+				System.out.println("Id :" + idAndName);
+				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
+				model.addAttribute("pageUserDetail", pageUserDetail);
+				session.setAttribute("userDetailId", idAndName);
+				return "customer/customer_list";
+			} else {
+				return "redirect:/customer_list";
 			}
+		}
 		return "redirect:/customer_list";
 	}
-	
-	//Show list
-	@RequestMapping(value = "/update-delete", params = "show", method = RequestMethod.POST)
-	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			Model model,
-			HttpSession session,
-			HttpServletRequest pageSize
-			) {
-		String blank = "";
-		for (String size : pageSize.getParameterValues("show")) {
-			if(!(size.equals(blank))) {
-			Pageable pageable = PageRequest.of(pageNum - 1, Integer.parseInt(size));
-			 model.addAttribute("currentPage", pageNum);
 
-			Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
-			model.addAttribute("pageUserDetail", pageUserDetail);
-			String id = "";
-			session.setAttribute("userDetailId",id);
-			return "customer/customer_list";
-			}
-			else {
+	// Show list
+	@RequestMapping(value = "/update-delete", params = "show", method = RequestMethod.POST)
+	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, Model model,
+			HttpSession session, HttpServletRequest pageSize) {
+		String blank = "";
+		String number = "^\\d+$";
+		for (String size : pageSize.getParameterValues("show")) {
+			if (!(size.equals(blank)) && !(size.equals("^\\d+$"))) {
+				Pageable pageable = PageRequest.of(pageNum - 1, Integer.parseInt(size));
+				model.addAttribute("currentPage", pageNum);
+
+				Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+				model.addAttribute("pageUserDetail", pageUserDetail);
+				String id = "";
+				session.setAttribute("userDetailId", id);
+				return "customer/customer_list";
+			} else {
 				return "redirect:/customer_list";
 			}
 		}
