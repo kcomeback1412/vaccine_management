@@ -15,8 +15,8 @@ public interface UserDetailsService {
     Page<UserDetail> findAll(Pageable pageable);
 
     List<UserDetail> findAllEmployee();
-    
-    List<UserDetail> findAllByFullName(String name);
+
+    List<UserDetail> findAllEmployeeByFullNameLike(String name);
 
     Page<UserDetail> convertListUserDetailToPageUserDetail(Pageable pageable, List<UserDetail> userDetails);
 

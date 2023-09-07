@@ -31,8 +31,8 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 	public void deleteUserDetailByListId(List<Integer> listId) ;
 
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
-	@Query("SELECT U FROM UserDetail AS U WHERE U.fullName like %?1%")
-	public List<UserDetail> findAllByFullNameLike(String fullName);
+	@Query("SELECT U FROM UserDetail AS U WHERE U.users2.roleEnum = ?1 AND U.fullName like %?2%")
+	public List<UserDetail> findAllByUsers2RoleEnumAndFullNameLike(RoleEnum role,String fullName);
 
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
 	public Integer countAllByUsers2RoleEnum(RoleEnum roleEmployee);

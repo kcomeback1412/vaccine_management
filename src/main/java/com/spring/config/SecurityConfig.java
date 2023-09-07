@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.spring.auth.CustomUserDetailService;
 import com.spring.consts.RoleEnum;
 import com.spring.entities.Users;
+import com.spring.entities.UserDetail;
+import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
 
 @Configuration
@@ -26,6 +28,9 @@ public class SecurityConfig {
 	UsersRepository usersRepository;
 	
 	@Autowired
+	UserDetailRepository userDetailRepository;
+	
+	@Autowired
 	public void configGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
 		
@@ -33,7 +38,13 @@ public class SecurityConfig {
 	}
 	
 	private final static String[] permitAllLink = {
+			"",
+			"/",
+			"/index",
+			"/home",
+			"/dashboard",
     		"/login",
+			"/logout",
     		"/js/**",
     		"/css/**",
     		"/img/**",
@@ -55,7 +66,7 @@ public class SecurityConfig {
 			auth.requestMatchers(permitAllLink).permitAll();
 			
 			auth.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name());
-			
+
 			auth.requestMatchers(permitEmployeeLink).hasAuthority(RoleEnum.EMPLOYEE.name());
 			
 			auth.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.CUSTOMER.name());
@@ -64,7 +75,7 @@ public class SecurityConfig {
 					.loginProcessingUrl("/login-check")
 					.usernameParameter("userName")
 					.passwordParameter("password")
-					.defaultSuccessUrl("/")
+					.defaultSuccessUrl("/home")
 					.permitAll();
 		});
 		
@@ -82,6 +93,10 @@ public class SecurityConfig {
 			admin.setRoleEnum(RoleEnum.ADMIN);
 		
 			usersRepository.save(admin);
+			
+			UserDetail adminDetail = new UserDetail();
+			
+			userDetailRepository.save(adminDetail);
 		}
 	}
 	

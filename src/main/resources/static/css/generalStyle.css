@@ -133,6 +133,28 @@ body {
 	overflow-y: auto; 
 }
 
+.ul-list-navbar {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ul-list-navbar li a {
+	display: inline-block;
+	width: 100%;
+	padding: 6px 36px;
+	color: black !important;
+	text-decoration: none;
+}
+
+.ul-list-navbar li:hover {
+	background-color: #535b63;
+}
+
+.ul-list-navbar li:hover a {
+	color: white !important;
+}
+
 *::-webkit-scrollbar {
     width: 5px;
 }
