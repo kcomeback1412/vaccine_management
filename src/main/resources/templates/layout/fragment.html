@@ -26,8 +26,8 @@
                 </a>
                 
                 <div class="d-flex flex-column justify-content-around">
-                	<span id="user_role">#Role</span>
-                	<span id="user_email">#Email</span>
+                	<span id="user_userName" th:text="${userName}"></span>
+                	<span id="user_userRole" th:text="${userRole}"></span>
             	</div>
             </div>
         </div>
@@ -50,13 +50,13 @@
 					</div>
 							
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
 							<li>
-                        		<a class="" th:href="@{/employee-list}">Employee List</a>
+                        		<a class="" th:href="@{/employee-management/employee-list}">Employee List</a>
                     		</li>
                     	
                     		<li>
-                        		<a  class="" th:href="@{/create-employee}">Create Employee</a>
+                        		<a  class="" th:href="@{/employee-management/create-employee}">Create Employee</a>
                     		</li>
                     	</ul>
 					</div>
@@ -70,13 +70,13 @@
 					</div>
 							
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
                     		<li>
-                        		<a  class="" href="/customer_list">Customer List</a>
+                        		<a  class="" th:href="@{/customer-manage/customer_list}">Customer List</a>
                     		</li>
                     		
                     		<li>
-                        		<a  class="" href="/create-customer">Create Customer</a>
+                        		<a  class="" th:href="@{/customer-manage/create-customer}">Create Customer</a>
                     		</li>
                 		</ul>
 					</div>
@@ -90,7 +90,7 @@
 					</div>
 							
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/vaccine-type-list">Vaccine Type List</a>
                     		</li>
@@ -110,7 +110,7 @@
 					</div>
 							
 					<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/vaccine_list">Vaccine List</a>
                    			</li>
@@ -130,7 +130,7 @@
 					</div>
 							
 					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/schedule-list">Injection Schedule List</a>
                     		</li>
@@ -150,7 +150,7 @@
 					</div>
 							
 					<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="/vaccine_result_list">Injection Result List</a>
                     		</li>
@@ -170,7 +170,7 @@
 					</div>
 							
 					<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="/news_list">News List</a>
                     		</li>
@@ -190,8 +190,8 @@
 					</div>
 							
 					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
-						 <ul class="m-3">
-                    		<li>
+						 <ul class="ul-list-navbar">
+                    		<li>"
                         		<a class="" href="#">Report Vaccine</a>
                     		</li>
                     		
@@ -199,6 +199,14 @@
                         		<a class="" href="#">Report</a>
                     		</li>
                 		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3">
+						<h2 class="clearfix mb-0">
+							<a class="btn btn-link" href="/logout">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>									
+						</h2>
 					</div>
 				</div>
 			</div>

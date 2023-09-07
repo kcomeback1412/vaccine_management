@@ -4,13 +4,14 @@
 
 <head>
 	<title>Update Vaccine</title>
-	<link rel="stylesheet" href="css/vaccine-CSS/add-update-vaccine.css">
+	<link rel="stylesheet" th:href="@{/css/vaccine-CSS/add-update-vaccine.css}">
 </head>
 
 <body>
 	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE VACCINE</h2>
 	<main>
-		<form action="#" class="px-3 py-4" onsubmit="return validateVaccine()">
+		<form class="px-3 py-4" onsubmit="return validateVaccine()"
+			  th:action="@{/update-vaccine}" method="post" th:object="${vaccine}">
 			<div class="body1">
 				<div class="container-fluid  bg-white">
 					<div class="container-fluid">
@@ -22,9 +23,11 @@
 								</span>
 								<div class="label_header">
 									<input 
-										class="form-control" readonly type="text">
+										class="form-control" readonly type="text"
+										th:value="${vaccine.vaccineId}" name="vaccineId">
 								</div>
 							</div>
+
 							<div class="col-sm-4 col_reponsive">
 								<span class="label">Active:
 									<span class="label_sign">(*):</span>
@@ -32,11 +35,14 @@
 								<div class="label_header" style="display: flex;">
 									<i class="fa-solid fa-microscope"></i>
 									<div class="active">
-										<input class="checkbox" type="checkbox">
+										<input class="checkbox" type="checkbox"
+											   name="activeCheckBox" th:checked="${checked}">
 									</div>
 								</div>
 							</div>
+
 						</div>
+
 						<div class="body2">
 							<div class="row row-cols-3 row1">
 								<div class="col-sm">
@@ -46,7 +52,7 @@
 									<div class="label_header">
 
 										<input id="vaccineNameInput" onchange="checkVaccineName(this.value)" required
-											class="form-control" type="text">
+											class="form-control" type="text" th:value="${vaccine.vaccineName}" name="vaccineName">
 
 										<small id="vaccineNameInvalid" class="form-text text-danger" style="opacity: 0">
 											You must enter vaccine name!
@@ -59,11 +65,12 @@
 										<span class="label_sign">(*):</span>
 									</span>
 									<div class="label_header">
-										<select class="form-select" aria-label="Default select example">
-											<option selected>-Select Vaccine Type</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+										<select class="form-select" aria-label="Default select example" name="vaccineType">
+											<option
+													th:each="vt, status : ${vaccineTypes}"
+													th:text="${vt.vaccineTypeName}"
+													th:value="${vt.vaccineTypeId}"></option>
+
 										</select>
 									</div>
 								</div>
@@ -73,7 +80,7 @@
 									<div class="label_header">
 
 										<input id="numberOfInjectInput" onchange="checkNumberOfInject(this.value)"
-											required class="form-control" type="text">
+											required class="form-control" type="text" th:value="${vaccine.numberOfInjection}" name="numberOfInjection">
 
 										<small id="numberOfInjectInvalid" class="form-text text-danger"
 											style="opacity: 0">
@@ -90,8 +97,8 @@
 									<div class="label_header">
 
 										<textarea id="usageInput" onchange="checkUsage(this.value)" required
-											class="form-control input_text-normal" type="text" name="" cols="20"
-											rows="5"></textarea>
+											class="form-control input_text-normal" type="text" name="usage" cols="20"
+											rows="5" th:value="${vaccine.usage}"></textarea>
 
 										<small id="usageInvalid" class="form-text text-danger" style="opacity: 0">
 										</small>
@@ -104,8 +111,8 @@
 									<div class="label_header">
 
 										<textarea id="indicationInput" onchange="checkIndication(this.value)" required
-											class="form-control input_text-normal" type="text" name="" cols="20"
-											rows="5"></textarea>
+											class="form-control input_text-normal" type="text" name="indication" cols="20"
+											rows="5" th:value="${vaccine.indication}"></textarea>
 
 										<small id="indicationInputInvalid" class="form-text text-danger"
 											style="opacity: 0">
@@ -120,8 +127,8 @@
 
 										<textarea id="contraindicationInput"
 											onchange="checkContraindication(this.value)" required
-											class="form-control input_text-normal" type="text" name="" cols="20"
-											rows="5"></textarea>
+											class="form-control input_text-normal" type="text" name="contraindication" cols="20"
+											rows="5" th:value="${vaccine.contraindication}"></textarea>
 
 										<small id="contraindicationInvalid" class="form-text text-danger"
 											style="opacity: 0">
@@ -136,14 +143,8 @@
 									</span>
 									<div class="label_header">
 
-										<input id="timeBeginningInput" onchange="checkTimeBeginnig(this.value)" required
-											class="form-control" type="text">
-
-										<small id="timeBeginningInvalid" class="form-text text-danger"
-											style="opacity: 0">
-											You can enter date only!
-											Exp: dd/mm/yyyy
-										</small>
+										<input id="timeBeginningInput"  required
+											class="form-control" type="date" name="timeBeginNextInjection" th:value="${vaccine.timeBeginNextInjection}">
 
 									</div>
 								</div>
@@ -151,13 +152,10 @@
 									<span class="label">Time of ending next injection:
 									</span>
 									<div class="label_header">
-										<input id="timeEndInput" onchange="checkTimeEnd(this.value)" required
-											class="form-control" type="text">
+										<input id="timeEndInput" required
+											class="form-control" type="date" name="timeEndNextInjection" th:value="${vaccine.timeEndNextInjection}">
 
-										<small id="timeEndInvalid" class="form-text text-danger" style="opacity: 0">
-											You can enter date only!
-											Exp: dd/mm/yyyy
-										</small>
+
 									</div>
 								</div>
 								<div class="col-sm">
@@ -165,7 +163,7 @@
 									</span>
 									<div class="label_header">
 										<input id="originInput" onchange="checkOrigin(this.value)" required
-											class="form-control" type="text">
+											class="form-control" type="text" name="origin" th:value="${vaccine.origin}">
 
 										<small id="originInvalid" class="form-text text-danger" style="opacity: 0">
 										</small>
@@ -177,7 +175,7 @@
 							<div class="buttons">
 								<button type="submit" class="btn-create">Save</button>
 								<button type="reset" class="btn-update">Reset</button>
-								<button type="button" class="btn-delete">Cancel</button>
+								<button type="button" class="btn-delete"><a th:href="@{/vaccine_list}">Cancel</a></button>
 							</div>
 						</div>
 					</div>

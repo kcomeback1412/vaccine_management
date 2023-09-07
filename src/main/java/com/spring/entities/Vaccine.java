@@ -2,6 +2,7 @@ package com.spring.entities;
 
 import com.spring.consts.StatusEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +14,10 @@ import java.util.List;
 @Setter
 @Entity
 public class Vaccine implements Serializable {
+
     @Id
     @Column(name = "VACCINE_ID", length = 36)
+    @NotBlank(message = "{msg4}")
     private String vaccineId;
 
     @Column(name = "CONTRAINDICATION", length = 200)
