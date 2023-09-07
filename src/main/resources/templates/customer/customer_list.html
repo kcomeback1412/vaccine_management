@@ -18,8 +18,8 @@
 					<div class="header_navbar">
 						<div class="header_navbar-item">
 							<span class="text">Show</span>
-								<form onsubmit="return searchForm()" th:action="@{/customer-manage/list-customer}" method="post">
-								<input name="show" id="searchId" class="dropdown-list-search" type="text">
+								<form name="myListForm" onsubmit="return listForm()" th:action="@{/customer-manage/list-customer}" method="post">
+								<input name="show" id="searchList" class="dropdown-list-search" type="text">
 							</form>
 							<datalist id="datalistOptions">
 								<option value="10">
@@ -32,7 +32,7 @@
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<form onsubmit="return searchForm()" th:action="@{/customer-manage/search-customer}" method="post">
+							<form name="mySearchForm" onsubmit="return searchForm()" th:action="@{/customer-manage/search-customer}" method="post">
 								<input name="search" id="searchId" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
 							</form>
 							
