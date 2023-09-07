@@ -60,4 +60,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public Integer countAllEmployee(){
        return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.EMPLOYEE);
     }
+
 }

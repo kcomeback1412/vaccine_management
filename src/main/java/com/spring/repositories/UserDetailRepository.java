@@ -22,7 +22,6 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 	@Query("SELECT u FROM UserDetail u WHERE u.id = ?1")
 	public UserDetail findByIdUserDetail(String id);
 
-
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
 	public List<UserDetail> findAllByUsers2RoleEnum(RoleEnum role);
 
@@ -37,11 +36,15 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
 	public Integer countAllByUsers2RoleEnum(RoleEnum roleEmployee);
-
+	
+	@Query("SELECT u FROM UserDetail u JOIN Users us on u.id = us.usersId WHERE u.fullName like %:name% AND us.roleEnum = :role")
+	public Page<UserDetail> findUserDetailCustomerWithPagin(@Param("name") String name,@Param("role") RoleEnum role , Pageable pageable);
+	
+	@Query("SELECT u FROM UserDetail u JOIN Users us on u.id = us.usersId WHERE us.roleEnum = ?1 ")
+	public Page<UserDetail> findAllCustomerByRole(Pageable pageable, RoleEnum role);
 
 	
-	@Query("SELECT u FROM UserDetail u WHERE u.fullName like %?1%")
-	public Page<UserDetail> findUserDetailWithPagin(@Param("name") String name,  Pageable pageable);
 	
+
 	
 }
