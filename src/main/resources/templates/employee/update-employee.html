@@ -13,7 +13,7 @@
 
 	<main>
 		<form
-			th:action="@{/delete-update-employee}"
+			th:action="@{/employee-management/delete-update-employee}"
 			class="bg-white rounded shadow px-3 py-4"
 			onsubmit="return validateEmployee()"
 			th:object="${employeeUpdate}"
@@ -285,13 +285,13 @@
 						<i class="fa-solid fa-id-badge"></i>
 					  </span>
 						<input
-								type="text"
-								class="form-control mr-3 rounded"
-								placeholder="Username"
-								id="usernameInput"
-								th:value="${userDetailInfo.users2.userName}"
-								readonly
-								required
+							type="text"
+							class="form-control mr-3 rounded"
+							placeholder="Username"
+							id="usernameInput"
+							th:value="${userDetailInfo.users2.userName}"
+							readonly
+							required
 						/>
 					</div>
 				</div>

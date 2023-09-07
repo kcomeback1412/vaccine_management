@@ -12,7 +12,7 @@
 	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE CUSTOMER</h2>
 
 	<main>
-		<form th:action="@{/create-customer}" class="px-3 py-4" 
+		<form th:action="@{/customer-manage/create-customer}" class="px-3 py-4" 
 		onsubmit="return validateCustomer()"
 		th:object="${customerInfo}"
 		method="post"
@@ -224,7 +224,7 @@
 					</div>
 				</div>
 				<div class="col-12 mb-5">
-					<input type="submit" class="btn btn-success mr-2" value="Save" />
+					<input 	type="submit" class="btn btn-success mr-2" value="Save" />
 					<button type="reset" class="btn btn-info mr-2">Reset</button>
 					<button type="button" onclick="history.back()" class="btn btn-warning">Cancel</button>
 				</div>
