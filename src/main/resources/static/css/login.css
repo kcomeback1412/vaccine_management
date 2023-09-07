@@ -60,7 +60,12 @@ input::placeholder {
 .form-group i {
     position: absolute;
     right: 10px;
-    font-size: 2rem;
+    font-size: 1.8rem;
+}
+
+span {
+	font-size: 1.6rem;
+	color: red;
 }
 
 button {
