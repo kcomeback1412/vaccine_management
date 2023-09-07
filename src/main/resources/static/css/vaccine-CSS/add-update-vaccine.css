@@ -5,6 +5,10 @@ p{
     padding-left: 20px;
 }
 
+input, textarea {
+    font-size: 1.4rem!important;
+}
+
 .checkbox{
 	height: 19px;
     width: 48px;
