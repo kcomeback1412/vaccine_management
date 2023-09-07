@@ -38,21 +38,14 @@ public class SecurityConfig {
 	}
 	
 	private final static String[] permitAllLink = {
-			"",
-			"/",
-			"/index",
-			"/home",
-			"/dashboard",
     		"/login",
-			"/logout",
     		"/js/**",
     		"/css/**",
-    		"/img/**",
-    		"/info"
+    		"/img/**"
     }; 
 	
 	private final static String[] permitEmployeeLink = {
-
+			"/vaccineType-management/**"
     };
 	
 	private final static String[] permitCustomerLink = {
@@ -99,5 +92,4 @@ public class SecurityConfig {
 			userDetailRepository.save(adminDetail);
 		}
 	}
-	
 }
