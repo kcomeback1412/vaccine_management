@@ -40,7 +40,7 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 
 
 	
-	@Query("SELECT u FROM UserDetail u WHERE u.fullName = :name")
+	@Query("SELECT u FROM UserDetail u WHERE u.fullName like %?1%")
 	public Page<UserDetail> findUserDetailWithPagin(@Param("name") String name,  Pageable pageable);
 	
 	
