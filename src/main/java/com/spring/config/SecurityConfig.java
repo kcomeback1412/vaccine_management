@@ -33,7 +33,13 @@ public class SecurityConfig {
 	}
 	
 	private final static String[] permitAllLink = {
+			"",
+			"/",
+			"/index",
+			"/home",
+			"/dashboard",
     		"/login",
+			"/logout",
     		"/js/**",
     		"/css/**",
     		"/img/**",
@@ -55,7 +61,7 @@ public class SecurityConfig {
 			auth.requestMatchers(permitAllLink).permitAll();
 			
 			auth.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name());
-			
+
 			auth.requestMatchers(permitEmployeeLink).hasAuthority(RoleEnum.EMPLOYEE.name());
 			
 			auth.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.CUSTOMER.name());
@@ -64,7 +70,7 @@ public class SecurityConfig {
 					.loginProcessingUrl("/login-check")
 					.usernameParameter("userName")
 					.passwordParameter("password")
-					.defaultSuccessUrl("/")
+					.defaultSuccessUrl("/home")
 					.permitAll();
 		});
 		

@@ -11,7 +11,7 @@
                 <img th:src="@{/img/logoFPT.png}" alt="Logo" class="h-100">
             </a>
 		</div>
-		
+
 		<div class="search_wrap d-flex align-items-center">
 			<input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search">
            	<button class="btn btn-warning seacrch-header"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -24,188 +24,233 @@
                 <a href="/dashboard" class="h-100 mr-4">
                     <img th:src="@{/img/UserImg.png}" alt="" class="user_logo h-100">
                 </a>
-                
+
                 <div class="d-flex flex-column justify-content-around">
                 	<span id="user_userName" th:text="${userName}"></span>
                 	<span id="user_userRole" th:text="${userRole}"></span>
             	</div>
             </div>
         </div>
-        
+
         <div class="navigation">
 			<div class="accordion" id="accordionExample">
 				<div class="card">
 					<div class="card-header p-3">
 						<h2 class="clearfix mb-0">
-							<a href="/dashboard" class="btn btn-link">Home</a>									
+							<a href="/dashboard" class="btn btn-link">Home</a>
 						</h2>
 					</div>
 				</div>
-				
-				<div class="card">
+
+				<div sec:authorize="hasAuthority('ADMIN')" class="card">
 					<div class="card-header p-3" id="headingOne">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Employee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse"
+                                data-target="#collapseOne"
+                                aria-expanded="false"
+                                aria-controls="collapseOne"
+                            >
+                                Employee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 						<ul class="ul-list-navbar">
 							<li>
                         		<a class="" th:href="@{/employee-management/employee-list}">Employee List</a>
                     		</li>
-                    	
+
                     		<li>
                         		<a  class="" th:href="@{/employee-management/create-employee}">Create Employee</a>
                     		</li>
                     	</ul>
 					</div>
 				</div>
-				
-				<div class="card"> 
+
+				<div sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingTwo">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Customer management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse"
+                                data-target="#collapseTwo"
+                                aria-expanded="false"
+                                aria-controls="collapseTwo"
+                            >
+                                Customer management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						<ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" th:href="@{/customer-manage/customer_list}">Customer List</a>
                     		</li>
-                    		
+
                     		<li>
                         		<a  class="" th:href="@{/customer-manage/create-customer}">Create Customer</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
-				<div class="card">
+
+				<div sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingThree">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Vaccine Type management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree"
+                            >
+                                Vaccine Type management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 						<ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/vaccine-type-list">Vaccine Type List</a>
                     		</li>
-                    		
+
                     		<li>
                         		<a  class="" href="/addVaccineType">Create Vaccine Type</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
-				<div class="card">
+
+				<div sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingFour">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Vaccine management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse"
+                                data-target="#collapseFour" aria-expanded="false"
+                                aria-controls="collapseFour"
+                            >
+                                Vaccine management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/vaccine_list">Vaccine List</a>
                    			</li>
-                   			
+
                     		<li>
                         		<a  class="" href="/add-vaccine">Create Vaccine</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
+
 				<div class="card">
 					<div class="card-header p-3" id="headingFive">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Injection Shedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse"
+                                data-target="#collapseFive"
+                                aria-expanded="false"
+                                aria-controls="collapseFive"
+                            >
+                                Injection Schedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/schedule-list">Injection Schedule List</a>
                     		</li>
-                    		
+
                     		<li>
 								<a class="" href="/create_injectionSchedule">Create Injection Schedule</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
+
 				<div class="card">
 					<div class="card-header p-3" id="headingSeven">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="/vaccine_result_list">Injection Result List</a>
                     		</li>
-                    		
+
                     		<li>
                         		<a class="" href="/addInjectionResult">Create Injection Result</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
+
 				<div class="card">
 					<div class="card-header p-3" id="headingEight">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">News <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+                                class="btn btn-link collapsed"
+                                data-toggle="collapse" data-target="#collapseEight"
+                                aria-expanded="false" aria-controls="collapseEight"
+                            >
+                                News <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+                            </a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="/news_list">News List</a>
                     		</li>
-                    		
+
                     		<li>
                         		<a class="" href="/create_news">Create News</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
+
 				<div class="card">
 					<div class="card-header p-3" id="headingNine">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">Report <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">Report <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>
 						</h2>
 					</div>
-							
+
 					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="#">Report Vaccine</a>
                     		</li>
-                    		
+
                     		<li>
                         		<a class="" href="#">Report</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
-				
-				<div class="card">
+
+				<div sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE','CUSTOMER')" class="card">
 					<div class="card-header p-3">
 						<h2 class="clearfix mb-0">
-							<a class="btn btn-link" href="/logout">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>									
+							<a class="btn btn-link" th:href="/logout">
+                                Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            </a>
 						</h2>
 					</div>
 				</div>
