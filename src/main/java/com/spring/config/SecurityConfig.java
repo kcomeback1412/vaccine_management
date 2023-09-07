@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.spring.auth.CustomUserDetailService;
 import com.spring.consts.RoleEnum;
 import com.spring.entities.Users;
+import com.spring.entities.UserDetail;
+import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
 
 @Configuration
@@ -24,6 +26,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	UsersRepository usersRepository;
+	
+	@Autowired
+	UserDetailRepository userDetailRepository;
 	
 	@Autowired
 	public void configGlobal(AuthenticationManagerBuilder builder) throws Exception {
@@ -88,6 +93,10 @@ public class SecurityConfig {
 			admin.setRoleEnum(RoleEnum.ADMIN);
 		
 			usersRepository.save(admin);
+			
+			UserDetail adminDetail = new UserDetail();
+			
+			userDetailRepository.save(adminDetail);
 		}
 	}
 	
