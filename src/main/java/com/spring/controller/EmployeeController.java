@@ -26,7 +26,7 @@ import java.util.List;
 
 @Controller
 @Transactional(rollbackFor = {Exception.class, Throwable.class})
-@RequestMapping("/employee-management/")
+@RequestMapping("/employee-management")
 public class EmployeeController {
     @Autowired
     UserDetailsService userDetailsService;
