@@ -112,10 +112,7 @@ public class VaccineController {
             Model model) {
         List<VaccineType> vaccineTypes = vaccineTypeRepository.findAll();
         model.addAttribute("vaccineTypes", vaccineTypes);
-
-
         model.addAttribute("vaccine", vaccineRepository.findById(id).orElse(null));
-
 
         if (vaccineRepository.findById(id).orElse(null).getVaccineStatus() == StatusEnum.ACTIVE) {
 
