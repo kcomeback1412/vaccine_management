@@ -47,7 +47,10 @@ public class CustomerController {
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		String id = "";
+		Integer totalCustomer = userDetailsService.countAllCustomer();
 		session.setAttribute("userDetailId", id);
+		model.addAttribute("totalCustomer", totalCustomer);
+		model.addAttribute("pageSize", pageSize);
 		return "customer/customer_list";
 	}
 

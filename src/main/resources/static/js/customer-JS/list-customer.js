@@ -56,22 +56,26 @@ function deleteCheck(){
         });
         
 function searchForm(){
+  let search = document.querySelector("#searchInvalid");
   var name=document.mySearchForm.searchId.value;  
    if (name == "") {
-    alert("No data found!");
+    search.style.setProperty("opacity", 1);
     return false;
   }
 }        
 
-function listForm(){
-  let name=document.myListForm.searchList.value;  
+function listForm() {
+  let searchNumber = document.querySelector("#searchListInvalid");
+  let name = document.myListForm.searchList.value;
   let numberRegex = /^\d+$/;
-  if(name < 0) {
-    alert("You must enter positive number!");
+  if (name < 0) {
+    alert("You must input positive number!");
     return false;
   }else if(!name.match(numberRegex)){
-	 alert("You must enter number!"); 
-	   return false;
+	searchNumber.style.setProperty("opacity", 1);
+    return false;
   }
-}        
+}
+
+      
         
