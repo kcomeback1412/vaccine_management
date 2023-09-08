@@ -19,19 +19,20 @@
                 <div class="header_navbar">
                     <form id="page-size-option" th:action="@{/employee-management/employee-list}" method="get">
                         <div class="header_navbar-item">
-                            <span class="text mr-2">Show </span>
+                            <span class="text mr-2 mt-1">Show </span>
                             <select
                                     id="page-size-list"
                                     class="form-select form-control"
+                                    style="font-size: 1.4rem"
                                     name="pageSize"
                             >
-                                <option value="5" selected><i class="fa-solid fa-chevron-down"></i></option>
+                                <option value="5" th:selected="${pageSize==5}">5</option>
                                 <option value="10" th:selected="${pageSize==10}">10</option>
                                 <option value="25" th:selected="${pageSize==25}">25</option>
                                 <option value="50" th:selected="${pageSize==50}">50</option>
                                 <option value="100" th:selected="${pageSize==100}">100</option>
                             </select>
-                            <span class="text ml-2"> entries</span>
+                            <span class="text ml-2 mt-1"> entries</span>
                         </div>
                     </form>
                     <form th:action="@{/employee-management/employee-list}" method="get">
