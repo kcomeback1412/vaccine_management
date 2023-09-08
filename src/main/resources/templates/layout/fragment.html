@@ -125,7 +125,15 @@
 				<div class="card">
 					<div class="card-header p-3" id="headingFive">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Injection Shedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseFive"
+									aria-expanded="false"
+									aria-controls="collapseFive"
+							>
+								Injection Schedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
@@ -145,18 +153,26 @@
 				<div class="card">
 					<div class="card-header p-3" id="headingSeven">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseSeven"
+									aria-expanded="false"
+									aria-controls="collapseSeven"
+							>
+								Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
 					<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
-                        		<a class="" href="/vaccine_result_list">Injection Result List</a>
+                        		<a class="" th:href="@{/injection-result-management/vaccine_result_list}">Injection Result List</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a class="" href="/addInjectionResult">Create Injection Result</a>
+                        		<a class="" th:href="@{/injection-result-management/add-injection-result}">Create Injection Result</a>
                     		</li>
                 		</ul>
 					</div>
@@ -192,7 +208,7 @@
 					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
-                        		<a class="" href="#">Report Vaccine</a>
+                        		<a class="" href="/report_injection_result">Report Vaccine</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
                     		<li>
