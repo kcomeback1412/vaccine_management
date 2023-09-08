@@ -24,4 +24,6 @@ public interface UserDetailsService {
     void deleteEmployee(List<Integer> listId);
 
     Integer countAllEmployee();
+
+	Integer countAllCustomer();
 }

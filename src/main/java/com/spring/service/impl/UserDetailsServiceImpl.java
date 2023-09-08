@@ -60,5 +60,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public Integer countAllEmployee(){
        return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.EMPLOYEE);
     }
+    
+    @Override
+    public Integer countAllCustomer(){
+       return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.CUSTOMER);
+    }
 
 }

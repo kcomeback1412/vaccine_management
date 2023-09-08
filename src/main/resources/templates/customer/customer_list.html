@@ -4,7 +4,7 @@
 
 <head>
 	<title>Customer List</title>
-	<link rel="stylesheet" th:href="@{/css/employee-CSS/employee-list.css}">
+	<link rel="stylesheet" th:href="@{/css/customer-CSS/customer-list.css}">
 </head>
 
 <body>
@@ -18,7 +18,8 @@
 					<div class="header_navbar">
 						<div class="header_navbar-item">
 							<span class="text">Show</span>
-								<form name="myListForm" onsubmit="return listForm()" th:action="@{/customer-manage/list-customer}" method="post">
+							<form name="myListForm" onsubmit="return listForm()"
+								th:action="@{/customer-manage/list-customer}" method="post">
 								<input name="show" id="searchList" class="dropdown-list-search" type="text">
 							</form>
 							<datalist id="datalistOptions">
@@ -29,15 +30,26 @@
 							</datalist>
 
 							<span class="text">entries</span>
+
 						</div>
 						<div class="header_navbar-item">
 							<span class="text">Search:</span>
-							<form name="mySearchForm" onsubmit="return searchForm()" th:action="@{/customer-manage/search-customer}" method="post">
-								<input name="search" id="searchId" th:value="${session.userDetailId}" class="dropdown-list-search" type="text">
+							<form name="mySearchForm" onsubmit="return searchForm()"
+								th:action="@{/customer-manage/search-customer}" method="post">
+								<input name="search" id="searchId" th:value="${session.userDetailId}"
+									class="dropdown-list-search" type="text">
 							</form>
-							
 						</div>
 					</div>
+					<div class="header_navbar_search">
+							<small id="searchListInvalid" class="form-text text-danger" style="opacity: 0">
+								You must input number!
+							</small>
+						<small id="searchInvalid" class="form-text text-danger" style="opacity: 0">
+							No Data found!
+						</small>
+					</div>
+
 				</div>
 				<form id="myForm" th:action="@{/customer-manage/update-delete-customer}" method="post">
 					<div class="body2">
@@ -73,28 +85,37 @@
 					<div class="footer_buttons">
 						<div class="button_bussiness">
 							<span class="text_details">Showing 1 to 5 of ... entries</span>
+							<!-- <span class="text_details"
+                              th:text="'Showing '+ ${((currentPage - 1) * pageSize) + (pageUserDetail.content.size() > 0  ? 1 : 0)}
+                              + ' to ' + ${((currentPage - 1) * pageSize) + pageUserDetail.content.size()}
+                              + ' of ' + ${totalEmployee} + ' employee'">  </span> -->
+							
 							<div class="buttons">
 								<a class="btn-create" th:href="@{/customer-manage/create-customer}">Register</a>
-								<button class="btn-update" id="myButton" onclick="return updateCheck()"
-									form="myForm" name="update">Update
+								<button class="btn-update" id="myButton" onclick="return updateCheck()" form="myForm"
+									name="update">Update
 									Customer</button>
-								<button class="btn-delete" id="myButton" onclick="return deleteCheck()" form="myForm" name="delete">Delete Customer</button>
+								<button class="btn-delete" id="myButton" onclick="return deleteCheck()" form="myForm"
+									name="delete">Delete Customer</button>
 							</div>
 
 						</div>
 						<ul class="pagination" style="display: flex;">
 							<li th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-								<a th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}" class="page-link">
+								<a th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}"
+									class="page-link">
 									<</a>
 							</li>
 							<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
 								<li class="page-item" style="display: flex"><a
 										th:attr="class=${i == currentPage ? 'page-link text-danger' : 'page-link'}"
-										th:href="@{'/customer-manage/customer_list?pageNum=' + ${i}}" th:text="${i}"></a></li>
+										th:href="@{'/customer-manage/customer_list?pageNum=' + ${i}}"
+										th:text="${i}"></a></li>
 							</th:block>
 							<li
 								th:attr="class=${currentPage < pageUserDetail.totalPages ? 'page-item' : 'page-item disabled'}">
-								<a th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage + 1}}" class="page-link ">></a>
+								<a th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage + 1}}"
+									class="page-link ">></a>
 							</li>
 						</ul>
 
