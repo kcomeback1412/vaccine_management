@@ -35,12 +35,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public List<UserDetail> findAllEmployee(){
-        return userDetailRepository.findAllByUsers2RoleEnum(RoleEnum.ROLE_EMPLOYEE);
+        return userDetailRepository.findAllByUsers2RoleEnum(RoleEnum.EMPLOYEE);
     }
 
     @Override
-    public List<UserDetail> findAllByFullName(String name){
-        return userDetailRepository.findAllByFullNameLike(name);
+    public List<UserDetail> findAllEmployeeByFullNameLike(String name){
+        return userDetailRepository.findAllByUsers2RoleEnumAndFullNameLike(RoleEnum.EMPLOYEE,name);
     }
 
     @Override
@@ -58,6 +58,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public Integer countAllEmployee(){
-       return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.ROLE_EMPLOYEE);
+       return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.EMPLOYEE);
     }
+    
+    @Override
+    public Integer countAllCustomer(){
+       return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.CUSTOMER);
+    }
+
 }

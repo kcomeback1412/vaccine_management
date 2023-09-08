@@ -2,13 +2,14 @@ const selectElement = document.querySelector('select');
 
 var checkboxes = $('tbody input[type="checkbox"]');
 
+
 $('select').on('change', () => {
  	var selectedOption = $('select option:selected').get(0);
 
-    window.location.href = '/vaccineType-management/vaccineType-list?pageSize=' + selectedOption.value;
+    window.location.href = 'vaccine-type-list?pageSize=' + selectedOption.value;
 });
 
-$('.btn-update').on('click', () => {	
+$('.btn-delete').on('click', () => {
 	var selectedCheckboxes = $('input[type="checkbox"]:checked');
 	
     if(selectedCheckboxes.length == 0) {

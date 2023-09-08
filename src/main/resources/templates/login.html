@@ -13,19 +13,27 @@
 </head>
 <body>	
     <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
-        <form class="log-in__form d-flex flex-column align-items-center text-white">
+        <form class="log-in__form d-flex flex-column align-items-center text-white" th:action="@{/login-check}" method="post" th:object="${userInfo}">
             <i class="fa-solid fa-users"></i>
 
             <h1 class="m-0">Member Login</h1>
-    
-            <div class="form-group d-flex align-items-center">
-                <input class="py-3 h-100 w-100 text-white" type="text" placeholder="Username">
-                <i class="fa-solid fa-user"></i>
+    		
+    		<div class="w-100">
+            	<div class="form-group d-flex align-items-center">
+                	<input class="py-2 h-100 w-100 text-white" type="text" name="userName" placeholder="Username">
+                	<i class="fa-solid fa-user"></i>
+            	</div>
+            	
+            	<span id="unameMsg"></span>
             </div>
-    
-            <div class="form-group d-flex align-items-center">
-                <input class="py-3 h-100 w-100 text-white" type="password" placeholder="Password">
-                <i class="fa-solid fa-lock"></i>
+    		
+    		<div class="w-100">
+            	<div class="form-group d-flex align-items-center">
+                	<input class="py-2 h-100 w-100 text-white" type="password" name="password" placeholder="Password">
+                	<i class="fa-solid fa-lock"></i>
+            	</div>
+            	
+            	<span id="passMsg"></span>
             </div>
     
             <button class="w-100 py-3 border-0 bg-primary text-white">Sign in</button>
@@ -33,5 +41,7 @@
             <a href="" class="text-white">Forgot Password?</a>
         </form>
     </div>
+    
+    <script src="/js/login.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
   <title>Create Vaccine Type</title>
   
-  <link rel="stylesheet" href="css/vaccine-type-CSS/addVaccineType.css">
+  <link rel="stylesheet" th:href="@{/css/vaccine-type-CSS/addVaccineType.css}">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/addVaccineType}" method="post" th:object="${vaccineType}">
+            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/vaccineType-management/create-vaccineType}" method="post" th:object="${vaccineType}">
             	<div class="row my-5">
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
@@ -70,7 +70,7 @@
             			<div class="d-flex align-items-center mt-2">
             				<i class="fa-solid fa-image mr-3"></i>
             				
-            				<input class="w-auto rounded border p-1" type="file">
+            				<input class="w-auto rounded border p-1" type="file" name="image">
             			</div>
             		</div>
             	</div>
@@ -79,7 +79,7 @@
             		<div class="col">
             			<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
             			<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
-            			<a href="/vaccine-type-list">
+            			<a th:href="@{/vaccineType-management/vaccineType-list}">
             				<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
             			</a>
             		</div>

@@ -5,7 +5,7 @@
 <head>
   <title>Create Employee</title>
 
-	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-update-employee.css}"/>
+	<link rel="stylesheet" th:href="@{/css/employee-CSS/create-update-employee.css}"/>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 
 	<main>
 		<form
-			th:action="@{/create-employee}"
+			th:action="@{/employee-management/create-employee}"
 			method="post"
 			th:object="${employeeToCreate}"
 			enctype=”multipart/form-data”

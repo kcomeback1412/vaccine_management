@@ -2,36 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 <head>
-  <meta charset="UTF-8">
-  <title>Create News</title>
-  <link rel="stylesheet" th:href="@{/css/news-CSS/create.css}" />
+    <meta charset="UTF-8">
+    <title>Create News</title>
+    <link rel="stylesheet" th:href="@{/css/news-CSS/create.css}"/>
 </head>
 <body>
-<!--<div th:action="@{/news/create_news}" method="post" th:object="${news}">-->
-<!--    <div th:text="${msg}"></div>>-->
+
 <h4 class="my-0 ml-auto mr-auto" id="content_title">CREATE NEWS</h4>
-<!--</div>-->
+
 <main>
 
 
-  <div class="container">
-    <form id="create-form">
-      <label for="title">Title(*)</label>
-      <input class="title" type="text" id="title" name="title" maxlength="300" required>
-      <div class="var">
-        <label  for="preview">Preview(*)</label>
-        <input  class="code" type="text" id="preview" name="preview" maxlength="4000" required>
+    <div class="container">
+        <form id="create-form" th:action="@{/create_news}" method="post" th:object="${news}" onsubmit="return validateForm()">
 
-        <label for="content">Content(*)</label>
-        <input class="code" type="text" id="content" name="content" required>
-      </div>
-      <div class="button-container">
-        <button type="submit" class="button" id="save-button">Save</button>
-        <button type="reset" class="button">Reset</button>
-        <button type="button" class="button" id="cancel-button">Cancel</button>
-      </div>
-    </form>
-  </div>
+            <label class="aa" for="new_type">NewsType</label>
+            <select id="new_type" name="newsType" th:field="*{newsType.newsTypeId}">
+                <option value="">--Select NewsType--</option>
+                <option th:each="currentNewsType : ${newsTypes}" th:value="${currentNewsType.newsTypeId}"
+                        th:text="${currentNewsType.newsTypeName}"></option>
+
+            </select>
+
+            <label for="title">Title(*)</label>
+            <input class="title" type="text" id="title" name="title" maxlength="300" required th:field="*{title}">
+
+
+            <div class="var">
+                <label for="preview">Preview(*)</label>
+                <input class="code" type="text" id="preview" name="preview" maxlength="1000" required
+                       th:field="*{preview}">
+
+                <label for="content">Content(*)</label>
+                <input class="code" type="text" id="content" name="content" maxlength="4000" required
+                       th:field="*{content}">
+
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button" id="save-button">Save</button>
+                <button type="reset" class="button">Reset</button>
+                <button type="button" class="button" id="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
 </main>
 <script th:src="@{/js/news-JS/news.js}"></script>
 </body>

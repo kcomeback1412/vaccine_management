@@ -16,7 +16,7 @@ public interface UserDetailsService {
 
     List<UserDetail> findAllEmployee();
 
-    List<UserDetail> findAllByFullName(String name);
+    List<UserDetail> findAllEmployeeByFullNameLike(String name);
 
     Page<UserDetail> convertListUserDetailToPageUserDetail(Pageable pageable, List<UserDetail> userDetails);
 
@@ -24,4 +24,6 @@ public interface UserDetailsService {
     void deleteEmployee(List<Integer> listId);
 
     Integer countAllEmployee();
+
+	Integer countAllCustomer();
 }

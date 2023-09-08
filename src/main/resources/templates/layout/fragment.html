@@ -26,10 +26,12 @@
                 </a>
                 
                 <div class="d-flex flex-column justify-content-around">
-                	<span id="user_role">#Role</span>
-                	<span id="user_email">#Email</span>
-            	</div>
+                	<span id="user_userName" th:text="${userName}"></span>
+                	<span id="user_userRole" th:text="${userRole}"></span>
+            	</div>            	
             </div>
+            
+        <!-- <div class="arrow-left"></div> -->
         </div>
         
         <div class="navigation">
@@ -50,13 +52,13 @@
 					</div>
 							
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
 							<li>
-                        		<a class="" th:href="@{/employee-list}">Employee List</a>
+                        		<a class="" th:href="@{/employee-management/employee-list}">Employee List</a>
                     		</li>
-                    	
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a  class="" th:href="@{/create-employee}">Create Employee</a>
+                        		<a  class="" th:href="@{/employee-management/create-employee}">Create Employee</a>
                     		</li>
                     	</ul>
 					</div>
@@ -70,13 +72,13 @@
 					</div>
 							
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
                     		<li>
-                        		<a  class="" href="/customer_list">Customer List</a>
+                        		<a  class="" th:href="@{/customer-manage/customer_list}">Customer List</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a  class="" href="/create-customer">Create Customer</a>
+                        		<a  class="" th:href="@{/customer-manage/create-customer}">Create Customer</a>
                     		</li>
                 		</ul>
 					</div>
@@ -90,13 +92,13 @@
 					</div>
 							
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						<ul class="m-3">
+						<ul class="ul-list-navbar">
                     		<li>
-                        		<a  class="" href="/vaccine-type-list">Vaccine Type List</a>
+                        		<a  class="" th:href="@{/vaccineType-management/vaccineType-list}">Vaccine Type List</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a  class="" href="/addVaccineType">Create Vaccine Type</a>
+                        		<a  class="" th:href="@{/vaccineType-management/create-vaccineType}">Create Vaccine Type</a>
                     		</li>
                 		</ul>
 					</div>
@@ -110,11 +112,11 @@
 					</div>
 							
 					<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/vaccine_list">Vaccine List</a>
                    			</li>
-                   			
+                   			<hr class="m-0 ml-5 w-75">
                     		<li>
                         		<a  class="" href="/add-vaccine">Create Vaccine</a>
                     		</li>
@@ -125,16 +127,24 @@
 				<div class="card">
 					<div class="card-header p-3" id="headingFive">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Injection Shedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseFive"
+									aria-expanded="false"
+									aria-controls="collapseFive"
+							>
+								Injection Schedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
 					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a  class="" href="/schedule-list">Injection Schedule List</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
 								<a class="" href="/create_injectionSchedule">Create Injection Schedule</a>
                     		</li>
@@ -145,18 +155,26 @@
 				<div class="card">
 					<div class="card-header p-3" id="headingSeven">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseSeven"
+									aria-expanded="false"
+									aria-controls="collapseSeven"
+							>
+								Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
 					<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
-                        		<a class="" href="/vaccine_result_list">Injection Result List</a>
+                        		<a class="" th:href="@{/injection-result-management/vaccine_result_list}">Injection Result List</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a class="" href="/addInjectionResult">Create Injection Result</a>
+                        		<a class="" th:href="@{/injection-result-management/add-injection-result}">Create Injection Result</a>
                     		</li>
                 		</ul>
 					</div>
@@ -170,11 +188,11 @@
 					</div>
 							
 					<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
                         		<a class="" href="/news_list">News List</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
                         		<a class="" href="/create_news">Create News</a>
                     		</li>
@@ -190,15 +208,23 @@
 					</div>
 							
 					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
-						 <ul class="m-3">
+						 <ul class="ul-list-navbar">
                     		<li>
-                        		<a class="" href="#">Report Vaccine</a>
+                        		<a class="" href="/report_injection_result">Report Vaccine</a>
                     		</li>
-                    		
+                    		<hr class="m-0 ml-5 w-75">
                     		<li>
                         		<a class="" href="#">Report</a>
                     		</li>
                 		</ul>
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-header p-3">
+						<h2 class="clearfix mb-0">
+							<a class="btn btn-link" href="/logout">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>									
+						</h2>
 					</div>
 				</div>
 			</div>
