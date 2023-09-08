@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     chartRadio.addEventListener("change", function () {
         if (chartRadio.checked) {
-            // Ẩn bảng khi nút "Chart" được chọn
-            dataTable.style.display = "none";
+            // click khi nút "Chart" được chọn
+            window.location.href = "report_injection_chart";
+
         }
     });
+
 });

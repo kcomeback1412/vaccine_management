@@ -1,10 +1,12 @@
 package com.spring.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -14,18 +16,28 @@ public class News implements Serializable {
     @Column(name = "NEWS_ID", length = 36)
     private String newsId;
 
-    @Column(name = "CONTENT", length = 4000)
+    @Column(name = "CONTENT", columnDefinition = "nvarchar (4000)")
+
     private String content;
 
-    @Column(name = "PREVIEW", length = 1000)
+    @Column(name = "PREVIEW", columnDefinition = "nvarchar (1000)")
     private String preview;
 
-    @Column(name = "TITLE", length = 300)
+    @Column(name = "TITLE", columnDefinition = "nvarchar (300)")
     private String title;
+
+    @Temporal(TemporalType.DATE)
+    private Date postDate;
 
     @ManyToOne
     @JoinColumn(name = "NEWS_TYPE_ID")
     private NewsType newsType;
+
+    @PrePersist
+    protected void createDate() {
+        this.postDate = new Date();
+    }
+
 
 
 }

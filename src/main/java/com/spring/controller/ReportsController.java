@@ -8,4 +8,9 @@ public class ReportsController {
     public String reportInjectionNewsUI() {
         return "reports/report_injection_result";
     }
+
+    @GetMapping("/report_injection_chart")
+    public String reportInjectionChartUI() {
+        return "reports/report_injection_chart";
+    }
 }

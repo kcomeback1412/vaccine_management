@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Update News</title>
-    <link rel="stylesheet" th:href="@{/css/news-CSS/create.css}" />
+    <link rel="stylesheet" th:href="@{/css/news-CSS/create.css}"/>
 </head>
 <body>
 
@@ -14,17 +14,21 @@
 
 
     <div class="container">
-        <form id="create-form">
+        <form id="create-form" th:action="@{/update_news}" method="post" th:object="${news}">
             <label for="title">Title(*)</label>
-            <input class="title" type="text" id="title" name="title" maxlength="300" required>
+            <input class="title" type="text" id="title" name="title" maxlength="300" required th:field="*{title}">
             <div class="var">
-                <label  for="preview">Preview(*)</label>
-                <input  class="code" type="text" id="preview" name="preview" maxlength="4000" required>
+                <label for="preview">Preview(*)</label>
+                <input class="code" type="text" id="preview" name="preview" maxlength="4000" required
+                       th:field="*{preview}">
 
                 <label for="content">Content(*)</label>
-                <input class="code" type="text" id="content" name="content" required>
+                <input class="code" type="text" id="content" name="content" required th:field="*{content}">
+
+
             </div>
             <div class="button-container">
+                <input type="hidden" th:field="*{newsId}"/>
                 <button type="submit" class="button" id="save-button">Save</button>
                 <button type="button" class="button" id="cancel-button">Cancel</button>
             </div>
