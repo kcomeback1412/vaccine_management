@@ -3,7 +3,7 @@
 
 <head>
 	<title>Injection Schedule List</title>
-	<link rel="stylesheet" href="css/schedule-CSS/schedule-list.css">
+    <link rel="stylesheet" th:href="@{/css/schedule-CSS/schedule-list.css}"/>
 </head>
 
 <body>
@@ -32,40 +32,34 @@
             </div>
         </div>
         <div class="body2">
-            <table class="table table-striped table-bordered">
-                <thead class="thead">
-                    <tr class="table">
-                        <th scope="col" class="text-center text-white">Vaccine</th>
-                        <th scope="col" class="text-center col-responsive text-white">Time</th>
-                        <th scope="col" class="text-center text-white">Place</th>
-                        <th scope="col" class="text-center text-white">Status</th>
-                        <th scope="col" class="text-center text-white">Note</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
+            <form id="tableForm" th:action="@{/injectionSchedule-management/create_injectionSchedule}" method="post">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead">
+                        <tr class="table">
+                            <th scope="col" class="text-center text-white">InjectionSchedule Id</th>
+                            <th scope="col" class="text-center text-white">Vaccine</th>
+                            <th scope="col" class="text-center col-responsive text-white">Time </th>
+                            <th scope="col" class="text-center text-white">Place</th>
+                            <th scope="col" class="text-center text-white">Status</th>
+                            <th scope="col" class="text-center text-white">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="d, status : ${injectionScheduleList.content}">
+                            <th class="border" >
+                                <a th:text="${d.injectionScheduleId}" th:href="@{'/injectionSchedule-management/update_injectionSchedule/' + ${d.injectionScheduleId}}" ></a>
+                            </th>
+                            <th class="border" th:text="${d.vaccine1.vaccineName}"></th>
+                            <th class="border" th:text="'Form ' + ${d.startDate} + ' to ' + ${d.endDate}"></th>
+                            <th class="border" th:text="${d.place}"></th>
+                            <th class="border" th:text="${d.vaccine1.vaccineStatus}"></th>
+                            <th class="border" th:text="${d.description}"></th>
+                        </tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
         <div class="footer_buttons">
             <div class="button_bussiness">
@@ -81,17 +75,14 @@
                         <</button>
                             <button class="button">1</button>
                             <button class="button">2</button>
-                            <button class="button">3</button>
-                            <button class="button">4</button>
-                            <button class="button">5</button>
-                            <button class="button">></button>
+
                 </div>
             </div>
         </div>
 
     </div>
 	</main>
-	<script src="#"></script>
+    <script th:src="@{/js/injectionSchedule-JS/validate-injectionSchedule.js}"></script>
 </body>
 
 </html>
