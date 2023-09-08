@@ -39,8 +39,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public List<UserDetail> findAllByFullName(String name){
-        return userDetailRepository.findAllByFullNameLike(name);
+    public List<UserDetail> findAllEmployeeByFullNameLike(String name){
+        return userDetailRepository.findAllByUsers2RoleEnumAndFullNameLike(RoleEnum.EMPLOYEE,name);
     }
 
     @Override
@@ -60,4 +60,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public Integer countAllEmployee(){
        return userDetailRepository.countAllByUsers2RoleEnum(RoleEnum.EMPLOYEE);
     }
+
 }
