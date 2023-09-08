@@ -12,26 +12,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.consts.StatusEnum;
-import com.spring.entities.UserDetail;
 import com.spring.entities.VaccineType;
 import com.spring.repositories.VaccineTypeRepository;
+import com.spring.service.impl.VaccineTypeServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping("/vaccineType-management")
 public class VaccineTypeController {
 
 	@Autowired
 	private VaccineTypeRepository vaccineTypeRepository;
+	
+	@Autowired
+	private VaccineTypeServiceImpl vaccineTypeServiceImpl;
 
-	@GetMapping("/vaccine-type-list")
+	@GetMapping("/vaccineType-list")
 	public String vaccineTypeListUI(
 			@RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize, Model model) {
+			@RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize,
+			@RequestParam(name = "nameForSearch",required = false) String nameForSearch,
+			Model model) {
 
 		model.addAttribute("option", pageSize);
 
@@ -39,7 +46,14 @@ public class VaccineTypeController {
 
 		PageRequest pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 
-		Page<VaccineType> vaccineTypeList = vaccineTypeRepository.findAll(pageable);
+		Page<VaccineType> vaccineTypeList;
+		
+		if(nameForSearch == null || nameForSearch.isEmpty()) {
+			vaccineTypeList = vaccineTypeRepository.findAll(pageable);
+        } else  {
+        	vaccineTypeList = vaccineTypeRepository.findPageByNameLike(nameForSearch, pageable);
+            model.addAttribute("nameForSearch", nameForSearch);
+        }
 
 		model.addAttribute("vaccineTypeList", vaccineTypeList);
 
@@ -48,10 +62,10 @@ public class VaccineTypeController {
 		if (pageNum != vaccineTypeList.getTotalPages()) {
 			model.addAttribute("end", pageNum * pageSize);
 		} else {
-			model.addAttribute("end", vaccineTypeRepository.findAll().size());
+			model.addAttribute("end", vaccineTypeList.getTotalElements());
 		}
 
-		model.addAttribute("total", vaccineTypeRepository.findAll().size());
+		model.addAttribute("total", vaccineTypeList.getTotalElements());
 
 		if (pageNum == 1) {
 			model.addAttribute("prevStatus", "btn-link disabled");
@@ -65,80 +79,85 @@ public class VaccineTypeController {
 			model.addAttribute("next", (pageNum + 1));
 		}
 
-		return "vaccineType/vaccine-type-list";
+		return "vaccineType/vaccineType-list";
 	}
 
-	@PostMapping("/update-vaccine-type-list")
+	@PostMapping("/update-vaccineType-list")
 	public String updateCustomerUI(HttpServletRequest httpServletRequest) {
 		try {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
-					VaccineType vaccineType = vaccineTypeRepository.getById(id);
+					VaccineType vaccineType = vaccineTypeServiceImpl.getById(id);
 					vaccineType.setVaccineTypeStatus(StatusEnum.IN_ACTIVE);
-					vaccineTypeRepository.save(vaccineType);
+					vaccineTypeServiceImpl.save(vaccineType);
 				}
 			}
-			return "redirect:/vaccine-type-list";
+			return "redirect:/vaccineType-management/vaccineType-list";
 		} catch (Exception e) {
-			return "vaccineType/vaccine-type-list";
+			return "vaccineType/vaccineType-list";
 		}
 	}
 
-	@GetMapping("/addVaccineType")
+	@GetMapping("/create-vaccineType")
 	public String addVaccineTypeUI(Model model) {
 		model.addAttribute("vaccineType", new VaccineType());
 
-		return "vaccineType/addVaccineType";
+		return "vaccineType/create-vaccineType";
 	}
 
-	@PostMapping("/addVaccineType")
-	public String addVaccineType(@ModelAttribute("vaccineType") @Validated VaccineType vaccineType,
-			BindingResult result, Model model) {
+	@PostMapping("/create-vaccineType")
+	public String addVaccineType(
+			@ModelAttribute("vaccineType") @Validated VaccineType vaccineType,
+			BindingResult result, 
+			Model model) {
 
 		if (result.hasErrors()) {
-			return "vaccineType/addVaccineType";
+			return "vaccineType/create-vaccineType";
 		}
 
-		if (null != vaccineTypeRepository.checkVaccineTypeId(vaccineType.getVaccineTypeId())) {
+		if (null != vaccineTypeServiceImpl.checkVaccineTypeId(vaccineType.getVaccineTypeId())) {
 			model.addAttribute("vaccineTypeIdMsg", "This code is already existed!");
-			return "vaccineType/addVaccineType";
+			return "vaccineType/create-vaccineType";
 		}
 
 		vaccineType.setVaccineTypeStatus(StatusEnum.ACTIVE);
 
-		vaccineTypeRepository.save(vaccineType);
+		vaccineTypeServiceImpl.save(vaccineType);
 
-		return "redirect:/vaccine-type-list";
+		return "redirect:/vaccineType-management/vaccineType-list";
 	}
 
-	@GetMapping("/updateVaccineType/{id}")
+	@GetMapping("/update-vaccineType/{id}")
 	public String updateVaccineTypeUI(@PathVariable String id, Model model) {
 
-		model.addAttribute("vaccineType", vaccineTypeRepository.findById(id));
+		model.addAttribute("vaccineType", vaccineTypeServiceImpl.findById(id));
 
-		model.addAttribute("vaccineTypeId", vaccineTypeRepository.findById(id).orElse(null).getVaccineTypeId());
+		model.addAttribute("vaccineTypeId", vaccineTypeServiceImpl.findById(id).orElse(null).getVaccineTypeId());
 
-		model.addAttribute("vaccineTypeName", vaccineTypeRepository.findById(id).orElse(null).getVaccineTypeName());
+		model.addAttribute("vaccineTypeName", vaccineTypeServiceImpl.findById(id).orElse(null).getVaccineTypeName());
 
-		model.addAttribute("description", vaccineTypeRepository.findById(id).orElse(null).getDescription());
+		model.addAttribute("description", vaccineTypeServiceImpl.findById(id).orElse(null).getDescription());
 
 		if (vaccineTypeRepository.findById(id).orElse(null).getVaccineTypeStatus() == StatusEnum.ACTIVE) {
 
 			model.addAttribute("checked", "checked");
 		}
 
-		return "vaccineType/updateVaccineType";
+		return "vaccineType/update-vaccineType";
 	}
 
-	@PostMapping("/updateVaccineType")
-	public String updateVaccineType(@ModelAttribute("vaccineType") @Validated VaccineType vaccineType,
-			BindingResult result, @RequestParam(name = "vaccineTypeId", required = false) String id,
+	@PostMapping("/update-vaccineType")
+	public String updateVaccineType(
+			@ModelAttribute("vaccineType") @Validated VaccineType vaccineType,
+			BindingResult result, 
+			@RequestParam(name = "vaccineTypeId", required = false) String id,
 			@RequestParam(name = "activeCheckBox", required = false) boolean active,
-			RedirectAttributes redirectAttributes, Model model) {
+			RedirectAttributes redirectAttributes, 
+			Model model) {
 
 		if (result.hasErrors()) {
-			model.addAttribute("vaccineTypeId", vaccineTypeRepository.findById(id).orElse(null).getVaccineTypeId());
-			return "vaccineType/updateVaccineType";
+			model.addAttribute("vaccineTypeId", vaccineTypeServiceImpl.findById(id).orElse(null).getVaccineTypeId());
+			return "vaccineType/update-vaccineType";
 		}
 
 		if (active)
@@ -148,6 +167,6 @@ public class VaccineTypeController {
 
 		vaccineTypeRepository.save(vaccineType);
 
-		return "redirect:/vaccine-type-list";
+		return "redirect:/vaccineType-management/vaccineType-list";
 	}
 }
