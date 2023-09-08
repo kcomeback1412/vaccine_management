@@ -32,6 +32,7 @@ public class VaccineController {
     public String VaccineList(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize,
+            @RequestParam(name = "nameForSearchVaccine",required = false) String nameForSearchVaccine,
             Model model) {
         model.addAttribute("option", pageSize);
 
@@ -39,10 +40,18 @@ public class VaccineController {
 
         PageRequest pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 
-        Page<Vaccine> vaccines = vaccineRepository.findAll(pageable);
+        Page<Vaccine> vaccines;
+//        = vaccineRepository.findAll(pageable)
 
+
+
+        if(nameForSearchVaccine == null || nameForSearchVaccine.isEmpty()) {
+            vaccines = vaccineRepository.findAll(pageable);
+        } else  {
+            vaccines = vaccineRepository.findPageByNameLike(nameForSearchVaccine, pageable);
+            model.addAttribute("nameForSearch", nameForSearchVaccine);
+        }
         model.addAttribute("vaccineList", vaccines);
-
         model.addAttribute("start", (pageNum - 1) * pageSize + 1);
 
         if (pageNum != vaccines.getTotalPages()) {
