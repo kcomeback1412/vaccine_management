@@ -20,14 +20,15 @@
 							<span class="text">Show</span>
 							<form name="myListForm" onsubmit="return listForm()"
 								th:action="@{/customer-manage/list-customer}" method="post">
-								<input name="show" id="searchList" class="dropdown-list-search" type="text">
-							</form>
-							<datalist id="datalistOptions">
+								<input name="show" id="searchList" list="datalistOptions" class="dropdown-list-search" type="text">
+								<datalist id="datalistOptions">
 								<option value="10">
 								<option value="25">
 								<option value="50">
 								<option value="100">
 							</datalist>
+							</form>
+							
 
 							<span class="text">entries</span>
 
@@ -106,7 +107,7 @@
 									class="page-link">
 									<</a>
 							</li>
-							<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
+							<th:block th:each="i: ${#numbers.sequence(0, pageUserDetail.totalPages)}">
 								<li class="page-item" style="display: flex"><a
 										th:attr="class=${i == currentPage ? 'page-link text-danger' : 'page-link'}"
 										th:href="@{'/customer-manage/customer_list?pageNum=' + ${i}}"
