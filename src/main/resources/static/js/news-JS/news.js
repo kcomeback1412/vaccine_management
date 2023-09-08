@@ -40,6 +40,10 @@ function deleteNews() {
             params.append('newsIds', id);
         });
 
+         if(confirm("Do you want to delete the record?")){
+         }else {
+             window.location.href = '/news_list';
+         }
 // Sử dụng fetch để gửi yêu cầu POST với các tham số URL
         fetch('/delete_news?' + params.toString(), {
             method: 'POST',
