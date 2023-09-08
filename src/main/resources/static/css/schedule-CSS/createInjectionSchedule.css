@@ -8,6 +8,6 @@
 	font-size: 1.4rem !important;
 }
 
-.form_content input {
+.form_content input, textarea {
 	width: 80%;
 }
