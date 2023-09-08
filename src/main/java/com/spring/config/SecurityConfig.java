@@ -70,7 +70,7 @@ public class SecurityConfig {
 					.passwordParameter("password")
 					.defaultSuccessUrl("/home")
 					.permitAll();
-		});
+		}).csrf().disable();
 		
 		return httpSecurity.build();
 	}

@@ -34,6 +34,7 @@ body {
 	background-image: url(/img/backgroundUser.png);
 	background-size: cover;
 	font-size: 1.2rem;
+	position: relative;
 }
 
 .user_logo {
@@ -43,6 +44,17 @@ body {
 #user_userName {
 	font-size: 2rem;
 	font-weight: bold;
+}
+
+.arrow-left {
+	width: 0; 
+  	height: 0; 
+  	border-top: 45px solid transparent;
+  	border-bottom: 45px solid transparent;   
+  	border-right: 45px solid #eee600; 
+  	position: absolute;
+  	top: 0;
+  	right: 0;
 }
 
 /* Css Collapse Group */
