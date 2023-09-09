@@ -129,11 +129,17 @@ public class EmployeeController {
     @PostMapping(value = "/delete-update-employee", params = "update-save")
     public String updateEmployee(
             @ModelAttribute("employeeUpdate") UserDetail userDetail,
+            @RequestParam(name = "newPassword") String newPassword,
             RedirectAttributes redirectAttributes
     ) {
+
         String name = ConvertName.replaceAllSpace(userDetail.getFullName());
         userDetail.setFullName(name);
         userDetail.setCode(ConvertName.convertNameToCode(name) + userDetail.getUsers2().getUsersId());
+        if(newPassword != null) {
+            userDetail.getUsers2().setPassword(passwordEncoder.encode(newPassword));
+            usersService.save(userDetail.getUsers2());
+        }
 
         userDetailsService.save(userDetail);
         redirectAttributes.addFlashAttribute("msgSuccess", "Update employee success");
