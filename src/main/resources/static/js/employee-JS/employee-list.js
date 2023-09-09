@@ -6,6 +6,13 @@ function checkAndUncheckAll(source){
     }
 }
 
+function uncheckAll(source) {
+    let checkboxAll = document.querySelector(".checkboxAll");
+    if(source.checked == false) {
+        checkboxAll.checked = false;
+    }
+}
+
 document.querySelector("#page-size-list").addEventListener("change", function (){
     document.querySelector("#page-size-option").submit();
 })
