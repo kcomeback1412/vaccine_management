@@ -117,18 +117,24 @@ public class CustomerController {
 	// Update by id
 	@PostMapping(value = "/update-delete-customer", params = "save-update")
 	public String updateCustomerInfo(@ModelAttribute("userDetailInfo") UserDetail userDetail,
-			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest) {
+			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest,
+		 	@RequestParam(name = "newPassword") String newPassword
+	) {
 
 		for (String id : httpServletRequest.getParameterValues("userId")) {
 			Users userDB = (Users) usersRepository.findByIdUser(id);
 			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-			System.out.println(user.getUserName());
 
 			userDetailDB.setFullName(userDetail.getFullName());
 			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());
 			userDetailDB.setGender(userDetail.getGender());
 			userDetailDB.setAddress(userDetail.getAddress());
 			userDetailDB.setPhone(userDetail.getPhone());
+
+			// update password if new password != null
+			if(newPassword != null) {
+				userDB.setPassword(newPassword);
+			}
 
 			usersRepository.save(userDB);
 			userDetailDB.setUsers2(userDB);
