@@ -250,7 +250,7 @@
                 </div>
                 <div class="footer_buttons">
                     <div class="button_bussiness">
-                        <span class="text_details"
+                        <span  th:if="${userDetails.totalPages != 0}" class="text_details"
                               th:text="'Showing '+ ${((currentPage - 1) * pageSize) + (userDetails.content.size() > 0  ? 1 : 0)}
                               + ' to ' + ${((currentPage - 1) * pageSize) + userDetails.content.size()}
                               + ' of ' + ${totalEmployee} + ' employee'">  </span>
