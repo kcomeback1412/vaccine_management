@@ -74,7 +74,10 @@
 									</td>
 									<td th:text="${d.fullName}"></td>
 									<td th:text="${d.dateOfBirth}"></td>
-									<td th:text="${d.gender}"></td>
+									<div th:switch="${d.gender}">
+										<td th:case="1">Male</td>
+										<td th:case="2">Female</td>
+									</div>
 									<td th:text="${d.address}"></td>
 									<td th:text="${d.identityCard}"></td>
 									<td th:text="${d.phone}"></td>
