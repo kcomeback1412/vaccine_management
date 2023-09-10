@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,5 +36,12 @@ public class Users implements Serializable {
     private UserDetail userDetail;
 
     @OneToMany(mappedBy = "users3")
-    private List<InjectionResult> injectionResultList1;
+    private List<InjectionResult> injectionResults;
+
+    public void addInjectionResult(InjectionResult injectionResult) {
+        if(injectionResults == null) {
+            injectionResults = new ArrayList<>();
+        }
+        injectionResults.add(injectionResult);
+    }
 }
