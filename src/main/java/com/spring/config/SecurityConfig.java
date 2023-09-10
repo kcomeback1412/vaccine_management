@@ -44,7 +44,7 @@ public class SecurityConfig {
     		"/css/**",
     		"/img/**",
 			"/logout",
-			"/api/v1/profile"
+			"/api/v1/**"
 
     };
 
@@ -74,7 +74,7 @@ public class SecurityConfig {
 		
 		httpSecurity.authorizeHttpRequests(auth -> {
 			auth.requestMatchers(permitAllLink).permitAll()
-				.requestMatchers(permitAdminLink).hasAuthority(RoleEnum.ADMIN.name())
+				.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name())
 				.requestMatchers(permitEmployeeLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.ADMIN.name())
 				.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.CUSTOMER.name(), RoleEnum.EMPLOYEE.name(),RoleEnum.ADMIN.name())
 				.anyRequest().denyAll();
