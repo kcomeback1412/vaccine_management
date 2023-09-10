@@ -37,14 +37,4 @@ public class VaccineType implements Serializable {
     @OneToMany(mappedBy = "vaccineType")
     private List<Vaccine> vaccineList;
 
-    @OneToMany(mappedBy = "vaccineType")
-    private List<InjectionResult>  injectionResults;
-
-    public void addInjectionResult(InjectionResult injectionResult) {
-        if(injectionResults == null) {
-            injectionResults = new ArrayList<>();
-        }
-        injectionResults.add(injectionResult);
-    }
-
 }
