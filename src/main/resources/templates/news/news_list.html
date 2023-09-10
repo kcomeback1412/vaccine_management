@@ -14,7 +14,7 @@
 <main>
     <div class="container-fluid bg-white">
         <div>
-            <form class="table table-striped " th:action="@{/news_list}" method="get">
+            <form class="table table-striped " th:action="@{/news-management/news_list}" method="get">
                 <div class="search_wrap">
                     <div class="header_navbar-item">
                         <span class="text mr-2">Show</span>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="bold">
-                <button class="create" type="button"><a class="create" th:href="@{/create_news}">Create news </a>
+                <button class="create" type="button"><a class="create" th:href="@{/news-management/create_news}">Create news </a>
                 </button>
 
                 <button class="update" type="button" onclick="editNews()">Update News</button>

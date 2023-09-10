@@ -17,7 +17,7 @@ function editNews() {
 
 
     if (ids.length > 0) {
-        var url = '/update_news/' + ids.join(',');
+        var url = '/news-management/update_news/' + ids.join(',');
         window.location.href = url; // Chuyển hướng đến trang cập nhật với các newsId đã chọn
     } else {
 
@@ -42,10 +42,10 @@ function deleteNews() {
 
          if(confirm("Do you want to delete the record?")){
          }else {
-             window.location.href = '/news_list';
+             window.location.href = '/news-management/news_list';
          }
 // Sử dụng fetch để gửi yêu cầu POST với các tham số URL
-        fetch('/delete_news?' + params.toString(), {
+        fetch('/news-management/delete_news?' + params.toString(), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,7 +54,7 @@ function deleteNews() {
             .then(function (response) {
                 if (response.ok) {
 
-                    window.location.href = '/news_list'; // Chuyển hướng về danh sách tin tức
+                    window.location.href = '/news-management/news_list'; // Chuyển hướng về danh sách tin tức
                 }
             })
 
@@ -66,7 +66,7 @@ function deleteNews() {
 
 $('select').on('change', () => {
     var selectedOptionValue = $('select').val(); // Lấy giá trị của option được chọn
-    window.location.href = '/news_list?pageSize=' + selectedOptionValue;
+    window.location.href = '/news-management/news_list?pageSize=' + selectedOptionValue;
 });
 
 

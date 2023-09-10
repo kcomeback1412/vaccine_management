@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.*;
 
 @Controller
+@RequestMapping("/news-management")
 public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
@@ -79,7 +80,7 @@ public class NewsController {
         news.setNewsId(UUID.randomUUID().toString());
         newsRepository.save(news);
         redirectAttributes.addFlashAttribute("msg23", "Create successfully!");
-        return "redirect:/news_list";
+        return "redirect:/news-management/news_list";
     }
 
     @GetMapping("/update_news/{id}")
@@ -93,7 +94,7 @@ public class NewsController {
 
             return "news/update_news";
         } else {
-            return "redirect:/news_list";
+            return "redirect:/news-management/news_list";
         }
     }
 
@@ -113,9 +114,9 @@ public class NewsController {
 
             newsRepository.save(news);
             redirectAttributes.addFlashAttribute("msg22", "Update successfully!");
-            return "redirect:/news_list";
+            return "redirect:/news-management/news_list";
         } else {
-            return "redirect:/news_list";
+            return "redirect:/news-management/news_list";
         }
     }
 
@@ -128,7 +129,7 @@ public class NewsController {
                 newsRepository.deleteById(id);
             }
         }
-        return "redirect:/news_list";
+        return "redirect:/news-management/news_list";
     }
 }
 

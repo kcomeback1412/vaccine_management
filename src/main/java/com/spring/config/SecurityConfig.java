@@ -56,7 +56,8 @@ public class SecurityConfig {
 			"/customer-manage/**",
 			"/vaccineType-management/**",
 			"/injectionSchedule-management/**",
-			"/injection-result-management/**"
+			"/injection-result-management/**",
+			"/news-management/**"
     };
 
 	
