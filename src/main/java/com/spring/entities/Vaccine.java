@@ -55,6 +55,4 @@ public class Vaccine implements Serializable {
     @JoinColumn(name = "VACCINE_TYPE_ID")
     private VaccineType vaccineType;
 
-    @OneToMany(mappedBy = "vaccine2")
-    private List<InjectionResult> injectionResultList2;
 }

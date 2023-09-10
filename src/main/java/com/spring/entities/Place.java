@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,10 +20,17 @@ public class Place implements Serializable {
     @Column(name = "PLACE_NAME", length = 255)
     private String placeName;
     
-    @Column(name = "PLACE_ADRESS", length = 255)
-    private String placeAdress;
-    @OneToOne
-    @JoinColumn(name = "INJECTION_RESULT_ID")
-    private InjectionResult injectionResult2;
+    @Column(name = "PLACE_ADDRESS", length = 255)
+    private String placeAddress;
+
+    @OneToMany(mappedBy = "place")
+    private List<InjectionResult>  injectionResults;
+
+    public void addInjectionResult(InjectionResult injectionResult) {
+        if(injectionResults == null) {
+            injectionResults = new ArrayList<>();
+        }
+        injectionResults.add(injectionResult);
+    }
 
 }

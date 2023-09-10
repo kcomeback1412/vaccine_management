@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.spring.consts.StatusEnum;
@@ -35,5 +36,15 @@ public class VaccineType implements Serializable {
 
     @OneToMany(mappedBy = "vaccineType")
     private List<Vaccine> vaccineList;
+
+    @OneToMany(mappedBy = "vaccineType")
+    private List<InjectionResult>  injectionResults;
+
+    public void addInjectionResult(InjectionResult injectionResult) {
+        if(injectionResults == null) {
+            injectionResults = new ArrayList<>();
+        }
+        injectionResults.add(injectionResult);
+    }
 
 }
