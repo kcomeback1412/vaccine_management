@@ -55,7 +55,7 @@
                         <thead class="thead">
                         <tr class="table">
                             <th scope="col">
-                                <input type="checkbox" onclick="checkAndUncheckAll(this)">
+                                <input type="checkbox" onclick="checkAndUncheckAll(this)" class="checkboxAll">
                             </th>
                             <th scope="col" class="text-center text-white">Employee ID</th>
                             <th scope="col" class="text-center text-white">Employee Name</th>
@@ -71,7 +71,7 @@
                         <tr th:each="employee : ${userDetails.content}">
                             <td>
 
-                                <input type="checkbox" name="listId" th:value="${employee.id}"/>
+                                <input type="checkbox" name="listId"  th:value="${employee.id}" onclick="uncheckAll(this)"/>
 
                             </td>
                             <td class="text-center">

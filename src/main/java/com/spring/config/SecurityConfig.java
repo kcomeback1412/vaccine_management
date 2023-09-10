@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,28 +42,41 @@ public class SecurityConfig {
     		"/login",
     		"/js/**",
     		"/css/**",
-    		"/img/**"
-    }; 
+    		"/img/**",
+			"/logout",
+			"/api/v1/profile"
+
+    };
+
+	private final static String[] permitAdminLink = {
+			"/employee-management/**"
+	};
 	
 	private final static String[] permitEmployeeLink = {
-			"/vaccineType-management/**"
+			"/customer-manage/**",
+			"/vaccineType-management/**",
+			"/injectionSchedule-management/**",
+			"/injection-result-management/**"
     };
+
 	
 	private final static String[] permitCustomerLink = {
-			
+			"",
+			"/",
+			"/index",
+			"/home",
+			"/dashboard"
     };
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity.authorizeHttpRequests(auth -> {
-			auth.requestMatchers(permitAllLink).permitAll();
-			
-			auth.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name());
-
-			auth.requestMatchers(permitEmployeeLink).hasAuthority(RoleEnum.EMPLOYEE.name());
-			
-			auth.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.CUSTOMER.name());
+			auth.requestMatchers(permitAllLink).permitAll()
+				.requestMatchers(permitAdminLink).hasAuthority(RoleEnum.ADMIN.name())
+				.requestMatchers(permitEmployeeLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.ADMIN.name())
+				.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.CUSTOMER.name(), RoleEnum.EMPLOYEE.name(),RoleEnum.ADMIN.name())
+				.anyRequest().denyAll();
 		}).formLogin(form -> {
 				form.loginPage("/login")
 					.loginProcessingUrl("/login-check")
