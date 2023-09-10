@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,20 +38,38 @@ public class CustomerController {
 
 	@Autowired
 	UserDetailRepository userDetailRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		model.addAttribute("currentPage", pageNum);
+		
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		String id = "";
 		Integer totalCustomer = userDetailsService.countAllCustomer();
 		session.setAttribute("userDetailId", id);
+		model.addAttribute("start", (pageNum - 1) * pageSize + 1);
+		
+		if (pageNum != pageUserDetail.getTotalPages()) {
+            model.addAttribute("end", pageNum * pageSize);
+        } else {
+            model.addAttribute("end", totalCustomer);
+        }
+		model.addAttribute("currentPage", pageNum);
+//		if(pageNum != null) {
+//			model.addAttribute("currentPage", pageNum);
+//		}else {
+//			model.addAttribute("currentPage", 0);
+//		}
+		
 		model.addAttribute("totalCustomer", totalCustomer);
 		model.addAttribute("pageSize", pageSize);
+		
 		return "customer/customer_list";
 	}
 
@@ -72,6 +91,8 @@ public class CustomerController {
 	@PostMapping(value = "/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
+		
+		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
 		usersRepository.save(customer);
 		account.setUsers2(customer);
@@ -133,7 +154,7 @@ public class CustomerController {
 
 			// update password if new password != null
 			if(newPassword != null) {
-				userDB.setPassword(newPassword);
+				userDB.setPassword(encoder.encode(newPassword));
 			}
 
 			usersRepository.save(userDB);
