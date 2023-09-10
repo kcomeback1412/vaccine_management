@@ -56,9 +56,9 @@ public class SecurityConfig {
 			"/customer-manage/**",
 			"/vaccine-management/**",
 			"/vaccineType-management/**",
-			"/injectionSchedule-management/**",
-			"/injection-result-management/**",
-			"/news-management/**",
+			"/injectionSchedule-management/create_injectionSchedule",
+			"/injection-result-management/add-injection-result",
+			"/news-management/create_news",
 			"/report_injection_result"
     };
 
@@ -69,6 +69,7 @@ public class SecurityConfig {
 			"/index",
 			"/home",
 			"/dashboard",
+			"/injectionSchedule-management/list_injectionSchedule",
 			"/injection-result-management/vaccine_result_list",
 			"/news-management/news_list"
     };
