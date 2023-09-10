@@ -30,7 +30,7 @@
 							<i class="fa-solid fa-id-badge"></i>
 						</span>
 						<input type="text" name="fullName" class="form-control mr-3 rounded" id="nameInput" placeholder="Employee name"
-							required onchange="checkName(this.value)"  />
+						 onchange="checkName(this.value)"  />
 					</div>
 					<small id="nameInvalid" class="form-text text-danger" style="opacity: 0">
 						Name min-length is 5 and max-length is 100.
@@ -206,7 +206,7 @@
 							<i class="fa-solid fa-check"></i>
 						</span>
 						<input type="text" class="form-control mr-3 rounded" placeholder="Captcha" id="captchaInput"
-							onchange="checkCaptcha(this.value)"  />
+							required onchange="checkCaptcha(this.value)"  />
 					</div>
 					<small id="captchaInvalid" class="form-text text-danger" style="opacity: 0">
 						Captcha not match the code.

@@ -181,17 +181,17 @@ function validateCustomer() {
 }
 
 
-$("#username").blur(function(){
-	var usernameInput = $("#username").val();
+$("#nameInput").blur(function(){
+	var usernameInput = $("#nameInput").val();
 	$.ajax({
-		url : "",
+		url : "http://localhost:8080/customer-manage/create-customer",
 		data : "username=" + usernameInput,
 		success : function(result){
 			if(result == 'Duplicate'){
-				$("#emailMsg").html("Username already registererd!");
-				$("#email").focus();
+				$("#nameInput").html("Username already registererd!");
+				$("#nameInput").focus();
 			}else{
-				$("#emailMsg").html("");
+				$("#nameInput").html("");
 			}
 		}
 		
