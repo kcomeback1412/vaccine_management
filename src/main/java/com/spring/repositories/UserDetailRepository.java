@@ -21,7 +21,7 @@ import java.util.List;
 public interface UserDetailRepository extends JpaRepository<UserDetail, Integer> {
 	
 	@Query("SELECT u FROM UserDetail u WHERE u.id = ?1")
-	public UserDetail findByIdUserDetail(String id);
+	public UserDetail findByIdUserDetail(Integer id);
 
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
 	public List<UserDetail> findAllByUsers2RoleEnum(RoleEnum role);

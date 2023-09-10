@@ -29,6 +29,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
+    public UserDetail findByIdReturnUserDetail(Integer id) {
+        return userDetailRepository.findByIdUserDetail(id);
+    }
+
+    @Override
     public Page<UserDetail> findAll(Pageable pageable) {
         return userDetailRepository.findAll(pageable);
     }

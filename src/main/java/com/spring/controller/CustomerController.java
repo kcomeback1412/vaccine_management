@@ -102,7 +102,7 @@ public class CustomerController {
 		if (httpServletRequest.getParameterValues("id") != null
 				&& httpServletRequest.getParameterValues("id").length < 2) {
 			for (String id : httpServletRequest.getParameterValues("id")) {
-				userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+				userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(Integer.parseInt(id));
 				user = (Users) usersRepository.findByIdUser(id);
 				model.addAttribute("userDetailInfo", userDetail);
 				model.addAttribute("userInfo", user);
@@ -123,7 +123,7 @@ public class CustomerController {
 
 		for (String id : httpServletRequest.getParameterValues("userId")) {
 			Users userDB = (Users) usersRepository.findByIdUser(id);
-			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(Integer.parseInt(id));
 
 			userDetailDB.setFullName(userDetail.getFullName());
 			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());
