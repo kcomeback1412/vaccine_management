@@ -57,7 +57,8 @@ public class SecurityConfig {
 			"/vaccineType-management/**",
 			"/injectionSchedule-management/**",
 			"/injection-result-management/**",
-			"/news-management/**"
+			"/news-management/**",
+			"/report_injection_result"
     };
 
 	
@@ -66,7 +67,9 @@ public class SecurityConfig {
 			"/",
 			"/index",
 			"/home",
-			"/dashboard"
+			"/dashboard",
+			"/injection-result-management/vaccine_result_list",
+			"/news-management/news_list"
     };
 	
 	@Bean
@@ -74,7 +77,7 @@ public class SecurityConfig {
 		
 		httpSecurity.authorizeHttpRequests(auth -> {
 			auth.requestMatchers(permitAllLink).permitAll()
-				.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name())
+				.requestMatchers(permitAdminLink).hasAuthority(RoleEnum.ADMIN.name())
 				.requestMatchers(permitEmployeeLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.ADMIN.name())
 				.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.CUSTOMER.name(), RoleEnum.EMPLOYEE.name(),RoleEnum.ADMIN.name())
 				.anyRequest().denyAll();

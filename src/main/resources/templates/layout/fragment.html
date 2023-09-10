@@ -44,10 +44,18 @@
 					</div>
 				</div>
 				
-				<div class="card">
+				<div sec:authorize="hasAuthority('ADMIN')" class="card">
 					<div class="card-header p-3" id="headingOne">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Employee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseOne"
+									aria-expanded="false"
+									aria-controls="collapseOne"
+							>
+								Employee management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
@@ -64,10 +72,18 @@
 					</div>
 				</div>
 				
-				<div class="card"> 
+				<div sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingTwo">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Customer management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+								class="btn btn-link collapsed"
+								data-toggle="collapse"
+								data-target="#collapseTwo"
+								aria-expanded="false"
+								aria-controls="collapseTwo"
+							>
+								Customer management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
@@ -84,10 +100,18 @@
 					</div>
 				</div>
 				
-				<div class="card">
+				<div sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingThree">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Vaccine Type management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseThree"
+									aria-expanded="false"
+									aria-controls="collapseThree"
+							>
+								Vaccine Type management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
@@ -104,10 +128,18 @@
 					</div>
 				</div>
 				
-				<div class="card">
+				<div sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingFour">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Vaccine management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									
+							<a
+									class="btn btn-link collapsed"
+									data-toggle="collapse"
+									data-target="#collapseFour"
+									aria-expanded="false"
+									aria-controls="collapseFour"
+							>
+								Vaccine management <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
+							</a>
 						</h2>
 					</div>
 							
@@ -128,11 +160,11 @@
 					<div class="card-header p-3" id="headingFive">
 						<h2 class="mb-0">
 							<a
-									class="btn btn-link collapsed"
-									data-toggle="collapse"
-									data-target="#collapseFive"
-									aria-expanded="false"
-									aria-controls="collapseFive"
+								class="btn btn-link collapsed"
+								data-toggle="collapse"
+								data-target="#collapseFive"
+								aria-expanded="false"
+								aria-controls="collapseFive"
 							>
 								Injection Schedule <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
 							</a>
@@ -145,7 +177,7 @@
                         		<a  class="" th:href="@{/injectionSchedule-management/list_injectionSchedule}">Injection Schedule List</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
-                    		<li>
+                    		<li sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')">
 								<a class="" th:href="@{/injectionSchedule-management/create_injectionSchedule}">Create Injection Schedule</a>
                     		</li>
                 		</ul>
@@ -156,11 +188,11 @@
 					<div class="card-header p-3" id="headingSeven">
 						<h2 class="mb-0">
 							<a
-									class="btn btn-link collapsed"
-									data-toggle="collapse"
-									data-target="#collapseSeven"
-									aria-expanded="false"
-									aria-controls="collapseSeven"
+								class="btn btn-link collapsed"
+								data-toggle="collapse"
+								data-target="#collapseSeven"
+								aria-expanded="false"
+								aria-controls="collapseSeven"
 							>
 								Injection Result <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i>
 							</a>
@@ -173,7 +205,7 @@
                         		<a class="" th:href="@{/injection-result-management/vaccine_result_list}">Injection Result List</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
-                    		<li>
+                    		<li sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')">
                         		<a class="" th:href="@{/injection-result-management/add-injection-result}">Create Injection Result</a>
                     		</li>
                 		</ul>
@@ -193,14 +225,14 @@
                         		<a class="" th:href="@{/news-management/news_list}">News List</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
-                    		<li>
+                    		<li sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')">
                         		<a class="" th:href="@{/news-management/create_news}">Create News</a>
                     		</li>
                 		</ul>
 					</div>
 				</div>
 
-				<div class="card">
+				<div sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" class="card">
 					<div class="card-header p-3" id="headingNine">
 						<h2 class="mb-0">
 							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">Report <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus collapse"></i></a>									

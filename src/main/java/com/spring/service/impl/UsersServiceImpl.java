@@ -6,6 +6,8 @@ import com.spring.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsersServiceImpl implements UsersService {
     @Autowired
@@ -14,5 +16,10 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users save(Users user){
         return usersRepository.save(user);
+    }
+
+    @Override
+    public void deleteUserByListId(List<Integer> listID) {
+        usersRepository.deleteUserByListId(listID);
     }
 }
