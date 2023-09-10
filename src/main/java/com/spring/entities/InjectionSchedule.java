@@ -31,6 +31,4 @@ public class InjectionSchedule implements Serializable {
     @JoinColumn(name = "VACCINE_ID")
     private Vaccine vaccine1;
 
-    @OneToOne(mappedBy = "injectionSchedule")
-    InjectionResult injectionResult;
 }
