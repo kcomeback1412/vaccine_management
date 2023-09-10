@@ -54,10 +54,12 @@ public class SecurityConfig {
 	
 	private final static String[] permitEmployeeLink = {
 			"/customer-manage/**",
+			"/vaccine-management/**",
 			"/vaccineType-management/**",
-			"/injectionSchedule-management/**",
-			"/injection-result-management/**",
-			"/news-management/**"
+			"/injectionSchedule-management/create_injectionSchedule",
+			"/injection-result-management/add-injection-result",
+			"/news-management/create_news",
+			"/report_injection_result"
     };
 
 	
@@ -66,7 +68,10 @@ public class SecurityConfig {
 			"/",
 			"/index",
 			"/home",
-			"/dashboard"
+			"/dashboard",
+			"/injectionSchedule-management/list_injectionSchedule",
+			"/injection-result-management/vaccine_result_list",
+			"/news-management/news_list"
     };
 	
 	@Bean
@@ -74,7 +79,7 @@ public class SecurityConfig {
 		
 		httpSecurity.authorizeHttpRequests(auth -> {
 			auth.requestMatchers(permitAllLink).permitAll()
-				.requestMatchers("/**").hasAuthority(RoleEnum.ADMIN.name())
+				.requestMatchers(permitAdminLink).hasAuthority(RoleEnum.ADMIN.name())
 				.requestMatchers(permitEmployeeLink).hasAnyAuthority(RoleEnum.EMPLOYEE.name(), RoleEnum.ADMIN.name())
 				.requestMatchers(permitCustomerLink).hasAnyAuthority(RoleEnum.CUSTOMER.name(), RoleEnum.EMPLOYEE.name(),RoleEnum.ADMIN.name())
 				.anyRequest().denyAll();
