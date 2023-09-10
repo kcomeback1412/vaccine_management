@@ -1,6 +1,6 @@
-document.getElementById("cancel-button").addEventListener("click", function () {
-    history.back();
-});
+// document.getElementById("cancel-button").addEventListener("click", function () {
+//     history.back();
+// });
 
 
 function editNews() {
@@ -64,11 +64,32 @@ function deleteNews() {
 }
 
 
-function validateForm() {
-    var newsType = document.getElementById("new_type").value;
-    if (newsType === "" || newsType === "-- Select NewsType --") {
-        alert("Please select News Type.");
-        return false; // không cho gửi khi chưa chọn News Type
-    }
-    return true; // Cho phép gửi khi chọn News Type
-}
+$('select').on('change', () => {
+    var selectedOptionValue = $('select').val(); // Lấy giá trị của option được chọn
+    window.location.href = '/news_list?pageSize=' + selectedOptionValue;
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+    var checkAll = document.getElementById('checkAll');
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            // Xử lý khi checkbox trong tbody thay đổi
+        });
+    });
+
+    checkAll.addEventListener('change', function () {
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = checkAll.checked;
+        });
+    });
+});
+
+
+var alertElement = document.querySelector('.alert');
+alertElement.style.display = 'block';
+setTimeout(function() {
+    alertElement.style.display = 'none';
+}, 5000); // Ẩn sau 5 giây
