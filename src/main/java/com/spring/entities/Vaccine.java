@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -54,5 +55,16 @@ public class Vaccine implements Serializable {
     @ManyToOne
     @JoinColumn(name = "VACCINE_TYPE_ID")
     private VaccineType vaccineType;
+
+    @OneToMany(mappedBy = "vaccine")
+    private List<InjectionResult>  injectionResults;
+
+    public void addInjectionResult(InjectionResult injectionResult) {
+        if(injectionResults == null) {
+            injectionResults = new ArrayList<>();
+        }
+        injectionResults.add(injectionResult);
+    }
+
 
 }

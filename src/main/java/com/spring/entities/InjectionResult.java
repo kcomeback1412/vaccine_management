@@ -28,8 +28,8 @@ public class InjectionResult implements Serializable {
     private String numberOfInjection;
 
     @ManyToOne
-    @JoinColumn(name = "VACCINE_TYPE_ID")
-    private VaccineType vaccineType;
+    @JoinColumn(name = "VACCINE_ID")
+    private Vaccine vaccine;
 
     @OneToOne
     @JoinColumn(name = "INJECTION_SCHEDULE_ID")
