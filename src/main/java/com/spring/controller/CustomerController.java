@@ -87,7 +87,8 @@ public class CustomerController {
 	public String createCustomerUI() {
 		return "customer/create-customer";
 	}
-
+	
+	
 	@PostMapping(value = "/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
@@ -223,5 +224,5 @@ public class CustomerController {
 	public String listCustomer() {
 		return "redirect:/customer-manage/customer_list";
 	}
-
+	
 }

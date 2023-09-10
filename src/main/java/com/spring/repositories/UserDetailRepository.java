@@ -43,6 +43,9 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 	
 	@Query("SELECT u FROM UserDetail u JOIN Users us on u.id = us.usersId WHERE us.roleEnum = ?1 ")
 	public Page<UserDetail> findAllCustomerByRole(Pageable pageable, RoleEnum role);
+	
+	@Query("SELECT u FROM Users u where u.userName = ?1")
+	public String findByUsername(String username);
 
 	
 	

@@ -4,4 +4,6 @@ import com.spring.entities.Users;
 
 public interface UsersService {
     Users save(Users user);
+
+	String findByUsername(String username);
 }

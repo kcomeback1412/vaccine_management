@@ -181,3 +181,26 @@ function validateCustomer() {
 }
 
 
+$("#username").blur(function(){
+	var usernameInput = $("#username").val();
+	$.ajax({
+		url : "",
+		data : "username=" + usernameInput,
+		success : function(result){
+			if(result == 'Duplicate'){
+				$("#emailMsg").html("Username already registererd!");
+				$("#email").focus();
+			}else{
+				$("#emailMsg").html("");
+			}
+		}
+		
+	});
+});
+
+
+
+
+
+
+
