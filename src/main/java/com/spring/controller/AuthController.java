@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 public class AuthController {
 	
 	@GetMapping("/login")
-    public String loginUI(Model model){		
+    public String loginUI(Model model){				
         model.addAttribute("userInfo", new Users());
         return "login";
     }

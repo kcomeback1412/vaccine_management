@@ -30,7 +30,7 @@
 							<i class="fa-solid fa-id-badge"></i>
 						</span>
 						<input type="text" name="fullName" class="form-control mr-3 rounded" id="nameInput" placeholder="Employee name"
-							onchange="checkName(this.value)" required />
+							required onchange="checkName(this.value)"  />
 					</div>
 					<small id="nameInvalid" class="form-text text-danger" style="opacity: 0">
 						Name min-length is 5 and max-length is 100.
@@ -44,11 +44,11 @@
 							<i class="fa-solid fa-venus-mars"></i>
 						</span>
 						<div class="form-check mr-3">
-							<input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked />
+							<input class="form-check-input" type="radio" name="gender" id="gender1"  checked />
 							<label class="form-check-label ml-2" for="gender1"> Male </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gender" value="2" id="gender2" />
+							<input class="form-check-input" type="radio" name="gender"  id="gender2" />
 							<label class="form-check-label ml-2" for="gender2">
 								Female
 							</label>
@@ -65,7 +65,7 @@
 						<span class="mt-2 mr-2">
 							<i class="fa-solid fa-calendar-days"></i>
 						</span>
-						<input type="date" name="dateOfBirth" class="form-control mr-3 rounded" id="dateInput" required />
+						<input type="date" name="dateOfBirth" class="form-control mr-3 rounded" id="dateInput"  />
 					</div>
 				</div>
 
@@ -80,7 +80,7 @@
 							<i class="fa-solid fa-address-card"></i>
 						</span>
 						<input type="text" name="identityCard" class="form-control mr-3 rounded" placeholder="Identity card"
-							id="idCardInput" onchange="checkIdCard(this.value)" required />
+							id="idCardInput" onchange="checkIdCard(this.value)"  />
 					</div>
 					<small id="idCardInvalid" class="form-text text-danger" style="opacity: 0">
 						Identity card min-length is 5 max-length is 20.
@@ -97,7 +97,7 @@
 							<i class="fa-solid fa-location-dot"></i>
 						</span>
 						<input type="text" name="address" class="form-control mr-3 rounded" placeholder="Address" id="addressInput"
-							onchange="checkAddress(this.value)" required />
+							onchange="checkAddress(this.value)"  />
 					</div>
 					<small id="addressInvalid" class="form-text text-danger" style="opacity: 0">
 						Address min-length is 5 max-length is 100.
@@ -121,7 +121,7 @@
 							<i class="fa-solid fa-id-badge"></i>
 						</span>
 						<input type="text" name="userName" class="form-control mr-3 rounded" placeholder="Username" id="usernameInput"
-							onchange="checkUsername(this.value)" required />
+							onchange="checkUsername(this.value)"  />
 					</div>
 					<small id="usernameInvalid" class="form-text text-danger" style="opacity: 0">
 						Username min-length is 5 and max-length is 30.
@@ -138,7 +138,7 @@
 							<i class="fa-solid fa-lock"></i>
 						</span>
 						<input type="password" name="password" class="form-control mr-3 rounded" placeholder="Password"
-							id="passwordInput" onchange="checkPassword(this.value)" required />
+							id="passwordInput" onchange="checkPassword(this.value)"  />
 					</div>
 					<small id="passwordInvalid" class="form-text text-danger" style="opacity: 0">
 						Password min-length is 10 and max-length is 30.
@@ -155,7 +155,7 @@
 							<i class="fa-solid fa-lock"></i>
 						</span>
 						<input type="password" class="form-control mr-3 rounded" placeholder="Re-password"
-							id="rePasswordInput" onchange="checkRePassword(this.value)" required />
+							id="rePasswordInput" onchange="checkRePassword(this.value)"  />
 					</div>
 					<small id="rePasswordInvalid" class="form-text text-danger" style="opacity: 0">
 						Re-password not match the entered password.
@@ -172,7 +172,7 @@
 							<i class="fa-solid fa-phone"></i>
 						</span>
 						<input type="text" name="phone" class="form-control mr-3 rounded" placeholder="Phone number" id="phoneInput"
-							onchange="checkPhoneNumber(this.value)" required />
+							onchange="checkPhoneNumber(this.value)"  />
 					</div>
 					<small id="phoneInvalid" class="form-text text-danger" style="opacity: 0">
 						You must start phone number with “0” and number only.
@@ -189,7 +189,7 @@
 							<i class="fa-solid fa-envelope"></i>
 						</span>
 						<input type="email" name="email" class="form-control mr-3 rounded" placeholder="Email" id="emailInput"
-							onchange="checkEmail(this.value)" required />
+							onchange="checkEmail(this.value)"  />
 					</div>
 					<small id="emailInvalid" class="form-text text-danger" style="opacity: 0">
 						Email max-length is 100.
@@ -206,7 +206,7 @@
 							<i class="fa-solid fa-check"></i>
 						</span>
 						<input type="text" class="form-control mr-3 rounded" placeholder="Captcha" id="captchaInput"
-							onchange="checkCaptcha(this.value)" required />
+							onchange="checkCaptcha(this.value)"  />
 					</div>
 					<small id="captchaInvalid" class="form-text text-danger" style="opacity: 0">
 						Captcha not match the code.

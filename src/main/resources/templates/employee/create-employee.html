@@ -5,7 +5,7 @@
 <head>
   <title>Create Employee</title>
 
-	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-update-employee.css}"/>
+	<link rel="stylesheet" th:href="@{/css/employee-CSS/create-update-employee.css}"/>
 </head>
 
 <body>
@@ -45,7 +45,6 @@
 							placeholder="Employee name"
 							onchange="checkName(this.value)"
 							name="fullName"
-							required
 						/>
 					</div>
 					<small
@@ -103,7 +102,6 @@
 							class="form-control mr-3 rounded"
 							id="dateInput"
 							name="dateOfBirth"
-							required
 						/>
 					</div>
 				</div>
@@ -124,7 +122,6 @@
 							id="phoneInput"
 							onchange="checkPhoneNumber(this.value)"
 							name="phone"
-							required
 						/>
 					</div>
 					<small
@@ -152,7 +149,6 @@
 							id="addressInput"
 							onchange="checkAddress(this.value)"
 							name="address"
-							required
 						/>
 					</div>
 					<small
@@ -180,7 +176,6 @@
 							id="emailInput"
 							onchange="checkEmail(this.value)"
 							name="email"
-							required
 						/>
 					</div>
 					<small
@@ -277,7 +272,6 @@
 							id="usernameInput"
 							onchange="checkUsername(this.value)"
 							name="username"
-							required
 						/>
 					</div>
 					<small
@@ -305,7 +299,6 @@
 							id="passwordInput"
 							onchange="checkPassword(this.value)"
 							name="password"
-							required
 						/>
 					</div>
 					<small
@@ -332,7 +325,6 @@
 								placeholder="Re-password"
 								id="rePasswordInput"
 								onchange="checkRePassword(this.value)"
-								required
 						/>
 					</div>
 					<small

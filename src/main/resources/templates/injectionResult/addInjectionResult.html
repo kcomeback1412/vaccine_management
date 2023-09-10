@@ -4,7 +4,7 @@
 <head>
   <title>Add Injection Result</title>
   
-  <link rel="stylesheet" href="css/injection-result-CSS/addInjectionResult.css">
+  <link rel="stylesheet" th:href="@{/css/injection-result-CSS/addInjectionResult.css}">
 </head>
 
 <body>
@@ -12,20 +12,23 @@
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/addInjectionResult}" method="post" th:object="${injectionResult}">
+            <form
+					class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded"
+					th:action="@{/addInjectionResult}" method="post" th:object="${injectionResult}"
+			>
             	<div class="row my-5">
             		<div class="col">
-            			<span>Customer<span class="text-danger">(*)</span>:</span>
+            			<label for="idCusInput">Customer <span class="text-danger">(*)</span> :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="text" name="users3" placeholder="-Customer ID-">
+            				<input class="form-control px-2 py-4" id="idCusInput" type="text" name="users3" placeholder="-Customer ID-" />
             			</div>
             		</div>
             		
             		<div class="col">
-            			<span>Prevention<span class="text-danger">(*)</span>:</span>
+            			<label>Prevention <span class="text-danger">(*)</span> :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
@@ -37,12 +40,12 @@
             		</div>
             		
             		<div class="col">
-            			<span>Vaccine type<span class="text-danger">(*)</span>:</span>
+            			<label for="vaccineTypeInput">Vaccine type<span class="text-danger">(*)</span>:</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
             			
-            				<select class="form-select form-control px-2 py-4">
+            				<select class="form-select form-control px-2 py-4" id="vaccineTypeInput" name="vaccine2">
             					<option>-Select vaccine type-</option>
             				</select>
             			</div>
@@ -61,29 +64,40 @@
             		</div>
             		
             		<div class="col">
-            			<span>Date of injection:</span>
+            			<label for="injectionDateInput"> Date of injection : </label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
-            				
-            				<input class="form-control px-2 py-4" type="date">
+            				<input
+								class="form-control px-2 py-4"
+								id="injectionDateInput"
+								type="date"
+								name="injectionDate"
+								onchange="setMinDateNextInjection(this.value)"
+								required
+							/>
             			</div>
             		</div>
             		
             		<div class="col">
-            			<span>Next injection appointment:</span>
+            			<label for="nextInjectionDateInput">Next injection appointment :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="date">
+            				<input
+								class="form-control px-2 py-4"
+								id="nextInjectionDateInput"
+								type="date"
+								required
+							/>
             			</div>
             		</div>
             	</div>
             	
             	<div class="row my-5">
             		<div class="col-4">
-            			<span>Place of injection:</span>
+            			<label>Place of injection:</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
@@ -106,6 +120,6 @@
         </div>
 	</main>
 	
-	<script src=""></script>
+	<script th:src="@{/js/injection_result-JS/validate-injection_result.js}"></script>
 </body>
 </html>

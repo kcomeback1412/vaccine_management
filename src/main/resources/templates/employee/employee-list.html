@@ -4,7 +4,7 @@
 
 <head>
     <title>Employee List</title>
-    <link rel="stylesheet" th:href="@{/css/emloyee-CSS/employee-list.css}">
+    <link rel="stylesheet" th:href="@{/css/employee-CSS/employee-list.css}">
 </head>
 
 <body>
@@ -19,19 +19,20 @@
                 <div class="header_navbar">
                     <form id="page-size-option" th:action="@{/employee-management/employee-list}" method="get">
                         <div class="header_navbar-item">
-                            <span class="text mr-2">Show </span>
+                            <span class="text mr-2 mt-1">Show </span>
                             <select
                                     id="page-size-list"
-                                    class="form-select"
+                                    class="form-select form-control"
+                                    style="font-size: 1.4rem"
                                     name="pageSize"
                             >
-                                <option value="5" selected><i class="fa-solid fa-chevron-down"></i></option>
+                                <option value="5" th:selected="${pageSize==5}">5</option>
                                 <option value="10" th:selected="${pageSize==10}">10</option>
                                 <option value="25" th:selected="${pageSize==25}">25</option>
                                 <option value="50" th:selected="${pageSize==50}">50</option>
                                 <option value="100" th:selected="${pageSize==100}">100</option>
                             </select>
-                            <span class="text ml-2"> entries</span>
+                            <span class="text ml-2 mt-1"> entries</span>
                         </div>
                     </form>
                     <form th:action="@{/employee-management/employee-list}" method="get">
@@ -54,7 +55,7 @@
                         <thead class="thead">
                         <tr class="table">
                             <th scope="col">
-                                <input type="checkbox" onclick="checkAndUncheckAll(this)">
+                                <input type="checkbox" onclick="checkAndUncheckAll(this)" class="checkboxAll">
                             </th>
                             <th scope="col" class="text-center text-white">Employee ID</th>
                             <th scope="col" class="text-center text-white">Employee Name</th>
@@ -70,7 +71,7 @@
                         <tr th:each="employee : ${userDetails.content}">
                             <td>
 
-                                <input type="checkbox" name="listId" th:value="${employee.id}"/>
+                                <input type="checkbox" name="listId"  th:value="${employee.id}" onclick="uncheckAll(this)"/>
 
                             </td>
                             <td class="text-center">

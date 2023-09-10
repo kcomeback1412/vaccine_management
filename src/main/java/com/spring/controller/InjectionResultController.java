@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.entities.InjectionResult;
 import com.spring.repositories.InjectionResultRepository;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/injection-result-management")
 public class InjectionResultController {
 	
 	@Autowired
@@ -21,10 +23,10 @@ public class InjectionResultController {
 
 	@GetMapping("/vaccine_result_list")
 	public String VaccineResultList() {
-		return "Vaccine/vaccine_result_list";
+		return "vaccine/vaccine_result_list";
 	}
 
-	@GetMapping("/addInjectionResult")
+	@GetMapping("/add-injection-result")
     public String addInjectionResultUI(Model model) {	
 		
 		model.addAttribute("injectionResult", new InjectionResult());

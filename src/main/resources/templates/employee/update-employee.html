@@ -5,7 +5,7 @@
 <head>
   <title>UPDATE Employee</title>
 
-	<link rel="stylesheet" th:href="@{/css/emloyee-CSS/create-update-employee.css}"/>
+	<link rel="stylesheet" th:href="@{/css/employee-CSS/create-update-employee.css}"/>
 </head>
 
 <body>
@@ -52,7 +52,6 @@
 							th:value="${userDetailInfo.fullName}"
 							placeholder="Employee name"
 							onchange="checkName(this.value)"
-							required
 						/>
 					</div>
 					<small
@@ -110,7 +109,6 @@
 							type="date"
 							class="form-control mr-3 rounded"
 							id="dateInput"
-							required
 							name="dateOfBirth"
 							th:value="${userDetailInfo.dateOfBirth}"
 						/>
@@ -134,7 +132,6 @@
 							name="phone"
 							th:value="${userDetailInfo.phone}"
 							onchange="checkPhoneNumber(this.value)"
-							required
 						/>
 					</div>
 					<small
@@ -163,7 +160,6 @@
 							name="address"
 							th:value="${userDetailInfo.address}"
 							onchange="checkAddress(this.value)"
-							required
 						/>
 					</div>
 					<small
@@ -192,7 +188,6 @@
 							name="email"
 							th:value="${userDetailInfo.email}"
 							onchange="checkEmail(this.value)"
-							required
 						/>
 					</div>
 					<small
@@ -291,9 +286,59 @@
 							id="usernameInput"
 							th:value="${userDetailInfo.users2.userName}"
 							readonly
-							required
 						/>
 					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="newPasswordInput" class="font-weight-bold">
+						New Password
+					</label>
+					<div class="d-flex">
+                  <span class="mt-2 mr-2">
+                     <i class="fa-solid fa-lock"></i>
+                  </span>
+						<input
+								type="password"
+								class="form-control mr-3 rounded"
+								placeholder="Password"
+								id="newPasswordInput"
+								onchange="checkNewPassword(this.value)"
+								name="newPassword"
+						/>
+					</div>
+					<small
+							id="passwordInvalid"
+							class="form-text text-danger"
+							style="opacity: 0"
+					>
+						Password min-length is 10 and max-length is 30.
+					</small>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mb-2">
+					<label for="reNewPasswordInput" class="font-weight-bold">
+						Re-New Password
+					</label>
+					<div class="d-flex">
+                    <span class="mt-2 mr-2">
+                      <i class="fa-solid fa-lock"></i>
+                    </span>
+						<input
+								type="password"
+								class="form-control mr-3 rounded"
+								placeholder="Re-password"
+								id="reNewPasswordInput"
+								onchange="checkReNewPassword(this.value)"
+						/>
+					</div>
+					<small
+							id="rePasswordInvalid"
+							class="form-text text-danger"
+							style="opacity: 0"
+					>
+						Re-password not match the entered password.
+					</small>
 				</div>
 				<input type="hidden" name="users2" th:value="${userDetailInfo.users2.usersId}" />
 			</div>

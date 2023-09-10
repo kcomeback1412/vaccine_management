@@ -12,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -26,7 +29,7 @@ import java.util.List;
 
 @Controller
 @Transactional(rollbackFor = {Exception.class, Throwable.class})
-@RequestMapping("/employee-management/")
+@RequestMapping("/employee-management")
 public class EmployeeController {
     @Autowired
     UserDetailsService userDetailsService;
@@ -35,10 +38,14 @@ public class EmployeeController {
     UsersService usersService;
 
     @Autowired
-    UserDetailRepository userDetailRepository;
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/create-employee")
-    String addEmployeeUI() {
+    String addEmployeeUI(Model model) {
+//          Add user info
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("userRole", authentication.getAuthorities().toString());
         return "employee/create-employee";
     }
 
@@ -55,7 +62,7 @@ public class EmployeeController {
 
         Users user = new Users();
         user.setUserName(username);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setRoleEnum(RoleEnum.EMPLOYEE);
         usersService.save(user);
 
@@ -70,7 +77,7 @@ public class EmployeeController {
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         redirectAttributes.
                 addFlashAttribute("msgSuccess", "Create employee success!");
-        return "redirect:/employee-list";
+        return "redirect:/employee-management/employee-list";
     }
 
     //    Delete employee
@@ -87,7 +94,7 @@ public class EmployeeController {
             redirectAttributes.
                     addFlashAttribute("msgError", "You must select employee to delete");
         }
-        return "redirect:/employee-list";
+        return "redirect:/employee-management/employee-list";
     }
 
     //    Update employee UI
@@ -97,10 +104,15 @@ public class EmployeeController {
             RedirectAttributes redirectAttributes,
             Model model
     ) {
+//          Add user info
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("userRole", authentication.getAuthorities().toString());
+
         if ((listId != null) && (listId.size() > 1)) {
             redirectAttributes.
                     addFlashAttribute("msgError", "You can only select 1 employee to update");
-            return "redirect:/employee-list";
+            return "redirect:/employee-management/employee-list";
         } else if ((listId != null) && (listId.size() == 1)) {
             model.addAttribute("userDetailInfo", userDetailsService.findById(listId.get(0)).orElse(null));
 
@@ -108,7 +120,7 @@ public class EmployeeController {
         } else {
             redirectAttributes.
                     addFlashAttribute("msgError", "You must select employee to update");
-            return "redirect:/employee-list";
+            return "redirect:/employee-management/employee-list";
         }
 
     }
@@ -117,16 +129,21 @@ public class EmployeeController {
     @PostMapping(value = "/delete-update-employee", params = "update-save")
     public String updateEmployee(
             @ModelAttribute("employeeUpdate") UserDetail userDetail,
+            @RequestParam(name = "newPassword") String newPassword,
             RedirectAttributes redirectAttributes
     ) {
+
         String name = ConvertName.replaceAllSpace(userDetail.getFullName());
         userDetail.setFullName(name);
         userDetail.setCode(ConvertName.convertNameToCode(name) + userDetail.getUsers2().getUsersId());
+        if(newPassword != null) {
+            userDetail.getUsers2().setPassword(passwordEncoder.encode(newPassword));
+            usersService.save(userDetail.getUsers2());
+        }
 
-//        userDetailsService.save(userDetail);
-        userDetailRepository.save(userDetail);
+        userDetailsService.save(userDetail);
         redirectAttributes.addFlashAttribute("msgSuccess", "Update employee success");
-        return "redirect:/employee-list";
+        return "redirect:/employee-management/employee-list";
     }
 
     @GetMapping("/employee-list")
@@ -136,6 +153,11 @@ public class EmployeeController {
             @RequestParam(name = "nameForSearch",required = false) String nameForSearch,
             Model model
     ) {
+//          Add user info
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("userRole", authentication.getAuthorities().toString());
+
         Integer totalEmployee = userDetailsService.countAllEmployee();
         model.addAttribute("totalEmployee", totalEmployee);
         model.addAttribute("pageSize", pageSize);
@@ -146,7 +168,7 @@ public class EmployeeController {
         if( nameForSearch == null || nameForSearch.isEmpty()) {
             listEmployee = userDetailsService.findAllEmployee();
         } else  {
-            listEmployee = userDetailsService.findAllByFullName(nameForSearch);
+            listEmployee = userDetailsService.findAllEmployeeByFullNameLike(nameForSearch);
             model.addAttribute("nameForSearch", nameForSearch);
             model.addAttribute("totalEmployee", listEmployee.size());
         }

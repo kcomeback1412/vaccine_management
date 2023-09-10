@@ -2,17 +2,18 @@ package com.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.consts.RoleEnum;
@@ -20,6 +21,7 @@ import com.spring.entities.UserDetail;
 import com.spring.entities.Users;
 import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
+import com.spring.service.UserDetailsService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -27,24 +29,47 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/customer-manage")
 public class CustomerController {
+	
+	@Autowired
+    UserDetailsService userDetailsService;
 
 	@Autowired
 	UsersRepository usersRepository;
 
 	@Autowired
 	UserDetailRepository userDetailRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		model.addAttribute("currentPage", pageNum);
-
-		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+		
+		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		String id = "";
+		Integer totalCustomer = userDetailsService.countAllCustomer();
 		session.setAttribute("userDetailId", id);
+		model.addAttribute("start", (pageNum - 1) * pageSize + 1);
+		
+		if (pageNum != pageUserDetail.getTotalPages()) {
+            model.addAttribute("end", pageNum * pageSize);
+        } else {
+            model.addAttribute("end", totalCustomer);
+        }
+		model.addAttribute("currentPage", pageNum);
+//		if(pageNum != null) {
+//			model.addAttribute("currentPage", pageNum);
+//		}else {
+//			model.addAttribute("currentPage", 0);
+//		}
+		
+		model.addAttribute("totalCustomer", totalCustomer);
+		model.addAttribute("pageSize", pageSize);
+		
 		return "customer/customer_list";
 	}
 
@@ -53,7 +78,7 @@ public class CustomerController {
 		Integer pageNum = 1;
 		Integer pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 		return pageUserDetail;
 	}
 
@@ -62,10 +87,13 @@ public class CustomerController {
 	public String createCustomerUI() {
 		return "customer/create-customer";
 	}
-
+	
+	
 	@PostMapping(value = "/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
+		
+		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
 		usersRepository.save(customer);
 		account.setUsers2(customer);
@@ -111,18 +139,24 @@ public class CustomerController {
 	// Update by id
 	@PostMapping(value = "/update-delete-customer", params = "save-update")
 	public String updateCustomerInfo(@ModelAttribute("userDetailInfo") UserDetail userDetail,
-			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest) {
+			@ModelAttribute("userInfo") Users user, HttpServletRequest httpServletRequest,
+		 	@RequestParam(name = "newPassword") String newPassword
+	) {
 
 		for (String id : httpServletRequest.getParameterValues("userId")) {
 			Users userDB = (Users) usersRepository.findByIdUser(id);
 			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
-			System.out.println(user.getUserName());
 
 			userDetailDB.setFullName(userDetail.getFullName());
 			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());
 			userDetailDB.setGender(userDetail.getGender());
 			userDetailDB.setAddress(userDetail.getAddress());
 			userDetailDB.setPhone(userDetail.getPhone());
+
+			// update password if new password != null
+			if(newPassword != null) {
+				userDB.setPassword(encoder.encode(newPassword));
+			}
 
 			usersRepository.save(userDB);
 			userDetailDB.setUsers2(userDB);
@@ -148,7 +182,7 @@ public class CustomerController {
 			if (!(idAndName.equals(id))) {
 				Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 				model.addAttribute("currentPage", pageNum);
-				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailWithPagin(idAndName, pageable);
+				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailCustomerWithPagin(idAndName,RoleEnum.CUSTOMER, pageable);
 				model.addAttribute("pageUserDetail", pageUserDetail);
 				session.setAttribute("userDetailId", idAndName);
 				return "customer/customer_list";
@@ -164,13 +198,12 @@ public class CustomerController {
 	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, Model model,
 			HttpSession session, HttpServletRequest pageSize) {
 		String blank = "";
-		String number = "^\\d+$";
 		for (String size : pageSize.getParameterValues("show")) {
-			if (!(size.equals(blank)) && !(size.equals("^\\d+$"))) {
+			if (!(size.equals(blank))) {
 				Pageable pageable = PageRequest.of(pageNum - 1, Integer.parseInt(size));
 				model.addAttribute("currentPage", pageNum);
 
-				Page<UserDetail> pageUserDetail = userDetailRepository.findAll(pageable);
+				Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 				model.addAttribute("pageUserDetail", pageUserDetail);
 				String id = "";
 				session.setAttribute("userDetailId", id);
@@ -181,5 +214,15 @@ public class CustomerController {
 		}
 		return "customer/customer_list";
 	}
-
+	
+	@GetMapping(value = "/search-customer")
+	public String searchCustomer() {
+		return "redirect:/customer-manage/customer_list";
+	}
+	
+	@GetMapping(value = "/list-customer")
+	public String listCustomer() {
+		return "redirect:/customer-manage/customer_list";
+	}
+	
 }

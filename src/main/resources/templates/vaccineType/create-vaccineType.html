@@ -2,18 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
 
 <head>
-  <title>Update Vaccine Type</title>
+  <title>Create Vaccine Type</title>
   
-  <link rel="stylesheet" href="/css/vaccine-type-CSS/addVaccineType.css">
+  <link rel="stylesheet" th:href="@{/css/vaccine-type-CSS/addVaccineType.css}">
 </head>
 
 <body>
-	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE VACCINE TYPE</h2>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE TYPE</h2>
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded"
-				  th:action="@{/updateVaccineType}" method="post" th:object="${vaccineType}">
+            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/vaccineType-management/create-vaccineType}" method="post" th:object="${vaccineType}">
             	<div class="row my-5">
             		<div class="col">
             			<span>Vaccine Type Code<span class="text-danger">(*)</span>:</span>
@@ -21,8 +20,12 @@
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="text" th:value="${vaccineTypeId}" name="vaccineTypeId" readonly>
+            				<input class="form-control px-2 py-4" type="text" name="vaccineTypeId" placeholder="-Vaccine Type Code-">
             			</div>
+            			
+						<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeId')}" th:errorclass="error" th:errors="*{vaccineTypeId}"></span>
+						
+						<span class="text-danger font-weight-bold" th:text="${vaccineTypeIdMsg}"></span>
             		</div>
             		
             		<div class="col">
@@ -31,12 +34,10 @@
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="text" th:value="${vaccineTypeName}" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
+            				<input class="form-control px-2 py-4" type="text" name="vaccineTypeName" placeholder="-Vaccine Type Name-">
             			</div>
             			
             			<span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('vaccineTypeName')}" th:errorclass="error" th:errors="*{vaccineTypeName}"></span>
-            			
-            			<span class="text-danger font-weight-bold" th:text="${vaccineTypeNameMsg}"></span>
             		</div>
             		
             		<div class="col">
@@ -45,7 +46,7 @@
             			<div class="mt-3">
             				<i class="fa-solid fa-check-to-slot mr-3"></i>
             				
-            				<input class="w-auto" type="checkbox" name="activeCheckBox" th:checked="${checked}">
+            				<input class="w-auto" type="checkbox" name="activeCheckBox" checked disabled>
             			</div>
             		</div>
             	</div>
@@ -57,7 +58,7 @@
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-file-lines mr-4"></i>
             				
-            				<textarea class="form-control p-2" rows="4" cols="100" th:text="${description}" name="description"></textarea>
+            				<textarea class="form-control p-2" rows="4" cols="100" name="description"></textarea>
             			</div>
             		</div>
             	</div>
@@ -69,7 +70,7 @@
             			<div class="d-flex align-items-center mt-2">
             				<i class="fa-solid fa-image mr-3"></i>
             				
-            				<input class="w-auto rounded border p-1" type="file">
+            				<input class="w-auto rounded border p-1" type="file" name="image">
             			</div>
             		</div>
             	</div>
@@ -78,9 +79,9 @@
             		<div class="col">
             			<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
             			<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
-						<a href="/vaccine-type-list">
+            			<a th:href="@{/vaccineType-management/vaccineType-list}">
             				<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
-            			</a>            		
+            			</a>
             		</div>
             	</div>
             </form>     

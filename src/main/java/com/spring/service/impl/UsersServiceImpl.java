@@ -15,4 +15,10 @@ public class UsersServiceImpl implements UsersService {
     public Users save(Users user){
         return usersRepository.save(user);
     }
+
+	@Override
+	public String findByUsername(String username) {
+		Users user = usersRepository.findByUserName(username);
+		return (user == null) ? "Unique" : "Duplicate";
+	}
 }

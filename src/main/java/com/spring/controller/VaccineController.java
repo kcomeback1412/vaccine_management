@@ -32,6 +32,7 @@ public class VaccineController {
     public String VaccineList(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize,
+            @RequestParam(name = "nameForSearchVaccine",required = false) String nameForSearchVaccine,
             Model model) {
         model.addAttribute("option", pageSize);
 
@@ -39,10 +40,18 @@ public class VaccineController {
 
         PageRequest pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 
-        Page<Vaccine> vaccines = vaccineRepository.findAll(pageable);
+        Page<Vaccine> vaccines;
+//        = vaccineRepository.findAll(pageable)
 
+
+
+        if(nameForSearchVaccine == null || nameForSearchVaccine.isEmpty()) {
+            vaccines = vaccineRepository.findAll(pageable);
+        } else  {
+            vaccines = vaccineRepository.findPageByNameLike(nameForSearchVaccine, pageable);
+            model.addAttribute("nameForSearch", nameForSearchVaccine);
+        }
         model.addAttribute("vaccineList", vaccines);
-
         model.addAttribute("start", (pageNum - 1) * pageSize + 1);
 
         if (pageNum != vaccines.getTotalPages()) {
@@ -65,7 +74,7 @@ public class VaccineController {
             model.addAttribute("next", (pageNum + 1));
         }
 
-        return "Vaccine/vaccine_list";
+        return "vaccine/vaccine_list";
     }
 
 
@@ -77,7 +86,7 @@ public class VaccineController {
         List<VaccineType> vaccineTypes = vaccineTypeRepository.findAll();
         model.addAttribute("vaccineTypes", vaccineTypes);
 
-        return "Vaccine/add-vaccine";
+        return "vaccine/add-vaccine";
     }
 
     @PostMapping("/add-vaccine")
@@ -87,13 +96,13 @@ public class VaccineController {
             Model model) {
        if (result.hasErrors()) {
            System.out.println(1);
-            return "Vaccine/add-vaccine";
+            return "vaccine/add-vaccine";
         }
 
        if (null != vaccineRepository.checkVaccineId(vaccine.getVaccineId())) {
             model.addAttribute("vaccineIdMsg", "This code is already existed!");
            System.out.println(2);
-            return "Vaccine/add-vaccine";
+            return "vaccine/add-vaccine";
        }
 
         vaccine.setVaccineStatus(StatusEnum.ACTIVE);
@@ -112,17 +121,14 @@ public class VaccineController {
             Model model) {
         List<VaccineType> vaccineTypes = vaccineTypeRepository.findAll();
         model.addAttribute("vaccineTypes", vaccineTypes);
-
-
         model.addAttribute("vaccine", vaccineRepository.findById(id).orElse(null));
-
 
         if (vaccineRepository.findById(id).orElse(null).getVaccineStatus() == StatusEnum.ACTIVE) {
 
             model.addAttribute("checked", "checked");
         }
 
-        return "Vaccine/update-vaccine";
+        return "vaccine/update-vaccine";
     }
 
     @PostMapping("/update-vaccine-list")
@@ -137,7 +143,7 @@ public class VaccineController {
             }
             return "redirect:/vaccine_list";
         } catch (Exception e) {
-            return "Vaccine/vaccine_list";
+            return "vaccine/vaccine_list";
         }
     }
 
@@ -153,7 +159,7 @@ public class VaccineController {
         if (result.hasErrors()) {
             model.addAttribute("vaccineId", vaccineRepository.findById(id).orElse(null).getVaccineId());
 
-            return "Vaccine/update-vaccine";
+            return "vaccine/update-vaccine";
         }
 
         if (active)
@@ -170,7 +176,7 @@ public class VaccineController {
     // IMPORT
     @GetMapping("/import_vaccine")
     public String ImportVaccine() {
-        return "Vaccine/import_vaccine";
+        return "vaccine/import_vaccine";
     }
 	
 

@@ -4,7 +4,7 @@
 
 <head>
     <title>Vaccine List</title>
-    <link rel="stylesheet" href="css/emloyee-CSS/employee-list.css">
+    <link rel="stylesheet" th:href="@{/css/employee-CSS/employee-list.css}">
 </head>
 
 <body>
@@ -28,8 +28,12 @@
                         <span class="text">entries</span>
                     </div>
                     <div class="header_navbar-item">
-                        <span class="text">Search:</span>
-                        <input class="dropdown-list-search" type="text">
+                        <form th:action="@{/vaccine_list}">
+                            <div class="header_navbar-item">
+                                <span class="text">Search:</span>
+                                <input name="nameForSearchVaccine" class="dropdown-list-search" th:value="${nameForSearchVaccine}" type="text" placeholder="Enter name..."/>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -136,7 +140,7 @@
         </div>
     </div>
 </main>
-<script src="/js/vaccine-JS/vaccine-list.js"></script>
+<script th:src="@{/js/vaccine-JS/vaccine-list.js}"></script>
 </body>
 
 </html>
