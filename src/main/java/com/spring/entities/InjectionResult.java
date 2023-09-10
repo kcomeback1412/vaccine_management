@@ -30,9 +30,6 @@ public class InjectionResult implements Serializable {
     @Column(name = "NUMBER_OF_INJECTION", length = 100)
     private String numberOfInjection;
 
-    @Column(name = "PREVENTION", length = 100)
-    private String prevention;
-
     @ManyToOne
     @JoinColumn(name = "VACCINE_ID")
     private Vaccine vaccine2;
@@ -40,4 +37,11 @@ public class InjectionResult implements Serializable {
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
     private Users users3;
+
+    @OneToOne(mappedBy = "injectionResult2")
+    private Place place;
+
+    @OneToOne(mappedBy = "injectionResult1")
+    private Prevention prevention;
+
 }

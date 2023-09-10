@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequestMapping("/vaccine-management")
 public class VaccineController {
     @Autowired
     VaccineRepository vaccineRepository;
@@ -41,9 +42,6 @@ public class VaccineController {
         PageRequest pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 
         Page<Vaccine> vaccines;
-//        = vaccineRepository.findAll(pageable)
-
-
 
         if(nameForSearchVaccine == null || nameForSearchVaccine.isEmpty()) {
             vaccines = vaccineRepository.findAll(pageable);
@@ -74,7 +72,7 @@ public class VaccineController {
             model.addAttribute("next", (pageNum + 1));
         }
 
-        return "vaccine/vaccine_list";
+        return "Vaccine/vaccine_list";
     }
 
 
@@ -111,7 +109,7 @@ public class VaccineController {
 
 
         System.out.println(3);
-        return "redirect:/vaccine_list";
+        return "redirect:/vaccine-management/vaccine_list";
     }
 
     // UPDATE
@@ -141,7 +139,7 @@ public class VaccineController {
                     vaccineRepository.save(vaccine);
                 }
             }
-            return "redirect:/vaccine_list";
+            return "redirect:/vaccine-management/vaccine_list";
         } catch (Exception e) {
             return "vaccine/vaccine_list";
         }
@@ -169,7 +167,7 @@ public class VaccineController {
 
         vaccineRepository.save(vaccine);
 
-        return "redirect:/vaccine_list";
+        return "redirect:/vaccine-management/vaccine_list";
     }
 
 

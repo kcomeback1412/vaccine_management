@@ -84,11 +84,10 @@
 					</div>
 					<div class="footer_buttons">
 						<div class="button_bussiness">
-							<span class="text_details">Showing 1 to 5 of ... entries</span>
-							<!-- <span class="text_details"
-                              th:text="'Showing '+ ${((currentPage - 1) * pageSize) + (pageUserDetail.content.size() > 0  ? 1 : 0)}
+							  <span  th:if="${pageUserDetail.totalPages != 0}" class="text_details"
+									 th:text="'Showing '+ ${((currentPage - 1) * pageSize) + (pageUserDetail.content.size() > 0  ? 1 : 0)}
                               + ' to ' + ${((currentPage - 1) * pageSize) + pageUserDetail.content.size()}
-                              + ' of ' + ${totalEmployee} + ' employee'">  </span> -->
+                              + ' of ' + ${totalCustomer} + ' customer'">  </span>
 							
 							<div class="buttons">
 								<a class="btn-create" th:href="@{/customer-manage/create-customer}">Register</a>
@@ -100,7 +99,7 @@
 							</div>
 
 						</div>
-						<ul class="pagination" style="display: flex;">
+						<ul class="pagination" style="display: flex;" th:if="${pageUserDetail.totalPages != 0}">
 							<li th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 								<a th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}"
 									class="page-link">

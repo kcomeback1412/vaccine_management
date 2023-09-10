@@ -11,7 +11,7 @@
 	<h2 class="my-0 ml-auto mr-auto" id="content_title">CREATE VACCINE</h2>
 	<main>
 		<form action="#" class="px-3 py-4" onsubmit="return validateVaccine()"
-			  th:action="@{/add-vaccine}" method="post" th:object="${vaccine}">
+			  th:action="@{/vaccine-management/add-vaccine}" method="post" th:object="${vaccine}">
 			<div class="body1">
 				<div class="container-fluid  bg-white">
 					<div class="container-fluid">
@@ -182,7 +182,7 @@
 							<div class="buttons">
 								<button type="submit" class="btn-create">Save</button>
 								<button type="reset" class="btn-update">Reset</button>
-								<button type="button" class="btn-delete"><a th:href="@{/vaccine_list}">Cancel</a></button>
+								<button type="button" class="btn-delete"><a th:href="@{/vaccine-management/vaccine_list}">Cancel</a></button>
 							</div>
 						</div>
 					</div>
