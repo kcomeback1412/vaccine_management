@@ -76,7 +76,7 @@
             </div>
             <div class="footer_buttons">
                 <div class="button_bussiness">
-                    <span class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
+                    <span  th:if="${vaccineList.totalPages != 0}" class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
                     <div class="buttons">
                         <button class="btn-create" ><a class="btn-create" th:href="@{/vaccine-management/add-vaccine}">New Vaccine</a></button>
                         <button type="button" class="btn-delete">Make In-Active</button>
@@ -86,7 +86,7 @@
 
 
                 <div class="d-flex">
-                    <ul class="pagination">
+                    <ul class="pagination"  th:if="${vaccineList.totalPages != 0}">
                         <li class="page-item mx-3">
                             <a th:class="${prevStatus}" th:href="@{'/vaccine-management/vaccine_list?pageNum=' + ${prev}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
