@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+
+<head>
+    <title>Chart</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../static/css/news-CSS/list.css">
+    <link rel="stylesheet" th:href="@{/css/news-CSS/list.css}"/>
+</head>
+<body>
+<h4 class="my-0 ml-auto mr-auto" id="content_title">REPORT INJECTION CHART</h4>
+<main>
+    <div class="daily">
+        <label>Display Type:</label>
+        <div class="btn-radio">
+            <input type="radio" id="report" name="brand" value="report">
+            <label for="report">Report</label>
+            <input type="radio" id="chart" name="brand" value="chart">
+            <label for="chart">Chart</label>
+        </div>
+    </div>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+
+</main>
+<script th:src="@{/js/reports-JS/chart.js}"></script>
+
+</body>
+</html>
