@@ -42,9 +42,10 @@ function validateInjectionResult() {
     let customerID =            document.querySelector("#idCusInput").value;
     let injectionResultID =     document.querySelector("#injectionResultIdInput").value;
 
+
     if(checkCustomerId(customerID) && checkInjectionResultId(injectionResultID)) {
         return true;
-    } else {
+    }  else {
         alert("You must input all required fields in correct format !!")
         return false;
     }

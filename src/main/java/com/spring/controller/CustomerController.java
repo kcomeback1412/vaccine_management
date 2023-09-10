@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,9 @@ public class CustomerController {
 
 	@Autowired
 	UserDetailRepository userDetailRepository;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
@@ -73,6 +77,8 @@ public class CustomerController {
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
+		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
@@ -133,7 +139,7 @@ public class CustomerController {
 
 			// update password if new password != null
 			if(newPassword != null) {
-				userDB.setPassword(newPassword);
+				userDB.setPassword(passwordEncoder.encode(newPassword));
 			}
 
 			usersRepository.save(userDB);
