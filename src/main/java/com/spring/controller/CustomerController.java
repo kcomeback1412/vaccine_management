@@ -52,7 +52,7 @@ public class CustomerController {
 
 
 	@GetMapping("/customer_list")
-	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "0") Integer pageNum,
+	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -76,15 +76,6 @@ public class CustomerController {
 		
 		return "customer/customer_list";
 	}
-
-//	@ModelAttribute("pageUserDetail")
-//	Page<UserDetail> pageData() {
-//		Integer pageNum = 1;
-//		Integer pageSize = 5;
-//		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-//		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
-//		return pageUserDetail;
-//	}
 
 	// Create
 	@GetMapping("/create-customer")
@@ -111,9 +102,9 @@ public class CustomerController {
 	public String deleteCustomer(HttpServletRequest httpServletRequest) {
 		if (httpServletRequest.getParameterValues("id") != null) {
 			for (String id : httpServletRequest.getParameterValues("id")) {
-				List<String> listId = new ArrayList<String>();
-				listId.add(id);
-				injectionResultService.deleteAllByCustomerID(Integer.parseInt(id));
+//				List<String> listId = new ArrayList<String>();
+//				listId.add(id);
+//				injectionResultService.deleteAllByCustomerID(Integer.parseInt(id));
 				userDetailRepository.deleteById(Integer.parseInt(id));
 				usersRepository.deleteById(Integer.parseInt(id));
 			}
