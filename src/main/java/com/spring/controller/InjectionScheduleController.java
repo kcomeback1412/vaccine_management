@@ -1,18 +1,13 @@
 package com.spring.controller;
 
-import com.spring.consts.StatusEnum;
 import com.spring.entities.InjectionSchedule;
 import com.spring.entities.Vaccine;
-import com.spring.entities.VaccineType;
 import com.spring.repositories.InjectionScheduleRepository;
 import com.spring.repositories.VaccineRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

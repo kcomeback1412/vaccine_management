@@ -1,4 +1,3 @@
-
 function checkAndUncheckAll(source){
     let checkboxes = document.getElementsByName("listId");
     for (let i = 0; i < checkboxes.length ; i++) {
@@ -22,6 +21,7 @@ function uncheckAll(source) {
             checkboxAll.checked = true;
         }
     }
+
 }
 
 document.querySelector("#page-size-list").addEventListener("change", function (){

@@ -31,8 +31,8 @@
                 </div>
             </div>
         </div>
-        <div class="body2">
-            <form id="tableForm" th:action="@{/injectionSchedule-management/create_injectionSchedule}" method="post">
+        <div class="body2 d-flex flex-column align-items-center">
+            <form class="w-100" id="tableForm" th:action="@{/injectionSchedule-management/create_injectionSchedule}" method="post">
                 <table class="table table-striped table-bordered">
                     <thead class="thead">
                         <tr class="table">
@@ -55,16 +55,15 @@
                             <th class="border" th:text="${d.vaccine1.vaccineStatus}"></th>
                             <th class="border" th:text="${d.description}"></th>
                         </tr>
-
-                        </tr>
                     </tbody>
                 </table>
             </form>
+            <h4 class="font-weight-bold" th:if="${injectionScheduleList.totalPages == 0}">Not found</h4>
         </div>
         <div class="footer_buttons">
             <div class="button_bussiness">
                 <span class="text_details">Showing 1 to 5 of ... entries</span>
-                <div class="buttons">
+                <div class="buttons" sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" >
                     <button class="btn-create"><a class="btn-create" th:href="@{/create_injectionSchedule}">New Injection Schedule</a></button>
                     <button class="btn-update"><a class="btn-update" th:href="@{/update_injectionSchedule}">Update Injection Schedule</a></button>
                 </div>
@@ -72,14 +71,12 @@
             <div class="paging">
                 <div class="paging_buton">
                     <button class="button">
-                        <</button>
+                        </button>
                             <button class="button">1</button>
                             <button class="button">2</button>
-
                 </div>
             </div>
         </div>
-
     </div>
 	</main>
     <script th:src="@{/js/injectionSchedule-JS/validate-injectionSchedule.js}"></script>

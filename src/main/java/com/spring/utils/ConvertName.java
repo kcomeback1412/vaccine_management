@@ -1,5 +1,8 @@
 package com.spring.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public class ConvertName {
 
     public static String replaceAllSpace(String name) {
@@ -25,6 +28,5 @@ public class ConvertName {
         }
         return result;
     }
-
 
 }

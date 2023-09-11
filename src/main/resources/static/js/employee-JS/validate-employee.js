@@ -120,19 +120,48 @@ function checkRePassword(value) {
   }
 }
 
+function checkNewPassword(value) {
+  let passwordInvalid = document.querySelector("#newPasswordInput");
+
+  if ((value.length > 30) || (value.length < 10)) {
+    passwordInvalid.style.setProperty("opacity", 1);
+    return false;
+  } else if(value.empty()) {
+    passwordInvalid.style.setProperty("opacity", 0);
+    return true;
+  } else {
+    passwordInvalid.style.setProperty("opacity", 0);
+    return true;
+  }
+}
+
+function checkReNewPassword(value) {
+  let rePasswordInvalid = document.querySelector("#reNewPasswordInput");
+  let newPasswordValue = document.querySelector("#newPasswordInput").value;
+  if (newPasswordValue != value) {
+    rePasswordInvalid.style.setProperty("opacity", 1);
+    return false;
+  } else {
+    rePasswordInvalid.style.setProperty("opacity", 0);
+    return true;
+  }
+}
+
 
 function validateEmployee() {
   let employeeInvalid = document.querySelector("#employeeInvalid");
 
-  let name = document.querySelector("#nameInput").value;
-  let phoneNumber = document.querySelector("#phoneInput").value;
-  let address = document.querySelector("#addressInput").value;
-  let email = document.querySelector("#emailInput").value;
-  let workingPlace = document.querySelector("#workPlaceInput").value;
-  let position = document.querySelector("#positionInput").value;
-  let username = document.querySelector("#usernameInput").value;
-  let password = document.querySelector("#passwordInput").value;
-  let rePassword = document.querySelector("#rePasswordInput").value;
+  let name =            document.querySelector("#nameInput").value;
+  let phoneNumber =     document.querySelector("#phoneInput").value;
+  let address =         document.querySelector("#addressInput").value;
+  let email =           document.querySelector("#emailInput").value;
+  let workingPlace =    document.querySelector("#workPlaceInput").value;
+  let position =        document.querySelector("#positionInput").value;
+  let username =        document.querySelector("#usernameInput").value;
+  let password =        document.querySelector("#passwordInput").value;
+  let rePassword =      document.querySelector("#rePasswordInput").value;
+  let newPassword =     document.querySelector("#newPasswordInput").value;
+  let reNewPassword =   document.querySelector("#reNewPasswordInput").value;
 
   if (
     checkName(name) &&
@@ -143,7 +172,9 @@ function validateEmployee() {
     checkPosition(position) &&
     checkUsername(username) &&
     checkPassword(password) &&
-    checkRePassword(rePassword)
+    checkRePassword(rePassword) &&
+    checkNewPassword(newPassword) &&
+    checkReNewPassword(reNewPassword)
   ) {
     employeeInvalid.style.setProperty("opacity", 0);
     return true;

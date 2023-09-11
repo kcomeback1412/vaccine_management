@@ -54,6 +54,7 @@ public class UserDetail implements Serializable {
     @Column(name = "WORKING_PLACE", length = 255)
     private String workingPlace;
 
+    @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "USERS_ID")
     private Users users2;

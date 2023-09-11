@@ -12,38 +12,64 @@
 
 	<main>
 		<div class="w-100 p-0 d-flex">    
-            <form class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded" th:action="@{/addInjectionResult}" method="post" th:object="${injectionResult}">
+            <form
+					class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded"
+					th:action="@{/injection-result-management/add-injection-result}"
+					method="post"
+					th:object="${injectionResult}"
+					onsubmit="return validateInjectionResult()"
+			>
             	<div class="row my-5">
             		<div class="col">
-            			<span>Customer<span class="text-danger">(*)</span>:</span>
+            			<label for="idCusInput">Customer <span class="text-danger">(*)</span> :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="text" name="users3" placeholder="-Customer ID-">
+            				<input
+								class="form-control px-2 py-4"
+								id="idCusInput"
+								name="idCusInput"
+								type="text"
+								placeholder="-Customer ID-"
+								onchange="checkCustomerId(this.value)"
+							/>
             			</div>
+						<small class="form-text text-danger" th:text="${msgError}"></small>
+						<small
+								id="customerIDInvalid"
+								class="form-text text-danger"
+								style="opacity: 0"
+						>
+							Customer ID min-length is 5 and must be number.
+						</small>
             		</div>
             		
             		<div class="col">
-            			<span>Prevention<span class="text-danger">(*)</span>:</span>
+            			<label>Prevention <span class="text-danger">(*)</span> :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
             			
-            				<select class="form-select form-control px-2 py-4">
-            					<option>-Select Prevention-</option>
+            				<select class="form-select form-control px-2 py-4" name="prevention" required>
+								<th:block th:each="prevention : ${preventionList}">
+									<option th:text="${prevention.preventionName}" th:value="${prevention.preventionId}"></option>
+								</th:block>
+
             				</select>
             			</div>
             		</div>
             		
             		<div class="col">
-            			<span>Vaccine type<span class="text-danger">(*)</span>:</span>
+            			<label for="vaccineTypeInput">Vaccine <span class="text-danger">(*)</span> :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
             			
-            				<select class="form-select form-control px-2 py-4">
-            					<option>-Select vaccine type-</option>
+            				<select class="form-select form-control px-2 py-4" id="vaccineTypeInput" name="vaccine" required>
+            					<th:block th:each="vaccine : ${vaccineList}">
+									<option th:text="${vaccine.vaccineName}" th:value="${vaccine.vaccineId}"></option>
+								</th:block>
             				</select>
             			</div>
             		</div>
@@ -51,45 +77,77 @@
             	
             	<div class="row my-5">
             		<div class="col">
-            			<span>Injection:</span>
+            			<label for="injectionResultIdInput">Injection ID:</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
-            				
-            				<input class="form-control px-2 py-4" type="text" placeholder="-Injection Result ID-">
+            				<input
+									class="form-control px-2 py-4"
+									type="text"
+									placeholder="-Injection Result ID-"
+									name="injectionResultId"
+									id="injectionResultIdInput"
+									onchange="checkInjectionResultId(this.value)"
+							/>
+            			</div>
+						<small
+								id="injectionResultIdInvalid"
+								class="form-text text-danger"
+								style="opacity: 0"
+						>
+							Injection ID min-length is 5 and must be number.
+						</small>
+            		</div>
+            		
+            		<div class="col">
+            			<label for="injectionDateInput"> Date of injection : </label>
+            			
+            			<div class="d-flex align-items-center my-2">
+            				<i class="fa-solid fa-pen-to-square mr-3"></i>
+            				<input
+								class="form-control px-2 py-4"
+								id="injectionDateInput"
+								type="date"
+								name="injectionDate"
+								onchange="setMinDateNextInjection(this.value)"
+								required
+							/>
             			</div>
             		</div>
             		
             		<div class="col">
-            			<span>Date of injection:</span>
+            			<label for="nextInjectionDateInput">Next injection appointment :</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-solid fa-pen-to-square mr-3"></i>
             				
-            				<input class="form-control px-2 py-4" type="date">
-            			</div>
-            		</div>
-            		
-            		<div class="col">
-            			<span>Next injection appointment:</span>
-            			
-            			<div class="d-flex align-items-center my-2">
-            				<i class="fa-solid fa-pen-to-square mr-3"></i>
-            				
-            				<input class="form-control px-2 py-4" type="date">
+            				<input
+								class="form-control px-2 py-4"
+								id="nextInjectionDateInput"
+								type="date"
+								name="nextInjectionDate"
+								required
+							/>
             			</div>
             		</div>
             	</div>
             	
             	<div class="row my-5">
             		<div class="col-4">
-            			<span>Place of injection:</span>
+            			<label>Place of injection:</label>
             			
             			<div class="d-flex align-items-center my-2">
             				<i class="fa-regular fa-square-caret-down mr-3"></i>
             				
-            				<select class="form-select form-control px-2 py-4">
-            					<option>-Select place of injection-</option>
+            				<select class="form-select  form-control px-2 py-4" name="place" required>
+								<th:block th:each="place : ${placeList}">
+									<option
+											th:text="${place.placeName} + ' - ' + ${place.placeAddress}"
+											th:value="${place.placeId}"
+									>
+									</option>
+								</th:block>
+
             				</select>
             			</div>
             		</div>
@@ -106,6 +164,6 @@
         </div>
 	</main>
 	
-	<script></script>
+	<script th:src="@{/js/injection_result-JS/validate-injection_result.js}"></script>
 </body>
 </html>

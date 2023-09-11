@@ -10,7 +10,10 @@ import java.util.Optional;
 public interface UserDetailsService {
     UserDetail save(UserDetail userDetail);
 
+
     Optional<UserDetail> findById(Integer id);
+
+    UserDetail findByIdReturnUserDetail(Integer id);
 
     Page<UserDetail> findAll(Pageable pageable);
 

@@ -50,13 +50,6 @@ thead{
     width: 98%;
 }
 
-.header_navbar_search{
-	display: flex;
-    justify-content: space-between;
-    padding: 0 92px;
-    margin-bottom: -10px;
-}
-
 .header_navbar-item {
 	display: flex;
 	justify-content: center;
@@ -153,8 +146,3 @@ thead{
 	border-style: none;
 	color: gray;
 }
-
-.page-item{
-	list-style: none;
-}
-

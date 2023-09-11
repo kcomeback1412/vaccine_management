@@ -12,9 +12,9 @@
 
 <main>
 
-
+    <div class="container-fluid bg-white">
     <div class="container">
-        <form id="create-form" th:action="@{/update_news}" method="post" th:object="${news}">
+        <form id="create-form" th:action="@{/news-management/update_news}" method="post" th:object="${news}">
             <label for="title">Title(*)</label>
             <input class="title" type="text" id="title" name="title" maxlength="300" required th:field="*{title}">
             <div class="var">
@@ -25,7 +25,6 @@
                 <label for="content">Content(*)</label>
                 <input class="code" type="text" id="content" name="content" required th:field="*{content}">
 
-
             </div>
             <div class="button-container">
                 <input type="hidden" th:field="*{newsId}"/>
@@ -34,7 +33,8 @@
             </div>
         </form>
     </div>
+        </div>
 </main>
-<script th:src="@{/js/news-JS/news.js}"></script>
+<script th:src="@{/js/news-JS/cancel.js}"></script>
 </body>
 </html>

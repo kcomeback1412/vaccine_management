@@ -8,7 +8,21 @@ $('select').on('change', () => {
     window.location.href = '/vaccineType-management/vaccineType-list?pageSize=' + selectedOption.value;
 });
 
-$('.btn-update').on('click', () => {	
+$('.btn-success').on('click', () => {	
+	var selectedCheckboxes = $('input[type="checkbox"]:checked');
+	
+    if(selectedCheckboxes.length == 0) {
+		$('#formMsg').text('No data to make active!');
+	}
+	else {
+		$('#formMsg').text('');
+		$('#comfirmModal').modal('show');
+		$('#modalMsg').text('Are you sure to make active?');
+		$('button[name="modalSubmit"]').val('makeActive');
+	}
+});
+
+$('.btn-warning').on('click', () => {	
 	var selectedCheckboxes = $('input[type="checkbox"]:checked');
 	
     if(selectedCheckboxes.length == 0) {
@@ -17,6 +31,8 @@ $('.btn-update').on('click', () => {
 	else {
 		$('#formMsg').text('');
 		$('#comfirmModal').modal('show');
+		$('#modalMsg').text('Are you sure to make inactive?');
+		$('button[name="modalSubmit"]').val('makeInActive');
 	}
 });
 

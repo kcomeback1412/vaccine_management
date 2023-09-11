@@ -38,7 +38,7 @@
         	</div>
         	
         	<div class="body2">
-        	<form id="tableForm" th:action="@{/vaccineType-management/update-vaccineType-list}" method="post">
+        	<form class="d-flex flex-column align-items-center" id="tableForm" th:action="@{/vaccineType-management/update-vaccineType-list}" method="post">
             	<table class="table table-striped table-bordered">
                 	<thead class="thead">
                     	<tr class="table">
@@ -66,22 +66,25 @@
 						</tr>
                 	</tbody>
             	</table>
+            	<h4 class="font-weight-bold" th:if="${vaccineTypeList.totalPages == 0}">Not found</h4>
             </form>
             	
             	<div class="footer_buttons">
             	<div class="button_bussiness">
-                	<span class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
+                	<span class="text_details"  th:if="${vaccineTypeList.totalPages != 0}">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
                 	<div class="buttons mt-2">
                 		<a th:href="@{/vaccineType-management/create-vaccineType}">
-                			<button type="button" class="btn-create px-3 py-2">New Vaccine Type</button>
+                			<button type="button" class="btn btn-primary font-weight-bold px-3 py-2 mr-2">New Vaccine Type</button>
                 		</a>
                 		
-                    	<button type="button" class="btn-update px-3 py-2">Make In-Active</button>
+                		<button type="button" class="btn btn-success font-weight-bold px-3 py-2 mr-2">Make Active</button>
+                		
+                    	<button type="button" class="btn btn-warning font-weight-bold text-white px-3 py-2">Make In-Active</button>
                 	</div>
             	</div>
             
             	<div class="d-flex">    		
-    				<ul class="pagination">
+    				<ul class="pagination"  th:if="${vaccineTypeList.totalPages != 0}">
     					<li class="page-item mx-3">
       						<a th:class="${prevStatus}" th:href="@{'/vaccineType-management/vaccineType-list?pageNum=' + ${prev}}" aria-label="Previous">
         						<span aria-hidden="true">&laquo;</span>
@@ -122,11 +125,11 @@
       					<div class="mb-3">
       						<i class="fa-solid fa-circle-info text-success mr-2"></i>
       						
-      						<span>Are you sure to make inactive?</span>
+      						<span id="modalMsg"></span>
       					</div>
       					
       					<div class="">
-        					<button type="submit" class="btn btn-primary px-5 py-2 mr-5" form="tableForm">OK</button>
+        					<button type="submit" class="btn btn-primary px-5 py-2 mr-5" name="modalSubmit" form="tableForm">OK</button>
         					<button type="button" class="btn btn-danger px-5 py-2" data-dismiss="modal">Cancel</button>
       					</div>
       				</div>
