@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import com.spring.entities.InjectionSchedule;
+import com.spring.entities.UserDetail;
 import com.spring.entities.Vaccine;
 import com.spring.repositories.InjectionScheduleRepository;
 import com.spring.repositories.VaccineRepository;
@@ -32,20 +33,30 @@ public class InjectionScheduleController {
 	public String injectionScheduleList(
 			@RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize,
+			@RequestParam(name = "nameForSearch",required = false) String nameForSearch,
 			Model model) {
 		model.addAttribute("option", pageSize);
 
 		Sort sort = Sort.by("injectionScheduleId");
 
+		model.addAttribute("pageSize", pageSize);
+
 		PageRequest pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 
-		Page<InjectionSchedule> injectionSchedules = injectionScheduleRepository.findAll(pageable);
+		Page<InjectionSchedule> injectionScheduleList;
 
-		model.addAttribute("injectionScheduleList", injectionSchedules);
+		if(nameForSearch == null || nameForSearch.isEmpty()) {
+			injectionScheduleList = injectionScheduleRepository.findAll(pageable);
+		} else  {
+			injectionScheduleList = injectionScheduleRepository.findPageByNameLike(nameForSearch, pageable);
+			model.addAttribute("nameForSearch", nameForSearch);
+		}
+
+		model.addAttribute("injectionScheduleList", injectionScheduleList);
 
 		model.addAttribute("start", (pageNum - 1) * pageSize + 1);
 
-		if (pageNum != injectionSchedules.getTotalPages()) {
+		if (pageNum != injectionScheduleList.getTotalPages()) {
 			model.addAttribute("end", pageNum * pageSize);
 		} else {
 			model.addAttribute("end", injectionScheduleRepository.findAll().size());
@@ -59,7 +70,13 @@ public class InjectionScheduleController {
 			model.addAttribute("prev", (pageNum - 1));
 		}
 
-		if (pageNum >= injectionSchedules.getTotalPages()) {
+		if (pageNum != null) {
+			model.addAttribute("currentPage", pageNum);
+		} else {
+			model.addAttribute("currentPage", 0);
+		}
+
+		if (pageNum >= injectionScheduleList.getTotalPages()) {
 			model.addAttribute("nextStatus", "btn-link disabled");
 		} else {
 			model.addAttribute("next", (pageNum + 1));
@@ -83,7 +100,7 @@ public class InjectionScheduleController {
 		return "injectionSchedule/create_injectionSchedule";
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create_injectionSchedule")
 	public String saveInjectionSchedule(
 			@ModelAttribute("injectionSchedule")  @Validated InjectionSchedule injectionSchedule,
@@ -117,8 +134,6 @@ public class InjectionScheduleController {
 
 		model.addAttribute("injectionScheduleId", injectionScheduleRepository.findById(id).orElse(null).getInjectionScheduleId());
 
-//		model.addAttribute("vaccineName", vaccineRepository.findById(id).orElse(null).getVaccineName());
-
 		model.addAttribute("startDate", injectionScheduleRepository.findById(id).orElse(null).getStartDate());
 
 		model.addAttribute("endDate", injectionScheduleRepository.findById(id).orElse(null).getEndDate());
@@ -148,7 +163,7 @@ public class InjectionScheduleController {
 //			return "injectionSchedule/list_injectionSchedule";
 //		}
 //	}
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/update_injectionSchedule")
 	public String updateInjectionSchedule(
 			@ModelAttribute("injectionSchedule") @Validated InjectionSchedule injectionSchedule,
