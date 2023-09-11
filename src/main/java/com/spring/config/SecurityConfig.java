@@ -70,7 +70,7 @@ public class SecurityConfig {
 			"/home",
 			"/dashboard",
 			"/injectionSchedule-management/list_injectionSchedule",
-			"/injection-result-management/vaccine_result_list",
+			"/injection-result-management/injection_result-list",
 			"/news-management/news_list"
     };
 	
