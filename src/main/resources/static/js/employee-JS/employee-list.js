@@ -7,9 +7,20 @@ function checkAndUncheckAll(source){
 }
 
 function uncheckAll(source) {
+    let checkAll = true;
     let checkboxAll = document.querySelector(".checkboxAll");
+    let checkboxes = document.getElementsByName("listId");
     if(source.checked == false) {
         checkboxAll.checked = false;
+    } else {
+        for (let i = 0; i < checkboxes.length; i++) {
+            if(checkboxes[i].checked == false) {
+                checkAll = false;
+            }
+        }
+        if(checkAll) {
+            checkboxAll.checked = true;
+        }
     }
 }
 
