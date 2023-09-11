@@ -53,7 +53,6 @@ thead{
 .header_navbar-item {
 	display: flex;
 	justify-content: center;
-	margin-left: 4%;
 }
 
 .dropdown-list {
@@ -74,10 +73,9 @@ thead{
 
 .footer_buttons{
 	display: flex;
-	margin: auto;
+	margin: 30px 20px 0;
 	justify-content: space-between;
 	width: 89%;
-	margin-top: 30px;
 }
 
 .btn-create {
@@ -113,7 +111,7 @@ thead{
 
 .buttons {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	width: 105%;
 }
 
@@ -145,4 +143,8 @@ thead{
 	height: 27px;
 	border-style: none;
 	color: gray;
+}
+
+#page-size-option {
+ 	margin-left: 20px;
 }

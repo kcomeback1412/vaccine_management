@@ -8,7 +8,7 @@ $('select').on('change', () => {
     window.location.href = '/vaccineType-management/vaccineType-list?pageSize=' + selectedOption.value;
 });
 
-$('.btn-success').on('click', () => {	
+$('.btn-update').on('click', () => {	
 	var selectedCheckboxes = $('input[type="checkbox"]:checked');
 	
     if(selectedCheckboxes.length == 0) {
@@ -22,7 +22,7 @@ $('.btn-success').on('click', () => {
 	}
 });
 
-$('.btn-warning').on('click', () => {	
+$('.btn-delete').on('click', () => {	
 	var selectedCheckboxes = $('input[type="checkbox"]:checked');
 	
     if(selectedCheckboxes.length == 0) {

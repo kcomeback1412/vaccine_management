@@ -74,12 +74,12 @@
                 	<span class="text_details"  th:if="${vaccineTypeList.totalPages != 0}">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
                 	<div class="buttons mt-2">
                 		<a th:href="@{/vaccineType-management/create-vaccineType}">
-                			<button type="button" class="btn btn-primary font-weight-bold px-3 py-2 mr-2">New Vaccine Type</button>
+                			<button type="button" class="btn-create">New Vaccine Type</button>
                 		</a>
                 		
-                		<button type="button" class="btn btn-success font-weight-bold px-3 py-2 mr-2">Make Active</button>
+                		<button type="button" class="btn-update">Make Active</button>
                 		
-                    	<button type="button" class="btn btn-warning font-weight-bold text-white px-3 py-2">Make In-Active</button>
+                    	<button type="button" class="btn-delete">Make In-Active</button>
                 	</div>
             	</div>
             

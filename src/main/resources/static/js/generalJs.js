@@ -34,6 +34,12 @@ $(document).ready(function () {
 
 		$(selector1).prev().addClass("highlight");
 	});
+	
+	$('#logoutBtn').on('click', function() {
+		if(confirm('Are you sure you want to logout?') == true) {
+			window.location.href = '/logout';
+		}
+	})
 });
 
 
