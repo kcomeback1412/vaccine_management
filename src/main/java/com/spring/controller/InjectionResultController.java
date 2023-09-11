@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import com.spring.consts.RoleEnum;
 import com.spring.entities.*;
+import com.spring.repositories.UsersRepository;
 import com.spring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,9 @@ public class InjectionResultController {
 	@Autowired
 	PreventionService preventionService;
 
+	@Autowired
+	UsersRepository usersRepository;
+
 
 	@GetMapping("/add-injection-result")
     public String addInjectionResultUI(
@@ -48,6 +52,8 @@ public class InjectionResultController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("userName", authentication.getName());
 		model.addAttribute("userRole", authentication.getAuthorities().toString());
+
+
 
 		List<Vaccine> vaccineList = vaccineService.findAllVaccine();
 		List<Place> placeList = placeService.findAllPlace();
@@ -95,6 +101,7 @@ public class InjectionResultController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("userName", authentication.getName());
 		model.addAttribute("userRole", authentication.getAuthorities().toString());
+		Users userLogged = usersRepository.findByUserName(authentication.getName());
 
 		Integer totalInjectResult = injectionResultService.countAllInjectionResult();
 		model.addAttribute("totalInjectResult", totalInjectResult);
@@ -103,13 +110,24 @@ public class InjectionResultController {
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
 		List<InjectionResult> injectionResultList;
-		if(preventionNameForSearch == null || preventionNameForSearch.isEmpty()) {
-			injectionResultList = injectionResultService.findAll();
+		if(userLogged.getRoleEnum() != RoleEnum.CUSTOMER) {
+			if(preventionNameForSearch == null || preventionNameForSearch.isEmpty()) {
+				injectionResultList = injectionResultService.findAll();
+			} else {
+				injectionResultList = injectionResultService.findAllByPreventionNameLike(preventionNameForSearch);
+				model.addAttribute("preventionNameForSearch", preventionNameForSearch);
+				model.addAttribute("totalInjectResult", injectionResultList.size());
+			}
 		} else {
-			injectionResultList = injectionResultService.findAllByPreventionNameLike(preventionNameForSearch);
-			model.addAttribute("preventionNameForSearch", preventionNameForSearch);
-			model.addAttribute("totalInjectResult", injectionResultList.size());
+			if(preventionNameForSearch == null || preventionNameForSearch.isEmpty()) {
+				injectionResultList = injectionResultService.findAllByUsers3(userLogged);
+			} else {
+				injectionResultList = injectionResultService.findAllByUsers3PreventionNameLike(userLogged,preventionNameForSearch);
+				model.addAttribute("preventionNameForSearch", preventionNameForSearch);
+				model.addAttribute("totalInjectResult", injectionResultList.size());
+			}
 		}
+
 
 		Page<InjectionResult> injectionResults;
 		if(injectionResultList != null) {

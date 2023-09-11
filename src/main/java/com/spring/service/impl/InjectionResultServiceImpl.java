@@ -67,4 +67,14 @@ public class InjectionResultServiceImpl implements InjectionResultService {
         injectionResultRepository.deleteAllByCustomerID(id);
     }
 
+    @Override
+    public List<InjectionResult> findAllByUsers3(Users users) {
+        return injectionResultRepository.findAllByUsers3(users);
+    }
+
+    @Override
+    public List<InjectionResult> findAllByUsers3PreventionNameLike(Users users, String preventionName) {
+        return injectionResultRepository.findAllByUsers3PreventionNameLike(users, preventionName);
+    }
+
 }

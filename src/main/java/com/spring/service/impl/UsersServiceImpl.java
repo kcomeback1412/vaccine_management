@@ -22,4 +22,9 @@ public class UsersServiceImpl implements UsersService {
     public void deleteUserByListId(List<Integer> listID) {
         usersRepository.deleteUserByListId(listID);
     }
+
+    @Override
+    public Users findByUsername(String username) {
+        return usersRepository.findByUserName(username);
+    }
 }

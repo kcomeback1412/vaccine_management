@@ -31,4 +31,10 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
 
     @Query("DELETE FROM InjectionResult AS I WHERE I.users3.usersId = ?1")
     public void deleteAllByCustomerID(Integer userID);
+
+    public List<InjectionResult> findAllByUsers3(Users user);
+
+    @Transactional(rollbackOn = {Exception.class, Throwable.class})
+    @Query("SELECT I FROM InjectionResult AS I WHERE I.users3 = ?1 AND I.prevention.preventionName like %?2%" )
+    public List<InjectionResult> findAllByUsers3PreventionNameLike(Users users, String preventionName);
 }

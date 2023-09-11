@@ -23,5 +23,6 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
 	@Transactional(rollbackOn = {Exception.class, Throwable.class})
 	@Query("DELETE FROM Users AS U WHERE U.usersId IN (?1)")
 	public void deleteUserByListId(List<Integer> listId) ;
+
 	
 }

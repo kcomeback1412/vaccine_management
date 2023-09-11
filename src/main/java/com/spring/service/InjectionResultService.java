@@ -26,4 +26,8 @@ public interface InjectionResultService {
     Optional<InjectionResult> findByID(String id);
 
     void deleteAllByCustomerID(Integer id);
+
+    List<InjectionResult> findAllByUsers3(Users users);
+
+    List<InjectionResult> findAllByUsers3PreventionNameLike(Users users, String preventionName);
 }
