@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,11 +67,6 @@ public class CustomerController {
             model.addAttribute("end", totalCustomer);
         }
 		model.addAttribute("currentPage", pageNum);
-//		if(pageNum != null) {
-//			model.addAttribute("currentPage", pageNum);
-//		}else {
-//			model.addAttribute("currentPage", 0);
-//		}
 		
 		model.addAttribute("totalCustomer", totalCustomer);
 		model.addAttribute("pageSize", pageSize);
@@ -87,14 +85,14 @@ public class CustomerController {
 
 	// Create
 	@GetMapping("/create-customer")
-	public String createCustomerUI() {
+	public String createCustomerUI(Model model) {
 		return "customer/create-customer";
 	}
 	
-	
 	@PostMapping(value = "/create-customer")
-	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
-			@ModelAttribute("userInfo") UserDetail account) {
+	public String createCustomer(@ModelAttribute("customerInfo")Users customer,
+			@ModelAttribute("userInfo") UserDetail account
+			) {
 		
 		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
@@ -181,7 +179,7 @@ public class CustomerController {
 	@PostMapping(value = "/search-customer", params = "search")
 	public String searchCustomer(HttpServletRequest httpServletRequest,
 			@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize, Model model, HttpSession session) {
+			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 		String id = "";
 		for (String idAndName : httpServletRequest.getParameterValues("search")) {
 			if (!(idAndName.equals(id))) {
@@ -190,6 +188,13 @@ public class CustomerController {
 				Page<UserDetail> pageUserDetail = userDetailRepository.findUserDetailCustomerWithPagin(idAndName,RoleEnum.CUSTOMER, pageable);
 				model.addAttribute("pageUserDetail", pageUserDetail);
 				session.setAttribute("userDetailId", idAndName);
+				model.addAttribute("start", (pageNum - 1) * pageSize + 1);
+				Integer countCustomer = userDetailRepository.countAllCustomerByRole(RoleEnum.CUSTOMER,idAndName);
+				Integer totalCustomer = userDetailsService.countAllCustomer();
+				model.addAttribute("end", countCustomer);
+				model.addAttribute("totalCustomer", totalCustomer);
+				
+				model.addAttribute("pageSize", pageSize);
 				return "customer/customer_list";
 			} else {
 				return "redirect:/customer-manage/customer_list";
@@ -203,15 +208,16 @@ public class CustomerController {
 	public String showList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, Model model,
 			HttpSession session, HttpServletRequest pageSize) {
 		String blank = "";
+		
 		for (String size : pageSize.getParameterValues("show")) {
 			if (!(size.equals(blank))) {
 				Pageable pageable = PageRequest.of(pageNum - 1, Integer.parseInt(size));
 				model.addAttribute("currentPage", pageNum);
-
 				Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 				model.addAttribute("pageUserDetail", pageUserDetail);
 				String id = "";
 				session.setAttribute("userDetailId", id);
+				
 				return "customer/customer_list";
 			} else {
 				return "redirect:/customer-manage/customer_list";
