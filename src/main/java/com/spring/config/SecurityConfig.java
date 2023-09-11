@@ -55,6 +55,7 @@ public class SecurityConfig {
 	private final static String[] permitEmployeeLink = {
 			"/customer-manage/**",
 			"/vaccineType-management/**",
+			"/vaccine-management/**",
 			"/injectionSchedule-management/**",
 			"/injection-result-management/**"
     };
