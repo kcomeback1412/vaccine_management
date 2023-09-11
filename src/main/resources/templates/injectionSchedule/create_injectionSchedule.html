@@ -91,7 +91,9 @@
         <div class="col">
           <button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit">Save</button>
           <button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
-          <button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button"><a th:href="@{/injectionSchedule-management/list_injectionSchedule}">Cancel</a></button>
+          <a th:href="@{/injectionSchedule-management/list_injectionSchedule}">
+              <button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button">Cancel</button>
+          </a>
         </div>
       </div>
     </form>

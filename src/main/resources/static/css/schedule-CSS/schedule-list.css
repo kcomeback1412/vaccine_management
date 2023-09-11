@@ -18,6 +18,10 @@ p {
 	margin-right: 20px;
 }
 
+#page-size-list{
+	font-size: 1.4rem
+}
+
 .table {
 	border: 1px solid lightgray;
 }

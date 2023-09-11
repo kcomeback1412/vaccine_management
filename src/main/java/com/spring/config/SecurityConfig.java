@@ -34,6 +34,8 @@ public class SecurityConfig {
 	@Autowired
 	public void configGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
+		
+		builder.userDetailsService(userDetailService);
 	}
 	
 	private final static String[] permitAllLink = {
@@ -43,6 +45,7 @@ public class SecurityConfig {
     		"/img/**",
 			"/logout",
 			"/api/v1/**"
+
     };
 
 	private final static String[] permitAdminLink = {
@@ -53,12 +56,13 @@ public class SecurityConfig {
 			"/customer-manage/**",
 			"/vaccine-management/**",
 			"/vaccineType-management/**",
+			"/injectionSchedule-management/**",
 			"/injectionSchedule-management/create_injectionSchedule",
 			"/injectionSchedule-management/update_injectionSchedule/**",
 			"/injection-result-management/add-injection-result",
 			"/injection-result-management/delete-update-injection_result",
 			"/news-management/create_news",
-			"/report_injection_result"
+			"/reports-management/**"
     };
 
 	

@@ -242,12 +242,20 @@
 					<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
 						 <ul class="ul-list-navbar">
                     		<li>
-                        		<a class="" href="/report_injection_result">Report Vaccine</a>
+                        		<a class="" th:href="@{/reports-management/report_injection_result}">Report Injection Result</a>
                     		</li>
                     		<hr class="m-0 ml-5 w-75">
                     		<li>
-                        		<a class="" href="#">Report</a>
+                        		<a class="" th:href="@{/reports-management/report_customer}">Report Customer</a>
                     		</li>
+							 <hr class="m-0 ml-5 w-75">
+							 <li>
+								 <a class="" th:href="@{/reports-management/report_vaccine}">Report Vaccine</a>
+							 </li>
+							 <hr class="m-0 ml-5 w-75">
+							 <li>
+								 <a class="" th:href="@{/reports-management/report_injection_chart}">Report Chart</a>
+							 </li>
                 		</ul>
 					</div>
 				</div>

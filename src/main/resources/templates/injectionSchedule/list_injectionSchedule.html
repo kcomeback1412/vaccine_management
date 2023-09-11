@@ -11,28 +11,39 @@
 	<main>
 		
 		<div class="container-fluid bg-white">
+            <p class="text-success h4" th:text="${msgSuccess}"></p>
+            <p class="text-danger h4" th:text="${msgError}"></p>
         <div class="body_header">
             <div class="header_navbar">
+                <form class="body2" id="page-size-option" th:action="@{/injectionSchedule-management/list_injectionSchedule}" method="get">
+                    <div class="header_navbar-item">
+                        <span class="text">Show</span>
+                        <select
+                                id="page-size-list"
+                                class="form-select form-control"
+                                name="pageSize"
+                        >
+                            <option value="5" th:selected="${pageSize==5}">5</option>
+                            <option value="10" th:selected="${pageSize==10}">10</option>
+                            <option value="25" th:selected="${pageSize==25}">25</option>
+                            <option value="50" th:selected="${pageSize==50}">50</option>
+                            <option value="100" th:selected="${pageSize==100}">100</option>
+                        </select>
+                        <span class="text">entries</span>
+                    </div>
+                </form>
                 <div class="header_navbar-item">
-                    <span class="text">Show</span>
-                    <input class="dropdown-list" 
-                        list="datalistOptions" id="exampleDataList">
-                    <datalist id="datalistOptions">
-                        <option value="10">
-                        <option value="25">
-                        <option value="50">
-                        <option value="100">
-                    </datalist>
-                    <span class="text">entries</span>
-                </div>
-                <div class="header_navbar-item">
-                    <span class="text">Search:</span>
-                    <input class="dropdown-list-search" type="text">
+                    <form th:action="@{/injectionSchedule-management/list_injectionSchedule}">
+                        <div class="header_navbar-item">
+                            <span class="text">Search:</span>
+                            <input name="nameForSearch" class="dropdown-list-search" th:value="${nameForSearch}" type="text" placeholder="Enter name..."/>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="body2 d-flex flex-column align-items-center">
-            <form class="w-100" id="tableForm" th:action="@{/injectionSchedule-management/create_injectionSchedule}" method="post">
+        <div class="body2">
+            <form id="tableForm" th:action="@{/injectionSchedule-management/create_injectionSchedule}" method="post">
                 <table class="table table-striped table-bordered">
                     <thead class="thead">
                         <tr class="table">
@@ -55,28 +66,52 @@
                             <th class="border" th:text="${d.vaccine1.vaccineStatus}"></th>
                             <th class="border" th:text="${d.description}"></th>
                         </tr>
+
+                        </tr>
                     </tbody>
                 </table>
             </form>
-            <h4 class="font-weight-bold" th:if="${injectionScheduleList.totalPages == 0}">Not found</h4>
         </div>
         <div class="footer_buttons">
             <div class="button_bussiness">
-                <span class="text_details">Showing 1 to 5 of ... entries</span>
-                <div class="buttons" sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" >
-                    <button class="btn-create"><a class="btn-create" th:href="@{/create_injectionSchedule}">New Injection Schedule</a></button>
-                    <button class="btn-update"><a class="btn-update" th:href="@{/update_injectionSchedule}">Update Injection Schedule</a></button>
+                <span class="text_details"
+                      th:text="'Showing '+ ${((currentPage - 1) * pageSize) + (injectionScheduleList.content.size() > 0  ? 1 : 0)}
+                              + ' to ' + ${((currentPage - 1) * pageSize) + injectionScheduleList.content.size()}
+                              + ' of ' + ${totalInjectionSchedule} + ' injectionSchedule'">
+                </span>
+                <div class="buttons">
+                    <a th:href="@{/injectionSchedule-management/create_injectionSchedule}">
+                        <button type="button" class="btn-create px-3 py-2">New Injection Schedule</button>
+                    </a>
+<!--                    <a th:href="@{/injectionSchedule-management/update_injectionSchedule}">-->
+<!--                        <button type="button" class="btn-update px-3 py-2">Update Injection Schedule</button>-->
+<!--                    </a>-->
                 </div>
             </div>
-            <div class="paging">
-                <div class="paging_buton">
-                    <button class="button">
-                        </button>
-                            <button class="button">1</button>
-                            <button class="button">2</button>
-                </div>
+            <div class="d-flex">
+                <ul class="pagination">
+                    <li class="page-item mx-3">
+                        <a th:class="${prevStatus}" th:href="@{'/injectionSchedule-management/list_injectionSchedule?pageNum=' + ${prev}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+
+                    <th:block th:each="i: ${#numbers.sequence(1, injectionScheduleList.totalPages)}">
+                        <li class="page-item mx-3">
+                            <a th:href="@{'/injectionSchedule-management/list_injectionSchedule?pageNum=' + ${i}}" th:text="${i}"></a>
+                        </li>
+                    </th:block>
+                    <li class="page-item mx-3">
+                        <a th:class="${nextStatus}" th:href="@{'/injectionSchedule-management/list_injectionSchedule?pageNum=' + ${next}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+
     </div>
 	</main>
     <script th:src="@{/js/injectionSchedule-JS/validate-injectionSchedule.js}"></script>
