@@ -76,8 +76,7 @@ public class InjectionResultController {
 		if((userDetail == null) ||  userDetail.getUsers2().getRoleEnum() != RoleEnum.CUSTOMER
 				|| bindingResult.hasErrors()
 			) {
-			redirectAttributes.addFlashAttribute("injectionResult", injectionResult);
-			redirectAttributes.addFlashAttribute("msgError", "ERROR");
+			redirectAttributes.addFlashAttribute("msgError", "Not found customer with id = " + idCustomer);
 			return  "redirect:/injection-result-management/add-injection-result";
 		} else {
 			injectionResult.setUsers3(userDetail.getUsers2());
@@ -126,9 +125,69 @@ public class InjectionResultController {
 
 		return "injectionResult/injection_result_list";
 	}
-	
-	@GetMapping("/updateInjectionResult")
-    public String updateInjectionResultUI(Model model) {			
-    	return "injectionResult/updateInjectionResult";
+
+//	DELETE
+	@PostMapping(value = "/delete-update-injection_result", params = "delete")
+	public String deleteInjectionResult(
+			@RequestParam(value = "listId", required = false) List<String> listId,
+			RedirectAttributes redirectAttributes
+	){
+		if(listId != null) {
+			injectionResultService.deleteInjectionResultByListId(listId);
+			redirectAttributes.
+					addFlashAttribute("msgSuccess", "Delete injection result success!");
+		} else {
+			redirectAttributes.
+					addFlashAttribute("msgError", "You must select injection result to delete");
+		}
+		return "redirect:/injection-result-management/injection_result-list";
+	}
+
+
+//	Update UI
+	@PostMapping(value = "/delete-update-injection_result", params = "update")
+    public String updateInjectionResultUI(
+			@RequestParam(value = "listId", required = false) List<String> listId,
+		  	RedirectAttributes redirectAttributes,
+		  	Model model
+	) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("userName", authentication.getName());
+		model.addAttribute("userRole", authentication.getAuthorities().toString());
+
+		List<Vaccine> vaccineList = vaccineService.findAllVaccine();
+		List<Place> placeList = placeService.findAllPlace();
+		List<Prevention> preventionList = preventionService.findAllPrevention();
+
+		model.addAttribute("vaccineList",vaccineList);
+		model.addAttribute("placeList",placeList);
+		model.addAttribute("preventionList",preventionList);
+
+		if((listId != null) && (listId.size() > 1)) {
+			redirectAttributes.
+					addFlashAttribute("msgError", "You can only select 1 injection result to update");
+			return "redirect:/injection-result-management/injection_result-list";
+		} else if ((listId != null) && (listId.size() == 1)) {
+			model.addAttribute("injectionResultInfo"
+					, injectionResultService.findByID(listId.get(0)).orElse(null));
+			return "injectionResult/update-injection_result";
+		} else {
+			redirectAttributes.
+					addFlashAttribute("msgError", "You must select injection result to update");
+			return "redirect:/injection-result-management/injection_result-list";
+		}
+
     }
+
+	@PostMapping(value = "/delete-update-injection_result", params = "update-save")
+	public String updateInjectionResult(
+			@ModelAttribute("injectionResultUpdate") InjectionResult injectionResult,
+			RedirectAttributes redirectAttributes,
+			Model model
+	){
+
+		injectionResultService.save(injectionResult);
+		redirectAttributes.addFlashAttribute("msgSuccess", "Update Injection result success");
+		return "redirect:/injection-result-management/injection_result-list";
+	}
 }
