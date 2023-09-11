@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InjectionResultService {
     InjectionResult save(InjectionResult injectionResult);
@@ -19,4 +20,8 @@ public interface InjectionResultService {
     List<InjectionResult> findAllByPreventionNameLike(String preventionName);
 
     Page<InjectionResult> convertListInjectionResultToPageInjectionResult(Pageable pageable, List<InjectionResult> injectionResultList);
+
+    void deleteInjectionResultByListId(List<String> listId);
+
+    Optional<InjectionResult> findByID(String id);
 }

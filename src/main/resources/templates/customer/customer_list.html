@@ -49,7 +49,7 @@
 
 				</div>
 				<form id="myForm" th:action="@{/customer-manage/update-delete-customer}" method="post">
-					<div class="body2">
+					<div class="body2 d-flex flex-column align-items-center">
 						<table id="x" class="table table-striped table-bordered">
 							<thead class="thead">
 								<tr class="table">
@@ -81,6 +81,7 @@
 								</tr>
 							</tbody>
 						</table>
+						<h4 class="font-weight-bold" th:if="${pageUserDetail.totalPages == 0}">Not found</h4>
 					</div>
 					<div class="footer_buttons">
 						<div class="button_bussiness">
@@ -102,7 +103,7 @@
 							<li class="page-item" th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 								<a  th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}"
 									class="page-link">
-									<</a>
+									</a>
 							</li>
 							<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
 								<li  th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${pageUserDetail.totalPages == 0 ? 'page-item disabled' : 'page-item'}">

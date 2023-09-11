@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InjectionResultServiceImpl implements InjectionResultService {
@@ -49,6 +50,16 @@ public class InjectionResultServiceImpl implements InjectionResultService {
         int end = Math.min((start + pageable.getPageSize()), injectionResultList.size());
         List<InjectionResult> pageContent = injectionResultList.subList(start, end);
         return new PageImpl<>(pageContent, pageable, injectionResultList.size());
+    }
+
+    @Override
+    public void deleteInjectionResultByListId(List<String> listId) {
+        injectionResultRepository.deleteInjectionResultByListId(listId);
+    }
+
+    @Override
+    public Optional<InjectionResult> findByID(String id) {
+        return injectionResultRepository.findById(id);
     }
 
 }
