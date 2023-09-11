@@ -1,8 +1,15 @@
 function checkUncheck(main){
 	all = document.getElementsByName('id');
 	for(var a = 0; a < all.length ; a ++){
-		all[a].checked = main.checked;
+			all[a].checked = main.checked;
 	}
+}
+
+function checkUncheckId(main){
+	all = document.getElementsByName('id');
+		if(main.checked == false){
+			document.getElementById("checkboxId").checked = false;
+		}
 }
 
 function updateCheck(){
@@ -18,7 +25,6 @@ function updateCheck(){
 	
 	if(newvar > 1){
 		alert("You can update only 1 row!");
-		return false;
 	}else if(newvar < 1){
 		alert("You must select a row to update!");
 		return false;
@@ -44,7 +50,7 @@ function deleteCheck(){
 	}
 }
 
-  let checkbox = document.querySelector('#myCheck');
+	let checkbox = document.querySelector('.myCheck');
         let button = document.querySelector('#myButton');
 
         checkbox.addEventListener('change', function() {
@@ -54,7 +60,8 @@ function deleteCheck(){
                 button.disabled = true;
             }
         });
-        
+
+
 function searchForm(){
   let search = document.querySelector("#searchInvalid");
   var name=document.mySearchForm.searchId.value;  
@@ -75,6 +82,11 @@ function listForm() {
 	searchNumber.style.setProperty("opacity", 1);
     return false;
   }
+}
+
+var tbl = document.getElementById('x');
+if (tbl.rows.length == 0) {
+   // empty
 }
 
       

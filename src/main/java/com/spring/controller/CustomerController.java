@@ -38,6 +38,9 @@ public class CustomerController {
 
 	@Autowired
 	UserDetailRepository userDetailRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -47,14 +50,29 @@ public class CustomerController {
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		model.addAttribute("currentPage", pageNum);
+		
 		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
 		model.addAttribute("pageUserDetail", pageUserDetail);
 		String id = "";
 		Integer totalCustomer = userDetailsService.countAllCustomer();
 		session.setAttribute("userDetailId", id);
+		model.addAttribute("start", (pageNum - 1) * pageSize + 1);
+		
+		if (pageNum != pageUserDetail.getTotalPages()) {
+            model.addAttribute("end", pageNum * pageSize);
+        } else {
+            model.addAttribute("end", totalCustomer);
+        }
+		model.addAttribute("currentPage", pageNum);
+//		if(pageNum != null) {
+//			model.addAttribute("currentPage", pageNum);
+//		}else {
+//			model.addAttribute("currentPage", 0);
+//		}
+		
 		model.addAttribute("totalCustomer", totalCustomer);
 		model.addAttribute("pageSize", pageSize);
+		
 		return "customer/customer_list";
 	}
 
@@ -72,10 +90,13 @@ public class CustomerController {
 	public String createCustomerUI() {
 		return "customer/create-customer";
 	}
-
+	
+	
 	@PostMapping(value = "/create-customer")
 	public String createCustomer(@ModelAttribute("customerInfo") Users customer,
 			@ModelAttribute("userInfo") UserDetail account) {
+		
+		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 
@@ -139,7 +160,7 @@ public class CustomerController {
 
 			// update password if new password != null
 			if(newPassword != null) {
-				userDB.setPassword(passwordEncoder.encode(newPassword));
+				userDB.setPassword(encoder.encode(newPassword));
 			}
 
 			usersRepository.save(userDB);
@@ -208,5 +229,5 @@ public class CustomerController {
 	public String listCustomer() {
 		return "redirect:/customer-manage/customer_list";
 	}
-
+	
 }

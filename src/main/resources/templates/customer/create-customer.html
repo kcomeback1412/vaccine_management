@@ -49,11 +49,11 @@
 							<i class="fa-solid fa-venus-mars"></i>
 						</span>
 						<div class="form-check mr-3">
-							<input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked />
+							<input class="form-check-input" type="radio" name="gender" id="gender1"  checked />
 							<label class="form-check-label ml-2" for="gender1"> Male </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gender" value="2" id="gender2" />
+							<input class="form-check-input" type="radio" name="gender"  id="gender2" />
 							<label class="form-check-label ml-2" for="gender2">
 								Female
 							</label>
@@ -211,7 +211,7 @@
 							<i class="fa-solid fa-check"></i>
 						</span>
 						<input type="text" class="form-control mr-3 rounded" placeholder="Captcha" id="captchaInput"
-							onchange="checkCaptcha(this.value)"  />
+							required onchange="checkCaptcha(this.value)"  />
 					</div>
 					<small id="captchaInvalid" class="form-text text-danger" style="opacity: 0">
 						Captcha not match the code.
