@@ -85,6 +85,7 @@
 
 						</tbody>
 					</table>
+					<h4 class="font-weight-bold text-center" th:if="${injectionResults.totalPages == 0}">Not found</h4>
 				</div>
 				<div class="footer_buttons">
 					<div sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')" class="button_bussiness">

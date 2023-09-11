@@ -99,7 +99,6 @@ public class CustomerController {
 		
 		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
-		customer.setPassword(encoder.encode(customer.getPassword()));
 
 		usersRepository.save(customer);
 		account.setUsers2(customer);
