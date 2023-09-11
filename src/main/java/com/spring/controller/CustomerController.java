@@ -52,7 +52,7 @@ public class CustomerController {
 
 
 	@GetMapping("/customer_list")
-	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "0") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
 
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -77,14 +77,14 @@ public class CustomerController {
 		return "customer/customer_list";
 	}
 
-	@ModelAttribute("pageUserDetail")
-	Page<UserDetail> pageData() {
-		Integer pageNum = 1;
-		Integer pageSize = 5;
-		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
-		return pageUserDetail;
-	}
+//	@ModelAttribute("pageUserDetail")
+//	Page<UserDetail> pageData() {
+//		Integer pageNum = 1;
+//		Integer pageSize = 5;
+//		Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+//		Page<UserDetail> pageUserDetail = userDetailRepository.findAllCustomerByRole(pageable, RoleEnum.CUSTOMER);
+//		return pageUserDetail;
+//	}
 
 	// Create
 	@GetMapping("/create-customer")

@@ -20,14 +20,15 @@
 							<span class="text">Show</span>
 							<form name="myListForm" onsubmit="return listForm()"
 								th:action="@{/customer-manage/list-customer}" method="post">
-								<input name="show" id="searchList" class="dropdown-list-search" type="text">
-							</form>
-							<datalist id="datalistOptions">
+								<input name="show" id="searchList" list="datalistOptions" class="dropdown-list-search" type="text">
+								<datalist id="datalistOptions">
 								<option value="10">
 								<option value="25">
 								<option value="50">
 								<option value="100">
 							</datalist>
+							</form>
+							
 
 							<span class="text">entries</span>
 
