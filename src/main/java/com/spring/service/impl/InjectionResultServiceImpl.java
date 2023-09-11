@@ -62,4 +62,9 @@ public class InjectionResultServiceImpl implements InjectionResultService {
         return injectionResultRepository.findById(id);
     }
 
+    @Override
+    public void deleteAllByCustomerID(Integer id) {
+        injectionResultRepository.deleteAllByCustomerID(id);
+    }
+
 }

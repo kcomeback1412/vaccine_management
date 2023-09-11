@@ -24,4 +24,6 @@ public interface InjectionResultService {
     void deleteInjectionResultByListId(List<String> listId);
 
     Optional<InjectionResult> findByID(String id);
+
+    void deleteAllByCustomerID(Integer id);
 }

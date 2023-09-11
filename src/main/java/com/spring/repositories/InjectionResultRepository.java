@@ -28,4 +28,7 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
     @Transactional(rollbackOn = {Exception.class, Throwable.class})
     @Query("DELETE FROM InjectionResult  AS I WHERE I.injectionResultId IN(?1)")
     public void deleteInjectionResultByListId(List<String> listId);
+
+    @Query("DELETE FROM InjectionResult AS I WHERE I.users3.usersId = ?1")
+    public void deleteAllByCustomerID(Integer userID);
 }

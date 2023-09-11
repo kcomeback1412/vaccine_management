@@ -114,7 +114,7 @@ public class CustomerController {
 			for (String id : httpServletRequest.getParameterValues("id")) {
 				List<String> listId = new ArrayList<String>();
 				listId.add(id);
-				injectionResultService.deleteInjectionResultByListId(listId);
+				injectionResultService.deleteAllByCustomerID(Integer.parseInt(id));
 				userDetailRepository.deleteById(Integer.parseInt(id));
 				usersRepository.deleteById(Integer.parseInt(id));
 			}
