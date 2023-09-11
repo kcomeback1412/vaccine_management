@@ -83,12 +83,20 @@ public class VaccineTypeController {
 	}
 
 	@PostMapping("/update-vaccineType-list")
-	public String updateCustomerUI(HttpServletRequest httpServletRequest) {
+	public String updateCustomerUI(
+			HttpServletRequest httpServletRequest,
+			@RequestParam("modalSubmit") String modalSubmit) {
 		try {
 			if (httpServletRequest.getParameterValues("id") != null) {
 				for (String id : httpServletRequest.getParameterValues("id")) {
 					VaccineType vaccineType = vaccineTypeServiceImpl.getById(id);
-					vaccineType.setVaccineTypeStatus(StatusEnum.IN_ACTIVE);
+					if(modalSubmit.equals("makeActive")) {
+						vaccineType.setVaccineTypeStatus(StatusEnum.ACTIVE);
+					}
+					
+					if(modalSubmit.equals("makeInActive")) {
+						vaccineType.setVaccineTypeStatus(StatusEnum.IN_ACTIVE);
+					}
 					vaccineTypeServiceImpl.save(vaccineType);
 				}
 			}
