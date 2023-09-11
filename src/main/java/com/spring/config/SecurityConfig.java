@@ -44,6 +44,7 @@ public class SecurityConfig {
     		"/css/**",
     		"/img/**",
 			"/logout",
+			"/favicon.ico",
 			"/api/v1/**"
 
     };
