@@ -2,12 +2,15 @@ package com.spring.entities;
 
 import com.spring.consts.RoleEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Getter
@@ -21,7 +24,7 @@ public class Users implements Serializable {
     @Column(name="USERS_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer usersId;
-
+	
     @Column(name = "USERNAME", length = 255)
     private String userName;
 

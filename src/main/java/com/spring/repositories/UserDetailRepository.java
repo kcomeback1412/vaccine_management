@@ -46,7 +46,9 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 	
 	@Query("SELECT u FROM Users u where u.userName = ?1")
 	public String findByUsername(String username);
-
+	
+	@Query("SELECT COUNT(fullName) FROM UserDetail u JOIN Users us on u.id = us.usersId WHERE us.roleEnum = ?1 and u.fullName like %?2%")
+	public Integer countAllCustomerByRole(RoleEnum role, String name);
 	
 	
 

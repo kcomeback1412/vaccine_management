@@ -50,24 +50,24 @@ function deleteCheck(){
 	}
 }
 
-	let checkbox = document.querySelector('.myCheck');
-        let button = document.querySelector('#myButton');
-
-        checkbox.addEventListener('change', function() {
-            if(this.checked) {
-                button.disabled = false;
-            } else {
-                button.disabled = true;
-            }
-        });
+$('#myButton').prop("disabled", true);
+$('#myButton2').prop("disabled", true);
+$('input:checkbox').click(function() {
+ if ($(this).is(':checked')) {
+ $('#myButton').prop("disabled", false);
+ $('#myButton2').prop("disabled", false);
+ } else {
+ if ($('.checks').filter(':checked').length < 1){
+ $('#myButton').attr('disabled',true);
+ $('#myButton2').attr('disabled',true);}
+ }
+});
 
 
 function searchForm(){
-  let search = document.querySelector("#searchInvalid");
   var name=document.mySearchForm.searchId.value;  
    if (name == "") {
-    search.style.setProperty("opacity", 1);
-    return false;
+    return true;
   }
 }        
 

@@ -45,9 +45,6 @@
 							<small id="searchListInvalid" class="form-text text-danger" style="opacity: 0">
 								You must input number!
 							</small>
-						<small id="searchInvalid" class="form-text text-danger" style="opacity: 0">
-							No Data found!
-						</small>
 					</div>
 
 				</div>
@@ -57,7 +54,7 @@
 							<thead class="thead">
 								<tr class="table">
 									<th scope="col">
-										<input type="checkbox" id="checkboxId" onclick="checkUncheck(this)">
+										<input type="checkbox"  id="checkboxId" onclick="checkUncheck(this)">
 									</th>
 									<th scope="col" class="text-center text-white">Full name</th>
 									<th scope="col" class="text-center text-white">Date of Birth</th>
@@ -90,14 +87,14 @@
 						<div class="button_bussiness">
 							<!--<span class="text_details">Showing 1 to 5 of ... entries</span>-->
 							<li th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-							   <span class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${total}"></span> entries</span>
+							   <span class="text_details">Showing <span th:text="${start}"></span> to <span th:text="${end}"></span> of <span th:text="${totalCustomer}"></span> entries</span>
 							</li>
 							<div class="buttons">
 								<a class="btn-create" th:href="@{/customer-manage/create-customer}">Register</a>
-								<button class="btn-update" id="myButton" onclick="return updateCheck()" form="myForm"
+								<button class="btn-update" id="myButton"  onclick="return updateCheck()" form="myForm"
 									name="update">Update
 									Customer</button>
-								<button class="btn-delete" id="myButton" onclick="return deleteCheck()" form="myForm"
+								<button class="btn-delete" id="myButton2"  onclick="return deleteCheck()" form="myForm"
 									name="delete">Delete Customer</button>
 							</div>
 
@@ -106,10 +103,10 @@
 							<li class="page-item" th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 								<a  th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}"
 									class="page-link">
-									</a>
+									<</a>
 							</li>
 							<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
-								<li  th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${pageUserDetail.totalPages == 0 ? 'page-item disabled' : 'page-item '}">
+								<li  th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${pageUserDetail.totalPages == 0 ? 'page-item disabled' : 'page-item'}">
 									<a th:attr="class=${i == currentPage ? 'page-link text-danger' : 'page-link'}"
 										th:href="@{'/customer-manage/customer_list?pageNum=' + ${i}}"
 										th:text="${i}"></a>
