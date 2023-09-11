@@ -4,6 +4,7 @@ import com.spring.entities.InjectionResult;
 import com.spring.entities.Users;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,9 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
     @Transactional(rollbackOn = {Exception.class, Throwable.class})
     @Query("SELECT I FROM InjectionResult AS I WHERE I.prevention.preventionName like %?1%" )
     public List<InjectionResult> findAllByPreventionNameLike(String preventionName);
+
+    @Modifying
+    @Transactional(rollbackOn = {Exception.class, Throwable.class})
+    @Query("DELETE FROM InjectionResult  AS I WHERE I.injectionResultId IN(?1)")
+    public void deleteInjectionResultByListId(List<String> listId);
 }

@@ -57,7 +57,9 @@ public class SecurityConfig {
 			"/vaccine-management/**",
 			"/vaccineType-management/**",
 			"/injectionSchedule-management/create_injectionSchedule",
+			"/injectionSchedule-management/update_injectionSchedule/**",
 			"/injection-result-management/add-injection-result",
+			"/injection-result-management/delete-update-injection_result",
 			"/news-management/create_news",
 			"/report_injection_result"
     };

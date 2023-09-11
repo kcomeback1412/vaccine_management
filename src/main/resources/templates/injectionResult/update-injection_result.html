@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin_template::areas(~{::title}, ~{::link}, ~{::#content_title}, ~{::main}, ~{::script})}">
+
+<head>
+  <title>Update Injection Result</title>
+
+	<link rel="stylesheet" th:href="@{/css/injection-result-CSS/addInjectionResult.css}">
+</head>
+
+<body>
+	<h2 class="my-0 ml-auto mr-auto" id="content_title">UPDATE INJECTION RESULT</h2>
+
+	<main>
+		<div class="w-100 p-0 d-flex">
+			<form
+					class="form_content font-weight-bold w-100 bg-white px-5 py-2 rounded"
+					th:action="@{/injection-result-management/delete-update-injection_result}"
+					method="post"
+					th:object="${injectionResultUpdate}"
+					onsubmit="return validateInjectionResult()"
+			>
+				<div class="row my-5">
+					<div class="col">
+						<label for="idCusInput">Customer <span class="text-danger">(*)</span> :</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-solid fa-pen-to-square mr-3"></i>
+
+							<input
+									class="form-control px-2 py-4"
+									id="idCusInput"
+									name="users3"
+									type="text"
+									th:value="${injectionResultInfo.users3.usersId}"
+									placeholder="-Customer ID-"
+									readonly
+							/>
+						</div>
+						<small class="form-text text-danger" th:text="${msgError}"></small>
+					</div>
+
+					<div class="col">
+						<label>Prevention <span class="text-danger">(*)</span> :</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-regular fa-square-caret-down mr-3"></i>
+
+							<select class="form-select form-control px-2 py-4" name="prevention" required>
+								<th:block th:each="prevention : ${preventionList}">
+									<option
+										th:text="${prevention.preventionName}"
+										th:value="${prevention.preventionId}"
+										th:checked="${injectionResultInfo.prevention.preventionId} == ${prevention.preventionId}"
+									></option>
+								</th:block>
+
+							</select>
+						</div>
+					</div>
+
+					<div class="col">
+						<label for="vaccineTypeInput">Vaccine <span class="text-danger">(*)</span> :</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-regular fa-square-caret-down mr-3"></i>
+
+							<select class="form-select form-control px-2 py-4" id="vaccineTypeInput" name="vaccine" required>
+								<th:block th:each="vaccine : ${vaccineList}">
+									<option
+											th:text="${vaccine.vaccineName}"
+											th:value="${vaccine.vaccineId}"
+											th:checked="${injectionResultInfo.vaccine.vaccineId} == ${vaccine.vaccineId}"
+									></option>
+								</th:block>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row my-5">
+					<div class="col">
+						<label for="injectionResultIdInput">Injection ID:</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-solid fa-pen-to-square mr-3"></i>
+							<input
+									class="form-control px-2 py-4"
+									type="text"
+									placeholder="-Injection Result ID-"
+									name="injectionResultId"
+									th:value="${injectionResultInfo.injectionResultId}"
+									id="injectionResultIdInput"
+									readonly
+							/>
+						</div>
+
+					</div>
+
+					<div class="col">
+						<label for="injectionDateInput"> Date of injection : </label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-solid fa-pen-to-square mr-3"></i>
+							<input
+									class="form-control px-2 py-4"
+									id="injectionDateInput"
+									type="date"
+									name="injectionDate"
+									th:value="${injectionResultInfo.injectionDate}"
+									onchange="setMinDateNextInjection(this.value)"
+									required
+							/>
+						</div>
+					</div>
+
+					<div class="col">
+						<label for="nextInjectionDateInput">Next injection appointment :</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-solid fa-pen-to-square mr-3"></i>
+
+							<input
+									class="form-control px-2 py-4"
+									id="nextInjectionDateInput"
+									type="date"
+									th:value="${injectionResultInfo.nextInjectionDate}"
+									name="nextInjectionDate"
+									required
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row my-5">
+					<div class="col-4">
+						<label>Place of injection:</label>
+
+						<div class="d-flex align-items-center my-2">
+							<i class="fa-regular fa-square-caret-down mr-3"></i>
+
+							<select class="form-select  form-control px-2 py-4" name="place" required>
+								<th:block th:each="place : ${placeList}">
+									<option
+											th:text="${place.placeName} + ' - ' + ${place.placeAddress}"
+											th:value="${place.placeId}"
+											th:checked="${injectionResultInfo.place.placeId} == ${place.placeId}"
+									>
+									</option>
+								</th:block>
+
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row my-5">
+					<div class="col">
+						<button class="btn btn-success font-weight-bold px-5 py-2 mr-2" type="submit" name="update-save">Update Info</button>
+						<button class="btn btn-info font-weight-bold px-5 py-2 mr-2" type="reset">Reset</button>
+						<button class="btn btn-warning font-weight-bold text-white px-5 py-2" type="button" onclick="history.back()">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<script th:src="@{/js/injection_result-JS/validate-injection_result.js}"></script>
+</body>
+</html>
