@@ -103,7 +103,7 @@
 							<li class="page-item" th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 								<a  th:href="@{'/customer-manage/customer_list?pageNum=' + ${currentPage - 1}}"
 									class="page-link">
-									</a>
+									<</a>
 							</li>
 							<th:block th:each="i: ${#numbers.sequence(1, pageUserDetail.totalPages)}">
 								<li  th:if="${pageUserDetail.totalPages != 0}" th:attr="class=${pageUserDetail.totalPages == 0 ? 'page-item disabled' : 'page-item'}">

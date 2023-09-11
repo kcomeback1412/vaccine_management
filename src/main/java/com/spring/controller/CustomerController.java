@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,7 @@ import com.spring.entities.UserDetail;
 import com.spring.entities.Users;
 import com.spring.repositories.UserDetailRepository;
 import com.spring.repositories.UsersRepository;
+import com.spring.service.InjectionResultService;
 import com.spring.service.UserDetailsService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,9 +46,10 @@ public class CustomerController {
 	
 	@Autowired
 	PasswordEncoder encoder;
-
+	
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	InjectionResultService injectionResultService;
+
 
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
@@ -96,7 +99,7 @@ public class CustomerController {
 		
 		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
-		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+		customer.setPassword(encoder.encode(customer.getPassword()));
 
 		usersRepository.save(customer);
 		account.setUsers2(customer);
@@ -109,6 +112,9 @@ public class CustomerController {
 	public String deleteCustomer(HttpServletRequest httpServletRequest) {
 		if (httpServletRequest.getParameterValues("id") != null) {
 			for (String id : httpServletRequest.getParameterValues("id")) {
+				List<String> listId = new ArrayList<String>();
+				listId.add(id);
+				injectionResultService.deleteInjectionResultByListId(listId);
 				userDetailRepository.deleteById(Integer.parseInt(id));
 				usersRepository.deleteById(Integer.parseInt(id));
 			}
