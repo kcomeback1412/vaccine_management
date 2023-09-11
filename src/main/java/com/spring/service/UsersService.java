@@ -2,8 +2,10 @@ package com.spring.service;
 
 import com.spring.entities.Users;
 
+import java.util.List;
+
 public interface UsersService {
     Users save(Users user);
 
-	String findByUsername(String username);
+    void deleteUserByListId(List<Integer> listID);
 }

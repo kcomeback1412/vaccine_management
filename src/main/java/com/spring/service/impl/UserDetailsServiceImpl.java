@@ -3,6 +3,7 @@ package com.spring.service.impl;
 import com.spring.consts.RoleEnum;
 import com.spring.entities.UserDetail;
 import com.spring.repositories.UserDetailRepository;
+import com.spring.repositories.UsersRepository;
 import com.spring.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserDetailRepository userDetailRepository;
 
+    @Autowired
+    UsersRepository usersRepository;
+
     @Override
     public UserDetail save(UserDetail userDetail){
        return userDetailRepository.save(userDetail);
@@ -26,6 +30,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public Optional<UserDetail> findById(Integer id) {
         return userDetailRepository.findById(id);
+    }
+
+    @Override
+    public UserDetail findByIdReturnUserDetail(Integer id) {
+        return userDetailRepository.findByIdUserDetail(id);
     }
 
     @Override
@@ -54,6 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public void deleteEmployee(List<Integer> listId) {
         userDetailRepository.deleteUserDetailByListId(listId);
+        usersRepository.deleteUserByListId(listId);
     }
 
     @Override

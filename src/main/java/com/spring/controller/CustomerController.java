@@ -42,6 +42,9 @@ public class CustomerController {
 	@Autowired
 	PasswordEncoder encoder;
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
 	@GetMapping("/customer_list")
 	public String CustomerList(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, Model model, HttpSession session) {
@@ -95,6 +98,8 @@ public class CustomerController {
 		
 		customer.setPassword(encoder.encode(customer.getPassword()));
 		customer.setRoleEnum(RoleEnum.CUSTOMER);
+		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+
 		usersRepository.save(customer);
 		account.setUsers2(customer);
 		userDetailRepository.save(account);
@@ -124,7 +129,7 @@ public class CustomerController {
 		if (httpServletRequest.getParameterValues("id") != null
 				&& httpServletRequest.getParameterValues("id").length < 2) {
 			for (String id : httpServletRequest.getParameterValues("id")) {
-				userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+				userDetail = (UserDetail) userDetailRepository.findByIdUserDetail(Integer.parseInt(id));
 				user = (Users) usersRepository.findByIdUser(id);
 				model.addAttribute("userDetailInfo", userDetail);
 				model.addAttribute("userInfo", user);
@@ -145,7 +150,7 @@ public class CustomerController {
 
 		for (String id : httpServletRequest.getParameterValues("userId")) {
 			Users userDB = (Users) usersRepository.findByIdUser(id);
-			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(id);
+			UserDetail userDetailDB = (UserDetail) userDetailRepository.findByIdUserDetail(Integer.parseInt(id));
 
 			userDetailDB.setFullName(userDetail.getFullName());
 			userDetailDB.setDateOfBirth(userDetail.getDateOfBirth());

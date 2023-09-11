@@ -12,17 +12,10 @@
 
 <main>
 
-
+    <div class="container-fluid bg-white">
     <div class="container">
-        <form id="create-form" th:action="@{/create_news}" method="post" th:object="${news}" onsubmit="return validateForm()">
+        <form id="create-form" th:action="@{/news-management/create_news}" method="post" th:object="${news}" >
 
-            <label class="aa" for="new_type">NewsType</label>
-            <select id="new_type" name="newsType" th:field="*{newsType.newsTypeId}">
-                <option value="">--Select NewsType--</option>
-                <option th:each="currentNewsType : ${newsTypes}" th:value="${currentNewsType.newsTypeId}"
-                        th:text="${currentNewsType.newsTypeName}"></option>
-
-            </select>
 
             <label for="title">Title(*)</label>
             <input class="title" type="text" id="title" name="title" maxlength="300" required th:field="*{title}">
@@ -45,7 +38,8 @@
             </div>
         </form>
     </div>
+    </div>
 </main>
-<script th:src="@{/js/news-JS/news.js}"></script>
+<script th:src="@{/js/news-JS/cancel.js}"></script>
 </body>
 </html>

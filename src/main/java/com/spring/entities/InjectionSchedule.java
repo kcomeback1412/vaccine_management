@@ -30,4 +30,5 @@ public class InjectionSchedule implements Serializable {
     @ManyToOne
     @JoinColumn(name = "VACCINE_ID")
     private Vaccine vaccine1;
+
 }

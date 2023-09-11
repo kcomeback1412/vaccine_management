@@ -6,6 +6,8 @@ import com.spring.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsersServiceImpl implements UsersService {
     @Autowired
@@ -16,9 +18,8 @@ public class UsersServiceImpl implements UsersService {
         return usersRepository.save(user);
     }
 
-	@Override
-	public String findByUsername(String username) {
-		Users user = usersRepository.findByUserName(username);
-		return (user == null) ? "Unique" : "Duplicate";
-	}
+    @Override
+    public void deleteUserByListId(List<Integer> listID) {
+        usersRepository.deleteUserByListId(listID);
+    }
 }
