@@ -34,8 +34,6 @@ public class SecurityConfig {
 	@Autowired
 	public void configGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
-		
-		builder.userDetailsService(userDetailService);
 	}
 	
 	private final static String[] permitAllLink = {
@@ -45,7 +43,6 @@ public class SecurityConfig {
     		"/img/**",
 			"/logout",
 			"/api/v1/**"
-
     };
 
 	private final static String[] permitAdminLink = {

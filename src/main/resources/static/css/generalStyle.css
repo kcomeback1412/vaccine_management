@@ -130,8 +130,7 @@ body {
 	box-shadow: 2px 2px 5px #888888;
 }
 
-.sidebar_btn_wrap .btn,
-.form_content button{
+.sidebar_btn_wrap .btn{
 	font-size: 1.5rem;
 }
 
@@ -159,11 +158,8 @@ body {
 	text-decoration: none;
 }
 
-.ul-list-navbar li:hover {
+.ul-list-navbar a:hover {
 	background-color: #535b63;
-}
-
-.ul-list-navbar li:hover a {
 	color: white !important;
 }
 

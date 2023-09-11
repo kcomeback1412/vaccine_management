@@ -38,8 +38,8 @@
                 </div>
             </div>
 
-            <div class="body2">
-                <form id="tableForm" th:action="@{/vaccine-management/update-vaccine-list}" method="post">
+            <div class="body2 d-flex flex-column align-items-center">
+                <form class="w-100" id="tableForm" th:action="@{/vaccine-management/update-vaccine-list}" method="post">
                 <table class="table table-striped table-bordered">
                     <thead class="thead">
                     <tr class="table">
@@ -72,7 +72,7 @@
                     </tbody>
                 </table>
                 </form>
-
+				<h4 class="font-weight-bold" th:if="${vaccineList.totalPages == 0}">Not found</h4>
             </div>
             <div class="footer_buttons">
                 <div class="button_bussiness">
