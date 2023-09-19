@@ -63,6 +63,7 @@ public class SecurityConfig {
 			"/injection-result-management/add-injection-result",
 			"/injection-result-management/delete-update-injection_result",
 			"/news-management/create_news",
+			"/reports-management/**",
 			"/reports-management/**"
     };
 

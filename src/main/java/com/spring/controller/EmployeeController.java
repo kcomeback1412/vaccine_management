@@ -51,13 +51,9 @@ public class EmployeeController {
 
     //    , consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}
     @PostMapping(value = "/create-employee")
-    public String createEmployee(
-            @ModelAttribute("employeeToCreate") UserDetail userDetail,
+    public String createEmployee(@ModelAttribute("employeeToCreate") UserDetail userDetail,
 //            @RequestParam("image") MultipartFile multipartFile,
-            @RequestParam(name = "username") String username,
-            @RequestParam(name = "password") String password,
-            RedirectAttributes redirectAttributes
-    ) throws IOException {
+                                 @RequestParam(name = "username") String username, @RequestParam(name = "password") String password, RedirectAttributes redirectAttributes) throws IOException {
 //        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
         Users user = new Users();
@@ -75,68 +71,52 @@ public class EmployeeController {
 
 //        String uploadDir = "user-images/" + userDetail.getId();
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        redirectAttributes.
-                addFlashAttribute("msgSuccess", "Create employee success!");
+        redirectAttributes.addFlashAttribute("msgSuccess", "Create employee success!");
         return "redirect:/employee-management/employee-list";
     }
 
     //    Delete employee
     @PostMapping(value = "/delete-update-employee", params = "delete")
-    public String deleteEmployee(
-            @RequestParam(value = "listId", required = false) List<Integer> listId,
-            RedirectAttributes redirectAttributes
-    ) {
+    public String deleteEmployee(@RequestParam(value = "listId", required = false) List<Integer> listId, RedirectAttributes redirectAttributes) {
         if (listId != null) {
             userDetailsService.deleteEmployee(listId);
-            redirectAttributes.
-                    addFlashAttribute("msgSuccess", "Delete employee success!");
+            redirectAttributes.addFlashAttribute("msgSuccess", "Delete employee success!");
         } else {
-            redirectAttributes.
-                    addFlashAttribute("msgError", "You must select employee to delete");
+            redirectAttributes.addFlashAttribute("msgError", "You must select employee to delete");
         }
         return "redirect:/employee-management/employee-list";
     }
 
     //    Update employee UI
     @PostMapping(value = "/delete-update-employee", params = "update")
-    public String updateEmployeeUI(
-            @RequestParam(value = "listId", required = false) List<Integer> listId,
-            RedirectAttributes redirectAttributes,
-            Model model
-    ) {
+    public String updateEmployeeUI(@RequestParam(value = "listId", required = false) List<Integer> listId, RedirectAttributes redirectAttributes, Model model) {
 //          Add user info
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("userName", authentication.getName());
         model.addAttribute("userRole", authentication.getAuthorities().toString());
 
         if ((listId != null) && (listId.size() > 1)) {
-            redirectAttributes.
-                    addFlashAttribute("msgError", "You can only select 1 employee to update");
+            redirectAttributes.addFlashAttribute("msgError", "You can only select 1 employee to update");
             return "redirect:/employee-management/employee-list";
         } else if ((listId != null) && (listId.size() == 1)) {
             model.addAttribute("userDetailInfo", userDetailsService.findById(listId.get(0)).orElse(null));
 
             return "employee/update-employee";
         } else {
-            redirectAttributes.
-                    addFlashAttribute("msgError", "You must select employee to update");
+            redirectAttributes.addFlashAttribute("msgError", "You must select employee to update");
             return "redirect:/employee-management/employee-list";
         }
 
     }
 
-//  Save update employee
+    //  Save update employee
     @PostMapping(value = "/delete-update-employee", params = "update-save")
-    public String updateEmployee(
-            @ModelAttribute("employeeUpdate") UserDetail userDetail,
-            @RequestParam(name = "newPassword") String newPassword,
-            RedirectAttributes redirectAttributes
-    ) {
+    public String updateEmployee(@ModelAttribute("employeeUpdate") UserDetail userDetail, @RequestParam(name = "newPassword") String newPassword, RedirectAttributes redirectAttributes) {
 
         String name = ConvertName.replaceAllSpace(userDetail.getFullName());
         userDetail.setFullName(name);
         userDetail.setCode(ConvertName.convertNameToCode(name) + userDetail.getUsers2().getUsersId());
-        if(newPassword != null) {
+        if (newPassword != null) {
             userDetail.getUsers2().setPassword(passwordEncoder.encode(newPassword));
             usersService.save(userDetail.getUsers2());
         }
@@ -147,12 +127,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee-list")
-    public String employeeListUI(
-            @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-            @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize,
-            @RequestParam(name = "nameForSearch",required = false) String nameForSearch,
-            Model model
-    ) {
+    public String employeeListUI(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize, @RequestParam(name = "nameForSearch", required = false) String nameForSearch, Model model) {
 //          Add user info
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("userName", authentication.getName());
@@ -165,15 +140,15 @@ public class EmployeeController {
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
         List<UserDetail> listEmployee;
-        if( nameForSearch == null || nameForSearch.isEmpty()) {
+        if (nameForSearch == null || nameForSearch.isEmpty()) {
             listEmployee = userDetailsService.findAllEmployee();
-        } else  {
+        } else {
             listEmployee = userDetailsService.findAllEmployeeByFullNameLike(nameForSearch);
             model.addAttribute("nameForSearch", nameForSearch);
             model.addAttribute("totalEmployee", listEmployee.size());
         }
         Page<UserDetail> userDetails;
-        if(listEmployee != null) {
+        if (listEmployee != null) {
             userDetails = userDetailsService.convertListUserDetailToPageUserDetail(pageable, listEmployee);
         } else {
             userDetails = null;
